@@ -1,5 +1,5 @@
 // Independent late-life systems. No legacy state or storage is read or migrated.
-export const VERSION={schema:5,content:'after-shift-2',build:'0.4.0-candidate.3'};
+export const VERSION={schema:6,content:'after-shift-3',build:'0.4.0-candidate.4'};
 export const STORAGE_KEY='future-life.after-shift.0.4';
 export const SCENARIOS={
  ordinary_78:{mode:'ordinary',deathYear:2178,endYear:2190,fieldFit:true,assistance:true,benefit:false,cash:8},
@@ -18,7 +18,7 @@ const year=(m       )=>m/12;
 const cents=(n       )=>Math.round(n*100);
                                                                                                                                                                                                          
                                                                                                                   
-                                                                                                                                                                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
                                                                                                       
                                                                                                      
                                                                                  
@@ -28,7 +28,7 @@ const cents=(n       )=>Math.round(n*100);
 export function initial(mode     ,profile        ,seed=2100,conditions           ='open')      {
  const p=SCENARIOS[profile];if(!CONDITIONS[conditions])throw Error('未知作者条件');if(!p||p.mode!==mode)throw Error('模式与作者情境不匹配');if(!Number.isInteger(seed)||seed<0||seed>0xffffffff)throw Error('情境种子无效');
  return {...VERSION,seed,mode,profile,conditions,birth:2100,at:month(2168),end:month(p.endYear),death:p.deathYear===null?null:month(p.deathYear),alive:true,ended:false,
- cash:cents(p.cash),income:106,baseExpense:102,serviceExpense:0,mealExpense:0,reserve:0,debt:0,housing:'潮湾两间租屋',location:'地球·潮湾',role:'基础养老金加周转站短班',fieldFit:p.fieldFit,assistance:p.assistance,repairOffer:'none',repairReview:null,lunarOffer:'none',lunarReview:null,treatment:'none',treatmentEnd:null,departureAt:null,arrivalAt:null,returnAt:null,functionGain:false,
+ cash:cents(p.cash),income:106,baseExpense:102,serviceExpense:0,mealExpense:0,reserve:0,debt:0,housing:'潮湾两间租屋',temporaryStay:null,temporaryActivity:null,location:'地球·潮湾',role:'基础养老金加周转站短班',fieldFit:p.fieldFit,assistance:p.assistance,repairOffer:'none',repairReview:null,lunarOffer:'none',lunarReview:null,treatment:'none',treatmentEnd:null,departureAt:null,arrivalAt:null,returnAt:null,functionGain:false,
  support:{kind:'none',autoRenew:false,review:null},mealUntil:null,contract:{kind:'short',end:month(2170),status:'原短班至2170'},pending:null,history:[],effectIDs:[],operations:[]};
 }
 export const expense=(s      )=>s.baseExpense+s.serviceExpense+s.mealExpense;
@@ -113,4 +113,4 @@ export function restore(raw       )      {
  for(const op of s.operations){if(!op||typeof op!=='object')throw Error('操作记录无效');r=act(r,op);}
  if(canonical(r)!==canonical(s))throw Error('存档状态与可重放历史不符');return r;
 }
-export function summary(s      ){return `${year(s.at)}年，${Math.floor(year(s.at)-s.birth)}岁。${s.alive?'存活条件下的阶段记录':'生命结束后的旁观记录'}。${s.location}，${s.housing}。现金${(s.cash/100).toFixed(2)}U，专用返程资产${(s.reserve/100).toFixed(2)}U。${s.contract.status}。模式：${s.mode==='ordinary'?'普通自然生命周期作者情境':'显式不老作者情境，仍可能生命中断'}。`;}
+export function summary(s      ){return `${year(s.at)}年，${Math.floor(year(s.at)-s.birth)}岁。${s.alive?'存活条件下的阶段记录':'生命结束后的旁观记录'}。${s.location}，${s.temporaryStay??s.housing}。${s.temporaryStay?`仍保留地球租屋：${s.housing}。`:""}现金${(s.cash/100).toFixed(2)}U，专用返程资产${(s.reserve/100).toFixed(2)}U。${s.contract.status}。模式：${s.mode==='ordinary'?'普通自然生命周期作者情境':'显式不老作者情境，仍可能生命中断'}。`;}

@@ -43,7 +43,7 @@ function prepare(s     ,pack     )     {
  // System-controlled money and arrival dates are not written a second time by authored effects.
  const controlled=['AS04','AS08','AS10','AS16','AS27','AS28D','AS28A','AS28X','AS28XE','AS28ER','AS28SR','AS28XR'];
  const effects=controlled.includes(e.id)?e.onEnter.filter((f    )=>!f.path.startsWith('finance.')&&!f.path.startsWith('player.')):e.onEnter;
- fx(s,effects,e.id+':enter');
+ fx(s,effects,e.id+':enter');if(e.id==='AS09E'&&s.system.temporaryActivity){const previous=s.system.temporaryActivity;s.system.role=previous.priorRole;s.system.location=previous.priorLocation;s.system.temporaryStay=null;s.system.temporaryActivity=null;if(s.data.flags.asBridgeActive&&s.system.contract.kind==='short')s.system.contract.pay=28;sync(s);}
  if(e.id==='AS11')moveHousing(s,'潮湾两间租屋，纪岚已迁出');
  if(e.automatic){const result=[e.text,e.automatic,...e.variants.filter((v    )=>matches(s.data,v.when)).map((v    )=>v.text)].join('\n\n');s.pending={id:e.id,source:'story',stage:'result',choice:null,result};note(s,e.id,':automatic',result);}
  else s.pending={id:e.id,source:'story',stage:'choice',choice:null,result:null};
@@ -61,7 +61,7 @@ export function current(s     ,pack     )    {
  {id:'subsidized_auto',label:'改为固定窗口补差安排',hint:'服务由本人0.04U与公共0.02U分担。'},
  {id:'as_needed',label:'选择按需公共支持',hint:'保留0.74U基础生活，不要求朋友承担固定护理。'}]};
 }
-function optionAction(s     ,e    ,o    ){const key=e.id+'/'+o.id;let delegated=false;
+function optionAction(s     ,e    ,o    ){const key=e.id+'/'+o.id;const priorRole=s.system.role,priorLocation=s.system.location;let delegated=false;
  const operations                           ={
  'AS06/assess':{kind:'repair_apply'},'AS07/start':{kind:'treatment'},'AS28/resident':{kind:'lunar_apply'},'AS28M/accept':{kind:'lunar_sign'},'AS28F/return':{kind:'lunar_return',early:true},'AS28X/return':{kind:'lunar_return',early:false},'AS28X/extend':{kind:'lunar_extend'},'AS21/support':{kind:'support',choice:'paid_auto'},'AS21/compact':{kind:'support',choice:'as_needed'},'AS21/subsidized':{kind:'support',choice:'subsidized_auto'},'AS26/weekly':{kind:'meal',until:2202}};
  if(operations[key]){systemAction(s,operations[key]);delegated=true;}
@@ -72,7 +72,7 @@ function optionAction(s     ,e    ,o    ){const key=e.id+'/'+o.id;let delegated=
  fx(s,o.effects.filter((f    )=>!skip(f)),key);if(outcome)fx(s,outcome.effects.filter((f    )=>!skip(f)),key+':outcome');
  if(key==='AS04/bridge')s.system.contract={kind:'short',pay:28,end:2172*12,status:'周转箱过渡短班'};
  if(key==='AS15/job')s.system.contract={kind:'short',pay:20,end:Math.round(2175.5*12),status:'一年洄岸季节协作'};
- if(key==='AS09S/board'&&s.data.flags.asBridgeActive)s.system.contract.pay=0; // Wage paused until AS09E.
+ if(key==='AS09S/board'||key==='AS09S/connect'){s.system.temporaryActivity={kind:key.endsWith('/board')?'coast_ship':'coast_remote',priorRole,priorLocation};s.system.temporaryStay=key.endsWith('/board')?'北段作业船临时铺位；三个月船上食宿由报酬抵付':null;s.system.role=key.endsWith('/board')?(s.data.flags.asCoastBoardTask==='supported_field'?'洄岸三个月受支持现场协作':'洄岸三个月船内远身协作'):'洄岸三个月地球端远身协作';}if(key==='AS09S/board'&&s.data.flags.asBridgeActive)s.system.contract.pay=0; // Wage paused until AS09E.
  if(['AS02/compact','AS11/compact','AS12H/near'].includes(key))moveHousing(s,'潮湾同街一室屋');
  if(key==='AS02/share')s.system.housing='潮湾两间租屋，与纪岚合住';
  if(key==='AS12H/far')moveHousing(s,'潮湾远处小屋，通勤80分钟');
@@ -94,7 +94,7 @@ function chooseInternal(s     ,pack     ,id       ){if(!available(s,pack,id))thr
  s.pending={...s.pending ,stage:'result',choice:id,result};note(s,s.pending.id,id,result);return s;
 }
 function nextInternal(s     ,pack     ){if(s.pending?.stage==='choice')return s;if(s.pending?.source==='death'){systemAction(s,{kind:'ack'});s.pending=null;s.ended=true;return s;}
- if(s.pending?.source==='story'){const id=s.pending.id;s.done.push(id);if(id==='AS09E'&&s.data.flags.asBridgeActive)s.system.contract.pay=28;if(['AS23','AS30'].includes(id)){s.pending=null;s.ended=true;return s;}}
+ if(s.pending?.source==='story'){const id=s.pending.id;s.done.push(id);if(['AS23','AS30'].includes(id)){s.pending=null;s.ended=true;return s;}}
  s.pending=null;return prepare(s,pack);
 }
 export function choose(input     ,pack     ,id       ){const s=chooseInternal(structuredClone(input),pack,id);s.operations.push({kind:'choose',id});return s;}
@@ -103,4 +103,4 @@ export function prose(s     ,pack     ){const e=current(s,pack);return e?[e.text
 export const serialize=(s     )=>JSON.stringify(s,null,2);
 function canonical(v    )       {return Array.isArray(v)?'['+v.map(canonical).join(',')+']':v&&typeof v==='object'?'{'+Object.keys(v).sort().map(k=>JSON.stringify(k)+':'+canonical(v[k])).join(',')+'}':JSON.stringify(v);}
 export function restore(raw       ,pack     )     {if(typeof raw!=='string'||raw.length>2*1024*1024)throw Error('存档结构无效或过大');let s     ;try{s=JSON.parse(raw);}catch{throw Error('存档JSON无效');}if(!s||s.schema!==S.VERSION.schema||s.content!==S.VERSION.content||s.build!==S.VERSION.build||s.origin!=='care_aftershift')throw Error('版本不兼容，请保留原档，不自动迁移');if(!s.system||!Array.isArray(s.operations)||s.operations.length>5000)throw Error('存档结构无效');let r=initial(pack,s.system.mode,s.system.profile,s.system.seed,s.system.conditions);for(const o of s.operations){if(o?.kind==='choose'&&typeof o.id==='string')r=choose(r,pack,o.id);else if(o?.kind==='next')r=next(r,pack);else throw Error('操作记录无效');}if(canonical(r)!==canonical(s))throw Error('存档与实际可重放人生不符');return r;}
-export function summary(s     ){const d=s.data;return [S.summary(s.system),`实际洄岸经历：${d.flags.asCoastBoardTask==='supported_field'?'作业船与受支持现场':d.flags.asCoastBoardTask==='ship_remote'?'船内远身':d.flags.asCoastChoice==='remote'&&d.flags.asCoastRecord?'地球端远身':d.flags.asCoastRecord?'本地观察或短次参与':'未参加项目'}。`,d.flags.asLunarPhase==='returned'?'实际在岚脊生活后，已经返回另一间地球住屋。':d.flags.asLunarRemoteDone?'已完成地球端半年协作，没有月球居住履历。':`月球安排：${d.flags.asLunarPhase}。`,`纪岚：${d.people.jilan.location}；余青：${d.people.yuqing.alive?'仍按自己的安排生活':'已经去世'}。`,'实际记录：',...s.history.filter(h=>!h.event.startsWith('ledger:')&&!h.event.startsWith('support:')).map(h=>`${Math.floor(h.year)}年 · ${h.result}`)].join('\n\n');}
+export function summary(s     ){const d=s.data;return [S.summary(s.system),`实际洄岸经历：${d.flags.asCoastBoardTask==='supported_field'?'作业船与受支持现场':d.flags.asCoastBoardTask==='ship_remote'?'船内远身':d.flags.asCoastChoice==='remote'&&d.flags.asCoastRecord?'地球端远身':d.flags.asCoastRecord?'本地观察或短次参与':'未参加项目'}。`,d.flags.asLunarPhase==='returned'?'实际在岚脊生活后，已经返回另一间地球住屋。':d.flags.asLunarRemoteDone?'已完成地球端半年协作，没有月球居住履历。':`月球安排：${({none:"尚无月球居住安排",contracted:"已签约，等待出发",extension:"正在月球延长服务",in_transit:"正在前往月球",remote:"在地球端协作",remote_booked:"已安排地球端协作",remote_finished:"地球端协作已结束",applied:"已申请，等待结果",offered:"已获录用，尚未迁居",signed:"已签约，等待出发",departed:"正在前往月球",resident:"正在月球居住",returning:"正在返回地球",returned:"已经返回地球",declined:"已拒绝月球安排",rejected:"本次申请未获录用"}                         )[d.flags.asLunarPhase]??"尚未形成月球居住安排"}。`,`纪岚：${d.people.jilan.location}；余青：${d.people.yuqing.alive?'仍按自己的安排生活':'已经去世'}。`,'实际记录：',...s.history.filter(h=>!h.event.startsWith('ledger:')&&!h.event.startsWith('support:')).map(h=>`${Math.floor(h.year)}年 · ${h.result}`)].join('\n\n');}
