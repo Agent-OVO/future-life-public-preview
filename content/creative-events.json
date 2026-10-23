@@ -1,0 +1,1806 @@
+[
+  {
+    "origin": "creative",
+    "id": "D01",
+    "year": 2118,
+    "title": "身体不必全到场",
+    "location": "地球·织城",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "你叫沈弦，2100 年出生在内陆织城。十八岁时，你靠公共图书馆兼职维持生活，喜欢把借阅台旁听来的声音编成短剧。你没有显赫家世，也没有在太空等你的岗位。\n\n图书馆楼上开放了一间远身排练室。人留在控制席，机器身体可以完成舞台上的移动与灯光互动；这是一种新的表达能力，不是治疗，也不需要你向观众公开身体情况。本切片不指定疾病或行动障碍。\n\n简澜负责现场演出，愿意让观众看见真正的操作者。AI 创作系统“折光”会提出不同节拍，不会替任何人签字。公共时段有限，申请、适配通过、本人愿意使用是三件事。",
+    "variants": [],
+    "options": [
+      {
+        "id": "remote",
+        "label": "申请社区远身试演",
+        "hint": "支付 1U 评估费；只申请，不保证名额或立即登台。",
+        "result": "你提交适配申请并支付评估费。远身机器尚未分配给你，舞台还没有你的表演。",
+        "effects": [
+          {
+            "path": "flags.access",
+            "value": "申请待评",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 1,
+        "outcomes": [
+          {
+            "when": [
+              {
+                "path": "flags.remoteSlot",
+                "op": "eq",
+                "value": true
+              }
+            ],
+            "text": "服务方确认本期有合适时段，提供一次受监督试演。仍需你确认是否使用。",
+            "effects": [
+              {
+                "path": "flags.access",
+                "value": "试演获批",
+                "op": "set"
+              }
+            ]
+          },
+          {
+            "when": [],
+            "text": "本期适配时段不足，服务方没有批准。费用用于已完成的评估，不退回；你仍可做配音与编排，不会被写成“不适合创作的人”。 隔着门，你看见别人试机。简澜递给你一张空白分轨表，不替服务方许诺下一期。你可以以后做自己的声音作品，但这一天没有属于你的登台。",
+            "effects": [
+              {
+                "path": "flags.access",
+                "value": "名额不足未获批",
+                "op": "set"
+              }
+            ]
+          }
+        ],
+        "deferred": true
+      },
+      {
+        "id": "voice",
+        "label": "先做配音与编排",
+        "hint": "支付 0.5U，保留兼职；作品由你完成，不把别人写成合作者。",
+        "result": "你录下一段一分钟小品。它不需要远身机器，也没有借用简澜的形象或折光的输出；你保留作者身份，继续在图书馆上班。\n\n你把小品叫作《闭馆后的一分钟》。一把钥匙落在台面，三个书架先后回响，最后一句问候只剩下气声。你调整的是声音之间的距离，不是假装自己操纵过远身身体。",
+        "effects": [
+          {
+            "path": "flags.access",
+            "value": "非远身表达",
+            "op": "set"
+          },
+          {
+            "path": "flags.practice",
+            "value": "配音小品",
+            "op": "set"
+          },
+          {
+            "path": "project.participated",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "project.stage",
+            "value": "个人小品",
+            "op": "set"
+          },
+          {
+            "path": "project.result",
+            "value": "本地小品完成",
+            "op": "set"
+          },
+          {
+            "path": "project.contribution",
+            "value": "配音与编排",
+            "op": "set"
+          },
+          {
+            "path": "rights.version",
+            "value": "本人小品",
+            "op": "set"
+          },
+          {
+            "path": "project.workTitle",
+            "value": "闭馆后的一分钟",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0.5,
+        "outcomes": [],
+        "deferred": false
+      },
+      {
+        "id": "audience",
+        "label": "留在观众与业余社群里",
+        "hint": "零成本，不建立作品或平台合同。",
+        "result": "你这次坐在观众席，演后留下关于节奏的意见。有人第一次借机器走上舞台，与你没有作品署名关系，但你同样看见了那项能力。",
+        "effects": [
+          {
+            "path": "flags.access",
+            "value": "观众",
+            "op": "set"
+          },
+          {
+            "path": "flags.practice",
+            "value": "观众参与",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": [],
+        "deferred": false
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "D01_START",
+      "D02"
+    ]
+  },
+  {
+    "origin": "creative",
+    "id": "D01_START",
+    "year": 2118.25,
+    "title": "先把手放在停止键旁",
+    "location": "地球·织城",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.access",
+        "op": "eq",
+        "value": "试演获批"
+      }
+    ],
+    "text": "你还在织城。服务方安排了三个月后的受监督时段：控制席、远身身体和现场安全员各有职责。简澜只负责她同意的现场部分，没有承诺替你承担风险或无偿排练。\n\n你在排练室看见同一段动作被映射成了另一种身体的节奏。技术真正扩大了能做的事，却没有让每个人必须使用它。",
+    "variants": [],
+    "options": [
+      {
+        "id": "perform",
+        "label": "确认试演并完成一次上台",
+        "hint": "支付 0.5U 当次服务费；只使用这次时段，不取得机器所有权。",
+        "result": "你确认了安全范围，完成一次远身试演。掌声很短，但你第一次让自己编排的动作出现在台上。机器退回服务方，身体状况没有因此被改写。\n\n你把小品叫作《借来的重心》：借阅台的书一册册落下，台上的身体不去接，而是把落地声排成一句迟到的问候。机器的腕部连续旋转，四个支点轮流接地，人的关节做不到那串不间断的回环。你坐在控制席，只决定哪一次停顿留给观众；安全员限制速度和力量，这不是身体被修复的证明。\n\n简澜看完第一遍没有鼓掌：“机器转得漂亮，可你一直躲在它后面。最后一次，让观众听见你在控制席吸气，好吗？”折光提出三种节拍，你选了最慢的一种。回环仍然陌生，呼吸却是你的。简澜收起线缆去赶自己的夜班，没有留在这里等你选择她的下一步。",
+        "effects": [
+          {
+            "path": "flags.access",
+            "value": "完成远身试演",
+            "op": "set"
+          },
+          {
+            "path": "flags.practice",
+            "value": "远身小品",
+            "op": "set"
+          },
+          {
+            "path": "project.participated",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "project.stage",
+            "value": "个人远身小品",
+            "op": "set"
+          },
+          {
+            "path": "project.result",
+            "value": "一次试演完成",
+            "op": "set"
+          },
+          {
+            "path": "project.contribution",
+            "value": "远身表演与编排",
+            "op": "set"
+          },
+          {
+            "path": "rights.version",
+            "value": "本人小品",
+            "op": "set"
+          },
+          {
+            "path": "project.workTitle",
+            "value": "借来的重心",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0.5,
+        "outcomes": [],
+        "deferred": false
+      },
+      {
+        "id": "decline",
+        "label": "不使用机器，转为自己的配音",
+        "hint": "不新增费用；已付评估费不返还，没有被强行上台。",
+        "result": "你放弃这次机器时段，改用图书馆已有录音台完成个人配音。你的申请获批过，但使用决定仍属于你。\n\n你把个人录音叫作《闭馆后的一分钟》，留下钥匙触碰台面的声音。它没有机器回环，也没有借用一场你未完成的远身首演。",
+        "effects": [
+          {
+            "path": "flags.access",
+            "value": "获批后未使用",
+            "op": "set"
+          },
+          {
+            "path": "flags.practice",
+            "value": "配音小品",
+            "op": "set"
+          },
+          {
+            "path": "project.participated",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "project.stage",
+            "value": "个人小品",
+            "op": "set"
+          },
+          {
+            "path": "project.result",
+            "value": "本地小品完成",
+            "op": "set"
+          },
+          {
+            "path": "project.contribution",
+            "value": "配音与编排",
+            "op": "set"
+          },
+          {
+            "path": "rights.version",
+            "value": "本人小品",
+            "op": "set"
+          },
+          {
+            "path": "project.workTitle",
+            "value": "闭馆后的一分钟",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": [],
+        "deferred": false
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "D02"
+    ]
+  },
+  {
+    "origin": "creative",
+    "id": "D02",
+    "year": 2123,
+    "title": "第一场之后，账单也会来到",
+    "location": "地球·织城",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "二十三岁，你从社群里看见一次排练的安排，也知道排练后仍要交房租。远身服务按时段计费，简澜不能只凭热爱无限留在现场。有人把艺术当职业，有人把它放在普通工作之外；两种生活都要算账。\n\n织城“镜场”平台招募一年试驻演。它先看实际作品，不凭观众的热情录取。报价为月收入 1.45U，含生活与排练的月支出 1.65U；试用年净消耗 2.4U，再加 2U 开场费。受欢迎不意味着能负担职业规模。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "你此前没有完成作品。这里不会把别人演出的成功写成你的“首演成功”；你可以从一场小规模共同排练开始，也可以不做。"
+      }
+    ],
+    "options": [
+      {
+        "id": "small",
+        "label": "保留兼职，做一段小规模共同排练",
+        "hint": "支付 1U；简澜与折光只同意本次排练，不授予复制或发行权。",
+        "result": "你保留图书馆工作，支付约定排练费用。简澜同意一次现场合作，折光同意为这一场提供可变节拍；这不是未来所有演出的共同授权。你们完成了一个本地版本。\n\n这一场叫《回声借阅室》排练版：一个总在闭馆前到来的声音，向空房间借一段记忆。简澜回答“明天再来”，折光把检索未命中的杂音留成节拍。排练结束，三人各自收走自己的记录，没有让一次合作变成永久承诺。",
+        "effects": [
+          {
+            "path": "project.participated",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "project.stage",
+            "value": "本地共同排练",
+            "op": "set"
+          },
+          {
+            "path": "project.result",
+            "value": "本地版本完成",
+            "op": "set"
+          },
+          {
+            "path": "project.contribution",
+            "value": "编排与共同排练",
+            "op": "set"
+          },
+          {
+            "path": "flags.practice",
+            "value": "小规模创作",
+            "op": "set"
+          },
+          {
+            "path": "flags.cooperation",
+            "value": "本场合作完成",
+            "op": "set"
+          },
+          {
+            "path": "rights.version",
+            "value": "V1未发行",
+            "op": "set"
+          },
+          {
+            "path": "flags.career",
+            "value": "兼职创作",
+            "op": "set"
+          },
+          {
+            "path": "project.workTitle",
+            "value": "回声借阅室·排练版",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 1,
+        "outcomes": [],
+        "deferred": false
+      },
+      {
+        "id": "apply",
+        "label": "申请一年平台试驻演",
+        "hint": "只申请；没有作品者会被拒绝，录取后还要决定是否签约。",
+        "result": "你提交试驻演申请。原兼职没有辞去，平台尚未录取你。",
+        "effects": [
+          {
+            "path": "flags.platformApplication",
+            "value": "待审核",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": [
+          {
+            "when": [
+              {
+                "path": "project.participated",
+                "op": "eq",
+                "value": true
+              }
+            ],
+            "text": "平台根据已有小品提供一年试驻演名额。你可以审阅报价后另行签约，也可以拒绝。",
+            "effects": [
+              {
+                "path": "flags.platformApplication",
+                "value": "录用待签",
+                "op": "set"
+              },
+              {
+                "path": "flags.platformOffer",
+                "value": true,
+                "op": "set"
+              }
+            ]
+          },
+          {
+            "when": [],
+            "text": "平台以缺少实际作品拒绝申请。这是平台的决定，不是你主动退出；图书馆工作与社区创作入口仍保留。",
+            "effects": [
+              {
+                "path": "flags.platformApplication",
+                "value": "作品不足未录用",
+                "op": "set"
+              },
+              {
+                "path": "flags.platformOffer",
+                "value": false,
+                "op": "set"
+              }
+            ]
+          }
+        ],
+        "deferred": true
+      },
+      {
+        "id": "amateur",
+        "label": "不申请职业规模，保留普通生活",
+        "hint": "收入与支出保持原状，已有作品不被删除。",
+        "result": "你没有申请驻演，继续图书馆工作，把创作或观众活动留在业余。没有平台合同，也没有因为拒绝而消失的社会生活。",
+        "effects": [
+          {
+            "path": "flags.career",
+            "value": "普通工作与业余",
+            "op": "set"
+          },
+          {
+            "path": "flags.platformApplication",
+            "value": "未申请",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": [],
+        "deferred": false
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "D02_SIGN",
+      "D03"
+    ]
+  },
+  {
+    "origin": "creative",
+    "id": "D02_SIGN",
+    "year": 2123,
+    "title": "录取通知不是你的签名",
+    "location": "地球·织城",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.platformOffer",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "平台把一年的安排写清：试驻演从 2123 年到 2124 年，不自动续约；月入 1.45U、月支出 1.65U，开场费 2U，不取得你的全部作品或形象。期满可以结束或转为按场合作。\n\n简澜只按场收取报酬，折光的使用范围另按场确认。这次签的是你自己的服务，不代表他们一起加入平台。",
+    "variants": [],
+    "options": [
+      {
+        "id": "sign",
+        "label": "签下一年试驻演",
+        "hint": "支出 2U；这一年净支出高于收入，下一年必须停下处理到期。",
+        "result": "你签约并开始一年试驻演。每月生活与排练费高于收入，现金缓冲在消耗；合同没有许诺只要继续热爱就会盈利。",
+        "effects": [
+          {
+            "path": "flags.career",
+            "value": "平台试驻演",
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "试驻演创作者",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.45,
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 1.65,
+            "op": "set"
+          },
+          {
+            "path": "contract.status",
+            "value": "驻演试用中",
+            "op": "set"
+          },
+          {
+            "path": "contract.start",
+            "value": 2123,
+            "op": "set"
+          },
+          {
+            "path": "contract.end",
+            "value": 2124,
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 2,
+        "outcomes": [],
+        "deferred": false
+      },
+      {
+        "id": "decline",
+        "label": "不签约，保留图书馆兼职",
+        "hint": "不扣开场费；记录为收到录取后主动不签。",
+        "result": "你看过预算后没有签约。平台曾录取你，你主动放弃了这次规模；已有作品仍在，你不需要为它们否定普通工作。",
+        "effects": [
+          {
+            "path": "flags.platformApplication",
+            "value": "获录取后不签",
+            "op": "set"
+          },
+          {
+            "path": "flags.platformOffer",
+            "value": false,
+            "op": "set"
+          },
+          {
+            "path": "flags.career",
+            "value": "兼职创作",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": [],
+        "deferred": false
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "D02_TERM",
+      "D03"
+    ]
+  },
+  {
+    "origin": "creative",
+    "id": "D02_TERM",
+    "year": 2124,
+    "title": "一年的热爱，不应变成无限续费",
+    "location": "地球·织城",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "contract.status",
+        "op": "eq",
+        "value": "驻演试用中"
+      }
+    ],
+    "text": "一年试驻演已到期，设备租用与排练支出到此停止。你完成了演出，也亲眼看见这一年的净亏损；平台没有替你续约。你现在可以转成更小的按场合作，或者回到已确认保留的图书馆班次。",
+    "variants": [],
+    "options": [
+      {
+        "id": "bookings",
+        "label": "转按场创作，缩小设备规模",
+        "hint": "无固定期限和预付债；月均情境收入 1.50U、支出 1.30U。",
+        "result": "你不续原试用合同，转为小规模按场创作。收入没有大涨，但设备支出下降，生活开始可持续；简澜仍按每场决定是否参加。",
+        "effects": [
+          {
+            "path": "flags.career",
+            "value": "按场职业创作",
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "按场创作者",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.5,
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 1.3,
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": [],
+        "deferred": false
+      },
+      {
+        "id": "library",
+        "label": "结束职业规模，回图书馆兼业",
+        "hint": "月入 1.15U、支出 1U；历史演出和费用保留。",
+        "result": "你结束驻演，回到图书馆兼职。你做过一年职业演出，也确实为此付出费用；回顾不会把它改写成从未尝试或一生持续成功。",
+        "effects": [
+          {
+            "path": "flags.career",
+            "value": "驻演后退出转兼业",
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "图书馆兼职",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.15,
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 1,
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": [],
+        "deferred": false
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "contract.status",
+        "value": "驻演到期已结束",
+        "op": "set"
+      },
+      {
+        "path": "contract.end",
+        "value": 0,
+        "op": "set"
+      },
+      {
+        "path": "flags.completedContract",
+        "value": true,
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "D03"
+    ]
+  },
+  {
+    "origin": "creative",
+    "id": "D03",
+    "year": 2129,
+    "title": "可以复制的演出，不可代签的人",
+    "location": "地球·织城",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "镜场平台向本地社群征集可重复演出的音轨与动作模板。它希望把成功片段固定下来，投放三年。简澜不愿交出自己的形象，折光不愿接受无限期的固定模板。\n\n你只拥有自己有权使用的部分。母版保管、限期发行、形象衍生复制和私密排练记录不是同一种权利。提出方案先得到逐项答复；没有答复，就没有共同作品授权。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "你仍是社群参与者，没有可以替别人授权的作品。可以拒绝这次邀请，继续自己的生活；没有“必成艺术家”的强制合流。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.access",
+            "op": "eq",
+            "value": "完成远身试演"
+          }
+        ],
+        "text": "你带来的起点是《借来的重心》的那口呼吸。新的《回声借阅室》可以让它走进空房间，但不必重复机器技巧。镜场希望所有片段在同一秒落幕，简澜却想保留一句现场回答；折光认为检索失败的空白本来就是作品的一部分。"
+      },
+      {
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "flags.access",
+            "op": "ne",
+            "value": "完成远身试演"
+          }
+        ],
+        "text": "你带来的是自己已有的声音或编排片段，不是一场从未发生的远身首演。社群正在构思《回声借阅室》：闭馆前到来的声音，向空房间借一段记忆。镜场希望片段在同一秒落幕，简澜想保留现场回答，折光不愿剪掉检索失败的空白。"
+      },
+      {
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "你在图书馆负责收回社群借出的播放机，听见两个读者争论那段空白究竟是故障还是表演。你把两种意见都记进活动簿，没有替艺术家给标准答案，也没有因此获得作者身份。"
+      }
+    ],
+    "options": [
+      {
+        "id": "limited",
+        "label": "提出三年非独占V1许可",
+        "hint": "仅已有创作者；不复制简澜形象，不开放私人记录，允许折光保留变化。",
+        "result": "你提出把自己的片段与双方新同意的音轨、动作共同编成 V1，只针对该版本、期限三年的方案，等待两个合作者各自回复。",
+        "effects": [
+          {
+            "path": "flags.proposal",
+            "value": "三年非独占V1",
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0,
+        "outcomes": [
+          {
+            "when": [],
+            "text": "简澜书面同意 V1 音轨和约定动作，但不同意复制她的形象；折光分别同意保留变化的 V1 模板，不同意无限固定复演。平台接受这些边界，仍待你签字。",
+            "effects": [
+              {
+                "path": "rights.ai",
+                "value": "同意三年可变V1",
+                "op": "set"
+              },
+              {
+                "path": "rights.human",
+                "value": "同意三年V1音轨动作",
+                "op": "set"
+              },
+              {
+                "path": "rights.platform",
+                "value": "限定V1待签",
+                "op": "set"
+              },
+              {
+                "path": "rights.version",
+                "value": "V1",
+                "op": "set"
+              },
+              {
+                "path": "flags.cooperation",
+                "value": "V1限定合作",
+                "op": "set"
+              }
+            ]
+          }
+        ],
+        "deferred": true
+      },
+      {
+        "id": "broad",
+        "label": "试探平台的无限固定模板方案",
+        "hint": "仅已有创作者；合作者可拒绝，不因曾合作或好感而自动同意。",
+        "result": "你询问是否可以无限期固定复演，分别请求简澜和折光答复。",
+        "effects": [
+          {
+            "path": "flags.proposal",
+            "value": "无限固定模板",
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0,
+        "outcomes": [
+          {
+            "when": [],
+            "text": "简澜拒绝形象和永久复制授权；折光也拒绝无限固定模板。平台因此没有得到可签的共同许可。你可以改做自己的部分或继续普通工作，不能把拒绝写成他们已签字。",
+            "effects": [
+              {
+                "path": "rights.ai",
+                "value": "拒绝无限固定模板",
+                "op": "set"
+              },
+              {
+                "path": "rights.human",
+                "value": "拒绝永久复制",
+                "op": "set"
+              },
+              {
+                "path": "rights.platform",
+                "value": "共同许可未成立",
+                "op": "set"
+              },
+              {
+                "path": "flags.cooperation",
+                "value": "限定请求未达成",
+                "op": "set"
+              }
+            ]
+          }
+        ],
+        "deferred": true
+      },
+      {
+        "id": "master",
+        "label": "仅协商保留本地母版",
+        "hint": "仅本地共同排练参与者；只允许保管，不含公开、转售或新发行。",
+        "result": "你提出把本次共同排练的母版交本地图书馆封存，各自保留权利。",
+        "effects": [
+          {
+            "path": "flags.proposal",
+            "value": "封存母版",
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "flags.cooperation",
+            "op": "eq",
+            "value": "本场合作完成"
+          }
+        ],
+        "cost": 0,
+        "outcomes": [
+          {
+            "when": [],
+            "text": "简澜和折光分别同意保管本次母版，明确不等于公开观看和发行许可。你们各自保留可以取回本人部分的记录。",
+            "effects": [
+              {
+                "path": "rights.ai",
+                "value": "同意封存V1",
+                "op": "set"
+              },
+              {
+                "path": "rights.human",
+                "value": "同意封存V1",
+                "op": "set"
+              },
+              {
+                "path": "rights.version",
+                "value": "V1",
+                "op": "set"
+              },
+              {
+                "path": "rights.platform",
+                "value": "无",
+                "op": "set"
+              },
+              {
+                "path": "flags.cooperation",
+                "value": "母版保管合作",
+                "op": "set"
+              },
+              {
+                "path": "rights.archive",
+                "value": "V1封存，不公开",
+                "op": "set"
+              }
+            ]
+          }
+        ],
+        "deferred": true
+      },
+      {
+        "id": "decline",
+        "label": "拒绝平台邀请，保留现有生活",
+        "hint": "不建立平台合同；没有作品的人不会因此获得署名。",
+        "result": "你没有进入这次平台合作。邀请被明确拒绝，没有人因此得到复制或发行权。普通工作、业余活动与已有的真实作品继续保留。",
+        "effects": [
+          {
+            "path": "flags.proposal",
+            "value": "拒绝平台",
+            "op": "set"
+          },
+          {
+            "path": "rights.platform",
+            "value": "已拒绝，未签约",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": [
+          {
+            "when": [
+              {
+                "path": "project.participated",
+                "op": "eq",
+                "value": false
+              }
+            ],
+            "effects": [],
+            "text": "你转身去还播放机，在活动簿里保留了两位读者对“空白”的相反意见。图书馆不需要每个人都成为作者，才能成为一个有意思的地方。"
+          }
+        ],
+        "deferred": false
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "D03_SIGN",
+      "D04"
+    ]
+  },
+  {
+    "origin": "creative",
+    "id": "D03_SIGN",
+    "year": 2129,
+    "title": "把边界写进最后一页",
+    "location": "地球·织城",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "rights.platform",
+        "op": "eq",
+        "value": "限定V1待签"
+      }
+    ],
+    "text": "你收到一份三方已逐项确认、但尚未由你签署的有限许可：只含 V1 音轨与约定动作，非独占，有效至 2132 年；不包含真人形象衍生复制、私人排练记录或其他作品。个人净收益一次性 4U，其他作者的份额由平台另行支付，不由你代领。",
+    "variants": [],
+    "options": [
+      {
+        "id": "sign",
+        "label": "签署限定许可并交付V1",
+        "hint": "一次收到净收益 4U；到2132停止新的平台复制，不自动续期。",
+        "result": "你签署了明确范围的三年许可，并交付经过三方确认的 V1。平台支付你的净收益 4U；简澜的形象与私人记录没有随之出售。\n\n完成的V1叫《回声借阅室》。简澜在最后一刻说“明天再来”，折光那段检索未命中的空白没有被剪掉，你让台灯在空白后才熄灭。三个人没有被压成一个完美声音。发行的是这一版作品，不是三个人的全部未来。",
+        "effects": [
+          {
+            "path": "rights.platform",
+            "value": "V1许可生效至2132",
+            "op": "set"
+          },
+          {
+            "path": "project.stage",
+            "value": "V1限定发行",
+            "op": "set"
+          },
+          {
+            "path": "project.result",
+            "value": "V1限定发行完成",
+            "op": "set"
+          },
+          {
+            "path": "contract.status",
+            "value": "V1限期许可中",
+            "op": "set"
+          },
+          {
+            "path": "contract.start",
+            "value": 2129,
+            "op": "set"
+          },
+          {
+            "path": "contract.end",
+            "value": 2132,
+            "op": "set"
+          },
+          {
+            "path": "finance.cash",
+            "value": 4,
+            "op": "inc"
+          },
+          {
+            "path": "project.workTitle",
+            "value": "回声借阅室·V1",
+            "op": "set"
+          },
+          {
+            "path": "project.contribution",
+            "value": "V1编排与本人片段",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": [],
+        "deferred": false
+      },
+      {
+        "id": "decline",
+        "label": "最后决定不签",
+        "hint": "保留协商记录，不收款、不建立许可。",
+        "result": "即使其他作者已同意这份方案，你仍选择不签。平台没有取得许可，你也没有收取发行收益。",
+        "effects": [
+          {
+            "path": "rights.platform",
+            "value": "获同意后未签",
+            "op": "set"
+          },
+          {
+            "path": "flags.proposal",
+            "value": "最后未签",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": [],
+        "deferred": false
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "D03_TERM",
+      "D04"
+    ]
+  },
+  {
+    "origin": "creative",
+    "id": "D03_TERM",
+    "year": 2132,
+    "title": "许可到期，不是悄悄续期",
+    "location": "地球·织城",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "contract.status",
+        "op": "eq",
+        "value": "V1限期许可中"
+      }
+    ],
+    "text": "三年 V1 许可到期。平台停止按该许可产生新的复制与演出排期，已付的净收益没有被追回。你的作品仍存在，但它的存在不等于平台永远可以使用。\n\n这次停点先处理到期，再进入以后的年份；不会用一段稳定生活概括吞掉权利变化。",
+    "variants": [],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "rights.platform",
+        "value": "V1许可已到期",
+        "op": "set"
+      },
+      {
+        "path": "contract.status",
+        "value": "V1许可到期",
+        "op": "set"
+      },
+      {
+        "path": "contract.end",
+        "value": 0,
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "D04"
+    ],
+    "automatic": "系统记录：平台许可已经到期，没有续签。后续任何新的发行必须重新取得所需作者的同意。"
+  },
+  {
+    "origin": "creative",
+    "id": "D04",
+    "year": 2138,
+    "title": "它第一次正式拒绝",
+    "location": "地球·织城",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "织城开始试行特定 AI 系统的有限契约身份。这个原创社会制度不证明 AI 意识；它改变的是谁能作哪项承诺、谁可以拒绝。无论你是否签过平台合同，这项试点都发生了。\n\n折光不愿把排练里的错误全部删去。简澜认为观众应看得见真实操作者，也不愿自己的旧形象被拼进新的演出。你们可以为一个具体版本重新协商，分别创作，或停止合作。过去的相处不是无限授权。\n\n社群讨论的新片段里，折光把一次找错书架的路径留了下来：灯从出口亮到无人站立的角落。简澜认为整齐的演出版应该剪掉它。你可以提出分成两段，让各人只站进自己同意的部分；两位并不因此已经和解。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "flags.proposal",
+            "op": "eq",
+            "value": "拒绝平台"
+          }
+        ],
+        "text": "当年的平台邀请已被你拒绝。你没有一份隐藏的平台合同；这里讨论的是新的可能，不是追索未签的义务。"
+      }
+    ],
+    "options": [
+      {
+        "id": "revise",
+        "label": "提出分别署名的双段V2",
+        "hint": "已有创作者；每人保留自己的段落与差异，不复制简澜形象。",
+        "result": "你提出把分歧保留为两个相邻段落，每个人能在自己的部分说话。等待双方针对这个版本答复。",
+        "effects": [],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0,
+        "outcomes": [
+          {
+            "when": [],
+            "text": "折光同意保留错误段落的可变部分；简澜独立同意本人署名的现场段落，不同意形象衍生复制。你们完成一次本地 V2 演出；这份同意不包含未来跨地区发行。 V2把两个句子并排放着。简澜没有称赞第二段，但在自己同意的段落说：“我仍然觉得门在那边。”折光在自己同意的段落留下：“我这次没有找到。”你没有迫使他们赞同彼此，做成的是保留分歧的一版作品。",
+            "effects": [
+              {
+                "path": "rights.ai",
+                "value": "同意本地V2可变段落",
+                "op": "set"
+              },
+              {
+                "path": "rights.human",
+                "value": "同意本地V2现场段落",
+                "op": "set"
+              },
+              {
+                "path": "rights.version",
+                "value": "V2",
+                "op": "set"
+              },
+              {
+                "path": "flags.cooperation",
+                "value": "V2合作中",
+                "op": "set"
+              },
+              {
+                "path": "project.stage",
+                "value": "V2本地演出",
+                "op": "set"
+              },
+              {
+                "path": "project.result",
+                "value": "V2本地完成",
+                "op": "set"
+              },
+              {
+                "path": "project.contribution",
+                "value": "V2编排与本人段落",
+                "op": "set"
+              },
+              {
+                "path": "project.workTitle",
+                "value": "回声借阅室·V2",
+                "op": "set"
+              }
+            ]
+          }
+        ],
+        "deferred": true
+      },
+      {
+        "id": "cut",
+        "label": "提出删去全部错误的新版",
+        "hint": "已有创作者；简澜和折光会分别答复，缺一不能形成共同版本。",
+        "result": "你提出一个完全删去错误的固定新版本，等待两个合作者的意见。",
+        "effects": [],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0,
+        "outcomes": [
+          {
+            "when": [],
+            "text": "简澜同意这个具体剪辑；折光拒绝删去自己的错误段落。只有一方同意，V2 共同授权没有成立，也没有发生这场共同新演出。",
+            "effects": [
+              {
+                "path": "rights.ai",
+                "value": "拒绝删错V2",
+                "op": "set"
+              },
+              {
+                "path": "rights.human",
+                "value": "同意删错V2",
+                "op": "set"
+              },
+              {
+                "path": "flags.cooperation",
+                "value": "新版未获共同同意",
+                "op": "set"
+              }
+            ]
+          }
+        ],
+        "deferred": true
+      },
+      {
+        "id": "separate",
+        "label": "只创作自己有权使用的部分",
+        "hint": "不使用共同母版、他人形象或未经许可的AI段落；可以从个人作品重新开始。",
+        "result": "你完成一个独立小品，只使用自己的文字、录音与动作。简澜和折光没有被写成这次新作的合作者；曾经合作的记录也没有因此消失。\n\n新作叫《无人替我关灯》。你录下自己收工时关闭三盏台灯的声音，把最后一盏留亮几秒。那里没有别人的数字替身；普通工作里的一个习惯，也可以是自己的作品。",
+        "effects": [
+          {
+            "path": "project.participated",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "rights.version",
+            "value": "本人新作",
+            "op": "set"
+          },
+          {
+            "path": "flags.cooperation",
+            "value": "分别创作",
+            "op": "set"
+          },
+          {
+            "path": "project.stage",
+            "value": "本人独立小品",
+            "op": "set"
+          },
+          {
+            "path": "project.result",
+            "value": "独立小品完成",
+            "op": "set"
+          },
+          {
+            "path": "project.contribution",
+            "value": "本人文字与表演",
+            "op": "set"
+          },
+          {
+            "path": "project.workTitle",
+            "value": "无人替我关灯",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": [],
+        "deferred": false
+      },
+      {
+        "id": "end",
+        "label": "不建立新合作，继续普通工作",
+        "hint": "不建立新授权，不强制和好或成为创作者；既有许可状态不变。",
+        "result": "你不再建立共同新作。你继续普通工作与自己的社群生活。制度的变化没有替你选择职业，也没有制造一场自动和解。\n\n你把工作台让给下一组社群成员，自己回到借阅台。有人坚持错误应该留下，有人觉得删掉才完整；你把活动簿放在两人之间，没有替他们和好，也没有把自己变成这场新作的作者。",
+        "effects": [
+          {
+            "path": "flags.cooperation",
+            "value": "不继续合作",
+            "op": "set"
+          },
+          {
+            "path": "flags.career",
+            "value": "普通工作与业余",
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "图书馆兼职",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.15,
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 1,
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": [],
+        "deferred": false
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "world.aiContractIdentity",
+        "value": true,
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "D05"
+    ]
+  },
+  {
+    "origin": "creative",
+    "id": "D05",
+    "year": 2152,
+    "title": "后来观众的一夜",
+    "location": "地球·织城",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "地球与轨道几个公共场馆开始交换演出版本。火星场馆也寄来邀请，但它们使用事先录制、分别排练的异步组接，不是跨地火实时共舞。基础设施由许多你不认识的人建成，不依赖你是否成为职业创作者。\n\n你可以让有权使用的作品进入新场所，也可以只做本地版本，或把时间转向图书馆活动。不同场所、不同用途和档案保留都要列明；一次旧的许可不能替这次签字。",
+    "variants": [],
+    "options": [
+      {
+        "id": "distribution",
+        "label": "申请V2异步联合发行",
+        "hint": "仅已有创作者；必须是共同完成的V2且仍在合作，否则不会获共同许可。",
+        "result": "你提出三年地球/轨道及火星异步组接发行，并询问许可到期后能否保留不再复制的社区观看档案。",
+        "effects": [
+          {
+            "path": "flags.distribution",
+            "value": "申请待答复",
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0,
+        "outcomes": [
+          {
+            "when": [
+              {
+                "path": "rights.version",
+                "op": "eq",
+                "value": "V2"
+              },
+              {
+                "path": "flags.cooperation",
+                "op": "eq",
+                "value": "V2合作中"
+              }
+            ],
+            "text": "简澜分别同意 V2 的既定音轨与现场录像、三年发行和到期后的非商业馆内观看，不同意形象衍生复制；折光同意其 V2 段落的同样用途，不授权未来模拟新答复。你仍需决定是否发布。 具体方案也列明场馆可在版本段落间保留本地现场观众回应的静默；观众回应不纳入复制档案，不生成他人数字替身。",
+            "effects": [
+              {
+                "path": "flags.distribution",
+                "value": "共同许可待发布",
+                "op": "set"
+              },
+              {
+                "path": "rights.ai",
+                "value": "同意V2限定异步发行",
+                "op": "set"
+              },
+              {
+                "path": "rights.human",
+                "value": "同意V2限定异步发行",
+                "op": "set"
+              },
+              {
+                "path": "rights.archiveConsent",
+                "value": "V2到期后馆内观看",
+                "op": "set"
+              }
+            ]
+          },
+          {
+            "when": [],
+            "text": "这份申请没有形成共同许可：你当前没有双方共同完成并同意继续合作的 V2。平台没有取得任何新权利。你可以展示自己的部分，或停止发行，而不是把拒绝改写成你主动取消。",
+            "effects": [
+              {
+                "path": "flags.distribution",
+                "value": "未获共同发行许可",
+                "op": "set"
+              }
+            ]
+          }
+        ],
+        "deferred": true
+      },
+      {
+        "id": "local",
+        "label": "只做本人部分的非商业社区场",
+        "hint": "已有创作者；花费 1U，不取用未经授权共同作品，不添平台收入。",
+        "result": "你支付本地场地费，只使用自己拥有的文字与表演做一场小型活动。简澜与折光的段落没有被挪用。这不是规模较小的失败，而是你选择的作品去处。",
+        "effects": [
+          {
+            "path": "flags.distribution",
+            "value": "本人本地场",
+            "op": "set"
+          },
+          {
+            "path": "project.stage",
+            "value": "本人社区演出",
+            "op": "set"
+          },
+          {
+            "path": "rights.archiveConsent",
+            "value": "仅本人部分",
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 1,
+        "outcomes": [],
+        "deferred": false
+      },
+      {
+        "id": "library",
+        "label": "转为图书馆活动协助，停止新发行",
+        "hint": "月入 1.2U、支出 1U；不自动取得专业教师资格。",
+        "result": "你把更多时间放回图书馆活动，协助读者理解远身表演和授权边界。你没有因此成为执业教师，也没有把停止发行解释为过去的作品毫无意义。\n\n你把异步放映节目单分成“录制时间”和“观看时间”两栏，给第一次来的读者留出提问的位置。有人不再把等待当成设备坏了，下一场活动又会带来新的问题。",
+        "effects": [
+          {
+            "path": "flags.distribution",
+            "value": "停止新发行",
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "图书馆活动协助",
+            "op": "set"
+          },
+          {
+            "path": "flags.career",
+            "value": "创作后普通服务",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.2,
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 1,
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": [],
+        "deferred": false
+      },
+      {
+        "id": "audience",
+        "label": "继续自己的工作，作为观众看新版本",
+        "hint": "零成本，无作品署名或未经许可的收入。",
+        "result": "你没有进入发行，作为观众看见地球、轨道与火星场馆分别排练的片段。远方的新生活不是你的作品，但它也属于你所处的时代。\n\n图书馆新到的异步放映排期分成“录制时间”和“观看时间”两栏。你和来借节目单的读者一起寻找下一次交流的空格，弄清为什么远方不会立刻回答。这只是一次普通的公共活动，没有让你取得教师资格或作品署名。",
+        "effects": [
+          {
+            "path": "flags.distribution",
+            "value": "观众参与",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": [],
+        "deferred": false
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "world.distributedStage",
+        "value": true,
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "D-S01"
+    ],
+    "scenario": true,
+    "followup": [
+      "D05_RELEASE",
+      "D06"
+    ]
+  },
+  {
+    "origin": "creative",
+    "id": "D05_RELEASE",
+    "year": 2152.25,
+    "title": "收到同意之后，才轮到发布",
+    "location": "地球·织城",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.distribution",
+        "op": "eq",
+        "value": "共同许可待发布"
+      }
+    ],
+    "text": "双方已针对 V2 的有限用途分别给出许可。发行服务费从总收益中结算，属于你的净收益一次性为 3U。期限从 2152 年 4 月到 2155 年 4 月；之后停止新的发行，已约定的馆内非商业观看记录可以保留，不能模拟新的表演或答复。",
+    "variants": [],
+    "options": [
+      {
+        "id": "release",
+        "label": "确认发布获准的V2异步版本",
+        "hint": "收到净收益 3U；不增加长期工资，2155 年 4 月必须处理许可到期。",
+        "result": "你确认发布。场馆分别排练和播放约定片段，火星观众看到的是异步组接的作品，不是地球人的即时远控。你收到净收益 3U，没有拿走其他作者的份额。\n\n火星场馆没有把地球画面假装成现场。它在两段之间留出一段供本地回应的静默，观众按约定的参与方式把脚步声放进那片空白。数日后，场馆制作并传递完一份演出报告：灰红色大厅里，有人提前走到出口，也有人站到灯照错的角落。数日指场馆制作与传递流程，不是单程光传播需要数日。\n\n简澜读完报告，说她没有想到“门在那边”会在另一种重力环境下被脚步回答。折光没有被要求生成新的胜利宣言，版本记录仍保留那次获准的错误段落。远方的观众换了一种读法，你仍住在织城，许可的边界也没有因此扩大。",
+        "effects": [
+          {
+            "path": "flags.distribution",
+            "value": "V2异步发行中",
+            "op": "set"
+          },
+          {
+            "path": "rights.platform",
+            "value": "V2许可生效至2155.25",
+            "op": "set"
+          },
+          {
+            "path": "contract.status",
+            "value": "V2限期许可中",
+            "op": "set"
+          },
+          {
+            "path": "contract.start",
+            "value": 2152.25,
+            "op": "set"
+          },
+          {
+            "path": "contract.end",
+            "value": 2155.25,
+            "op": "set"
+          },
+          {
+            "path": "finance.cash",
+            "value": 3,
+            "op": "inc"
+          },
+          {
+            "path": "project.stage",
+            "value": "V2异步发行",
+            "op": "set"
+          },
+          {
+            "path": "project.result",
+            "value": "V2异步发布完成",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": [],
+        "deferred": false
+      },
+      {
+        "id": "decline",
+        "label": "获得许可后仍不发布",
+        "hint": "不收发行收益；保留本地作品，明确区别于被拒绝。",
+        "result": "你在收到共同许可后决定不发布，没有取得发行收益。别人同意了一种用途，并不要求你必须使用它。",
+        "effects": [
+          {
+            "path": "flags.distribution",
+            "value": "获准后未发布",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": [],
+        "deferred": false
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "D05_TERM",
+      "D06"
+    ]
+  },
+  {
+    "origin": "creative",
+    "id": "D05_TERM",
+    "year": 2155.25,
+    "title": "在记录里写下停止的日期",
+    "location": "地球·织城",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "contract.status",
+        "op": "eq",
+        "value": "V2限期许可中"
+      }
+    ],
+    "text": "V2 的新发行许可已经到期。场馆停止按该许可产生新版本；原先分别同意的馆内非商业观看不等于重新发行或模仿合作者。你没有被自动加入下一轮合同。",
+    "variants": [],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "rights.platform",
+        "value": "V2发行许可已到期",
+        "op": "set"
+      },
+      {
+        "path": "contract.status",
+        "value": "V2许可到期",
+        "op": "set"
+      },
+      {
+        "path": "contract.end",
+        "value": 0,
+        "op": "set"
+      },
+      {
+        "path": "flags.distribution",
+        "value": "V2发行结束",
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "D06"
+    ],
+    "automatic": "系统记录：V2 新发行许可到期；获准的馆内旧录像和本人作品仍按原范围保存。"
+  },
+  {
+    "origin": "creative",
+    "id": "D06",
+    "year": 2168,
+    "title": "合作不必和寿命一样长",
+    "location": "地球·织城",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "六十八岁的你，走到这个叙事切片的边界。这里以本人存活至今为条件，没有用一套隐藏的死亡模型保证所有人活到某个年龄，也没有借此宣称完整一生。\n\n折光所在服务节点结束了互动维护，只剩获准保留的旧记录；记录不会像活跃合作者一样给出新的同意。简澜已退出新演出，愿意保留过去承诺的范围，不接新的无限合作。人的健康与系统的连续性，都不是舞台可以无限消耗的资源。\n\n织城开始讨论未来功能修复与更长寿命的咨询制度。那是原创世界的议题，不是你已经接受治疗。你可以保管作品、交接本人部分，或者把下一段时间留给休整。",
+    "variants": [],
+    "options": [
+      {
+        "id": "communityArchive",
+        "label": "按旧有授权保留V2馆内观看",
+        "hint": "仅已发布V2且双方预先同意该档案用途；支付 1U 保管费，不生成新表演。",
+        "result": "你按双方原先明确的同意，保存 V2 的馆内非商业观看版本。折光不会从档案中“复活”或给出新答复；简澜的形象不被拿去训练衍生表演。",
+        "effects": [
+          {
+            "path": "rights.archive",
+            "value": "V2仅馆内非商业观看",
+            "op": "set"
+          },
+          {
+            "path": "flags.archiveSeen",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "flags.future",
+            "value": "保管获准作品，准备休整",
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "rights.archiveConsent",
+            "op": "eq",
+            "value": "V2到期后馆内观看"
+          },
+          {
+            "path": "project.result",
+            "op": "eq",
+            "value": "V2异步发布完成"
+          }
+        ],
+        "cost": 1,
+        "outcomes": [],
+        "deferred": false
+      },
+      {
+        "id": "ownArchive",
+        "label": "只交接自己的部分",
+        "hint": "仅有本人作品；不移交共同母版中的他人部分，也不代其授予新权利。",
+        "result": "你整理自己的文字、录音与许可范围，只交接本人有权交接的部分。共同作品里未经许可的内容继续封存；这段人生并不需要一次盛大的公开纪念才算存在。",
+        "effects": [
+          {
+            "path": "rights.archive",
+            "value": "只交接本人部分",
+            "op": "set"
+          },
+          {
+            "path": "flags.future",
+            "value": "交接本人作品后休整",
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0,
+        "outcomes": [],
+        "deferred": false
+      },
+      {
+        "id": "private",
+        "label": "不公开档案，安排下一段生活",
+        "hint": "零成本；没有作品时不捏造遗产，也不自动接受延寿。",
+        "result": "你不作新的公开授权，安排下一段普通生活与休息。若曾创作，真实经历仍在个人记录；若一直是观众，也不会被追授一个从未有过的艺术事业。\n\n你整理抽屉，不必把人生变成一场展览。若没有作品，留下的是图书馆班次表、活动簿中不同人的意见，以及自己愿意保留的普通记录。旧同事已经换班，新读者仍会走进来；世界继续，不等你为它写一个总结。",
+        "effects": [
+          {
+            "path": "rights.archive",
+            "value": "不新增公开授权",
+            "op": "set"
+          },
+          {
+            "path": "flags.future",
+            "value": "保留个人记录，休整",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": [],
+        "deferred": false
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "world.longevityDebate",
+        "value": true,
+        "op": "set"
+      },
+      {
+        "path": "people.zheguang.active",
+        "value": false,
+        "op": "set"
+      },
+      {
+        "path": "people.zheguang.stance",
+        "value": "互动维护结束；只读旧记录不能给新同意",
+        "op": "set"
+      },
+      {
+        "path": "people.jianlan.active",
+        "value": false,
+        "op": "set"
+      },
+      {
+        "path": "people.jianlan.stance",
+        "value": "已退出新演出，只保留原有许可范围",
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": []
+  }
+]

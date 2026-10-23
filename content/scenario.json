@@ -1,0 +1,17 @@
+{
+  "version": "independent-lives-1",
+  "label": "全部未来价格、制度、录取门槛和技术普及为原创情境；不是现实预测",
+  "currency": "地球月基本生活费情境单位（跨地球/月球共用计价基准）",
+  "birthYear": 2100,
+  "startYear": 2118,
+  "endYear": 2143,
+  "mode": "普通，未实现延寿；不老仅保留扩展接口",
+  "monthsPerYear": 12,
+  "lunarContractYears": 6,
+  "earlyTrainingMax": 6,
+  "returnReserve": 3,
+  "randomRule": "trial 使用 LCG 一次批次变体，只是可复现游戏规则，不是失败真实概率",
+  "technicalBoundary": "本切片是资格与后果验证，不是生命支持设备设计或医疗建议",
+  "scope": "engineering",
+  "otherOrigin": "创作见 origins.json / creative-events.json；独立起点、独立范围"
+}
