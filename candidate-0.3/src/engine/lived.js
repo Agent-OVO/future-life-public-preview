@@ -2,7 +2,7 @@
 import {initialCreative} from './creative.js';
 export function initialLived(seed       ,version                                            )      {
  const s=initialCreative(seed,version);s.origin='creative-slice';s.finance.cash=3.25;s.player.mode='18—23岁新情景候选';
- s.people.zheng={name:'郑箐',alive:true,active:true,location:'织城·同住',stance:'物流训练中，计划2120年搬到站区'};
+ s.people.zheng={name:'郑箐',alive:true,active:true,location:'织城·新住处，等待你搬入',stance:'物流训练中，计划2120年搬到站区'};
  s.people.jianlan.stance='本地舞台兼职，已申请2120—2122外地巡演';
  s.people.zheguang.stance='本馆实时节拍节点';
  s.housing={address:'旧楼短租间',leaseEnd:2118.25,deposit:0,roommate:'尚未搬入郑箐的房间',recording:false,storage:false,commute:0};

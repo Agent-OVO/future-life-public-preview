@@ -1,6 +1,6 @@
 import {initialLived,livedSummary} from './lived.js';
 import {initialCreative,creativeSummary} from './creative.js';
-export const VERSION = {schema:4, content:'lived-years-1', build:'0.3.0-candidate.1'};
+export const VERSION = {schema:4, content:'lived-years-2', build:'0.3.0-candidate.2'};
                                                              
                                        
                                                                             

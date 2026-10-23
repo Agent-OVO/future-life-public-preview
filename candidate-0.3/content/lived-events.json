@@ -383,6 +383,11 @@
         "path": "housing.recording",
         "value": true,
         "op": "set"
+      },
+      {
+        "path": "people.zheng.location",
+        "value": "织城·同住",
+        "op": "set"
       }
     ],
     "when": [
@@ -1086,6 +1091,11 @@
       {
         "path": "people.jianlan.stance",
         "value": "2120—2122巡演聘期，本地无排练窗口",
+        "op": "set"
+      },
+      {
+        "path": "housing.roommate",
+        "value": "郑箐已迁出，独居等待换租",
         "op": "set"
       }
     ],
