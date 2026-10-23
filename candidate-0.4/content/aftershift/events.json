@@ -1,0 +1,4796 @@
+[
+  {
+    "origin": "care_aftershift",
+    "id": "AS01",
+    "year": 2168,
+    "title": "没有夜班的星期四",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "母亲去世后的第二年，你还会在凌晨四点醒来。厨房的搬运机听到脚步，先把一只杯子送到桌边；你把杯子放回去，取消了那个早已不需要的动作。机器其他时候做得很好，地上没有积水，衣物也不必再由你提上楼。\n\n你叫唐禾，六十八岁。过去在食品周转站做短班，空出的时间大多用于照护母亲。你现在每月领 0.78U 基础养老金，另有 0.28U 短班收入。留下来的还有一间能转身的租屋，以及几种很难写进简历的本事。你没有伴侣或子女；余青是几十年的朋友，纪岚是楼里长大的年轻邻居。\n\n街坊想请你把家里的交接板借去试用。板上既有机器接手的活，也有“她说不饿时，先把汤留着”这样的旧句子。你盯着那句话，觉得它不该再替任何人下判断。",
+    "variants": [],
+    "options": [
+      {
+        "id": "workshop",
+        "label": "花两个下午，重新做一块空白交接板",
+        "hint": "一次性材料支出 0.4U；占用两个下午。",
+        "result": "你删去了母亲的名字和生活细节，只留下能擦掉、能改班的空格。第二个下午有人抱怨格子太小，你给她一块更大的板。事情做完，大家各自回家，没有谁宣布成立一个组织。",
+        "effects": [
+          {
+            "path": "flags.asHandover",
+            "value": "workshop",
+            "op": "set"
+          },
+          {
+            "path": "project.participated",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "project.contribution",
+            "value": "做过一块可改班的交接板",
+            "op": "set"
+          }
+        ],
+        "cost": 0.4,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "private",
+        "label": "把旧板收进柜子",
+        "hint": "无支出；不公开家人的旧记录。",
+        "result": "你把板收好。余青以为你会哭，特意带了两份点心。你没有哭，倒觉得她在旁边等着让你很不自在。后来你们把点心吃了。",
+        "effects": [
+          {
+            "path": "flags.asHandover",
+            "value": "private",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "give_blank",
+        "label": "只送去一块新的白板",
+        "hint": "无支出；使用家里未拆封的备用板。",
+        "result": "你送去那块备用板，没有附使用说明。几天后经过活动室，它被画成了一张麻将记分表。你有点失望，也终于没把它拿回来。",
+        "effects": [
+          {
+            "path": "flags.asHandover",
+            "value": "blank",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [
+      "AS_F01"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS02"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS02",
+    "year": 2168.25,
+    "title": "空房间闻起来不一样",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "住房服务站给你两个已经核实可办的安排：换到同街的一室屋，或在现有长租合同内参加到 2172 年结束的合住。它们都不改变房屋所有权，因为房子本来就不是你的。\n\n纪岚二十七岁，在学潮湾新一代水务设备的现场操作，白天的学习席位没有工资。她愿意住那间空房、分担部分账单，每周帮四小时家务；她不接个人护理，也不愿晚归时逐件报备。她来看房，先问能不能把那幅褪色的海报挪开。你以为她会夸屋里收拾得好。\n\n一室屋没有多余房间，但楼下就有公用搬运机。你在平面图上试着找母亲那只柜子的位置，怎么放都挡着窗。",
+    "variants": [],
+    "options": [
+      {
+        "id": "share",
+        "label": "和纪岚住到她培训结束",
+        "hint": "月支出 1.02→0.90U；她的分担与家务到 2172 年止。",
+        "result": "纪岚搬来了两箱工具和一盆长得歪歪扭扭的草。你让她把海报移到走廊，她没敢扔。第一晚，你听见隔壁在笑，才想起那间屋子以前也不是一直安静。",
+        "effects": [
+          {
+            "path": "flags.asHousing",
+            "value": "shared",
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 0.9,
+            "op": "set"
+          },
+          {
+            "path": "people.jilan.location",
+            "value": "与你合住",
+            "op": "set"
+          },
+          {
+            "path": "flags.asShareActive",
+            "value": true,
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "compact",
+        "label": "搬到一室屋，柜子留给旧物站",
+        "hint": "搬运由本情境的换房服务承担；月支出降至 0.74U。",
+        "result": "柜子搬走后，旧墙上露出一块颜色更浅的长方形。新屋装不下宴客的大桌，却能让你坐着碰到阳台门。纪岚没有和你同住，她仍会从楼下叫你帮忙看包。",
+        "effects": [
+          {
+            "path": "flags.asHousing",
+            "value": "compact",
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 0.74,
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "keep",
+        "label": "暂时保留两间屋，自己住",
+        "hint": "月支出维持 1.02U；退休后可能持续动用积蓄。",
+        "result": "你留着两间屋。空房后来摆了洗好的床单和未拆的纸箱，偶尔有人来借住一晚。你没有觉得这钱全是白花，也知道账本不会因此少一行。",
+        "effects": [
+          {
+            "path": "flags.asHousing",
+            "value": "large",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [
+      "AS_F04"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS03"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS03",
+    "year": 2169,
+    "title": "一次迟到",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "余青约你去海边看潮门重新开放。她从前做公交维修，现在最喜欢挑工作日出门，仿佛能把周末让给仍在上班的人。\n\n你提前到了一刻钟，她迟了四十分钟。她说自动换乘的提示把她带去另一层，又笑着承认自己顺路买了东西。你很想告诉她，自己过去二十年从没这样迟到过。她手里提着一袋刚蒸好的米糕，底下已经被海风吹凉。",
+    "variants": [],
+    "options": [
+      {
+        "id": "go",
+        "label": "边走边吃，不追究这一次",
+        "hint": "无支出；一起走公共短段。",
+        "result": "米糕很黏，你们走得更慢了。潮门后的水面比记忆里宽，余青说从前岸边有一排坏路灯。你记得的是路灯下卖热汤的人，两个人争了一会儿那摊子到底在哪。",
+        "effects": [
+          {
+            "path": "flags.asFriendPattern",
+            "value": "easy",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "say",
+        "label": "告诉她，你等得很烦",
+        "hint": "无支出；把等得烦这件事说出来。",
+        "result": "余青先说你总把别人当需要交接的病人，说完又后悔。你们分开走完这段路。晚些时候她发来一张剩米糕的照片，没有道歉；你也暂时没回。",
+        "effects": [
+          {
+            "path": "flags.asFriendPattern",
+            "value": "strained",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "leave",
+        "label": "今天先回去，改日自己来",
+        "hint": "无支出；自己另找一天去。",
+        "result": "你回家睡了一觉。第二周独自再去时，潮门没开，但能听见很远的鸟叫。你发现这件事不必一定和余青一起做。",
+        "effects": [
+          {
+            "path": "flags.asFriendPattern",
+            "value": "independent",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "AS04"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS04",
+    "year": 2170,
+    "title": "短班结束后的收入",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "周转站最后一笔原短班收入结清。早已在领的基础养老金仍是每月 0.78U，只是今后少了 0.28U 短班工资；当年缩短的工时留在了记录里，地方的照护补贴没有补齐那部分差额。你已经知道这些数，真正停下时仍重新算了一遍。\n\n站里留下一个到 2172 年结束的过渡岗位，每周两次，核对机器人无法归类的破损周转箱。小程说你熟悉旧标记，可以不用重新培训。她很快又补了一句：“两年以后我也不一定在。”\n\n窗外一整列货箱自己转过弯。你不用再抬它们，但有薪工作并没有随着重量一起消失。",
+    "variants": [],
+    "options": [
+      {
+        "id": "bridge",
+        "label": "再做两年，每周两次",
+        "hint": "月收入 0.78→1.06U；2172 年自动结束，不续成终身岗位。",
+        "result": "你把旧工牌从抽屉里找出来。第一天机器把一只没坏的箱子推给你，你看了半天才发现标签还是三十年前的式样。小程没有催你，下一只却已经到了。",
+        "effects": [
+          {
+            "path": "flags.asBridgeActive",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.06,
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "周转箱核对短班",
+            "op": "set"
+          },
+          {
+            "path": "contract.status",
+            "value": "周转箱过渡短班",
+            "op": "set"
+          },
+          {
+            "path": "contract.start",
+            "value": 2170,
+            "op": "set"
+          },
+          {
+            "path": "contract.end",
+            "value": 2172,
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "retire",
+        "label": "这次就停下来",
+        "hint": "月收入维持 0.78U；保留退休收入，无新工资。",
+        "result": "你把工牌交回去。小程问要不要拍张照，你说不用，走到门口又折回来，拍了一张她正在埋头填表的照片。她嫌照片里自己脸太大。",
+        "effects": [
+          {
+            "path": "player.role",
+            "value": "退休，暂不接有薪工作",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "finance.income",
+        "value": 0.78,
+        "op": "set"
+      },
+      {
+        "path": "player.role",
+        "value": "退休",
+        "op": "set"
+      },
+      {
+        "path": "contract.status",
+        "value": "原短班已结束",
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "AS_F01"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS05"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS05",
+    "year": 2170,
+    "title": "另一种七十岁",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "潮湾的“长昼”中心开始接收本地区居民。城市说明屏上，有人把“七十岁后再学一门手艺”放成了最大的字；下面更小的字写着，方案只针对一部分功能修复，不保证适用、获益或活到哪个年份。\n\n中心旁边新开了一家早饭铺，等候的人把靠窗的几张桌子坐满了。楼下卖面的人开始排一个十年租期的新计划，余青却把原定的旅行往前挪，说不想先拿十年去等下一个十年。",
+    "variants": [],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "world.asLongevityService",
+        "value": true,
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "AS06"
+    ],
+    "automatic": "2170 年，长昼中心在潮湾开放。可申请评估；没有人因此自动接受修复。"
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS06",
+    "year": 2170.25,
+    "title": "想重新做的那一件事",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "world.asLongevityService",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "你在中心的开放说明会上看见一位老人站起来，说自己只想把一盆很重的花移回窗台。主持人刚要替他归纳成“提升生活质量”，老人打断了她：“就是那盆花。”\n\n轮到你填写目标时，纸上原本写的是“以后能独自出去”。你划掉“以后”，因为你现在也有能独自去的地方。评估费 0.5U，不含后续修复；如适用，首轮自付 6U，另需一段反复往返中心的日子。公共部分承担其余既定项目，本地是否有这种安排不是全球通例。",
+    "variants": [],
+    "options": [
+      {
+        "id": "assess",
+        "label": "做一次评估，目标先写“走到旧潮门”",
+        "hint": "支付 0.5U；评估结果由下一张记录给出。",
+        "result": "你交了表，把那盆花的事讲给余青听。她说目标写得小一点也好，别让他们拿你去拍“新人生”的片子。你笑了，表格却没有收回来。",
+        "effects": [
+          {
+            "path": "flags.asRepairRequest",
+            "value": "assessment",
+            "op": "set"
+          }
+        ],
+        "cost": 0.5,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "decline",
+        "label": "不进入修复，先过现在的日子",
+        "hint": "无支出；后续出行、学习和关系内容保留。",
+        "result": "你把表折好，没有交。回程时试了新的站内助行座车，速度慢得有人从旁边超过去。到了出口，你已经有点想买那种能挂在车边的小袋子。",
+        "effects": [
+          {
+            "path": "flags.asRepairRequest",
+            "value": "declined",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "defer",
+        "label": "把资料带回家，暂时不排下一步",
+        "hint": "资料先带回家，今天不排下一次。",
+        "result": "你把资料放到水费单下面。纪岚看见了，问要不要陪你去。你说还没决定，她点头，随后问能不能借你的旧行李袋。",
+        "effects": [
+          {
+            "path": "flags.asRepairRequest",
+            "value": "deferred",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [
+      "AS_F03"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS07"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS07",
+    "year": 2170.5,
+    "title": "这张报告没有写未来多少年",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asRepairRequest",
+        "op": "eq",
+        "value": "assessment"
+      }
+    ],
+    "text": "评估结束。你在楼下吃了一碗面，面上放的青菜比中心餐厅多。回到等候区，屏幕只叫了你的号码，没有播放任何成功故事。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "flags.asRepairEligible",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "text": "中心确认你适用当前方案，并提供了一个实际时段。它预计帮助的是一组具体功能，不是把整个人恢复到二十岁；你仍需决定是否开始。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.asRepairEligible",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "中心没有建议你进入当前方案。报告写明的是方案适用性，不是给你剩余人生打了分。接待员想解释第三遍，你打断她说听懂了，语气比自己预想的更硬。"
+      }
+    ],
+    "options": [
+      {
+        "id": "start",
+        "label": "开始首轮修复和配套恢复",
+        "hint": "仅适用者可选；支付 6U。本轮至 2171 年，复评在实际完成后。",
+        "result": "你定了往返班车。头两次纪岚陪你，第三次她有实训，你自己去。等待的日子并不都像一个重大选择，更多时候只是忘带水杯，又发现候诊室的水太凉。",
+        "effects": [
+          {
+            "path": "flags.asRepairStatus",
+            "value": "underway",
+            "op": "set"
+          }
+        ],
+        "cost": 6,
+        "when": [
+          {
+            "path": "flags.asRepairEligible",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "outcomes": []
+      },
+      {
+        "id": "stop",
+        "label": "今天不开始，回家",
+        "hint": "无支出；未接受修复，不写成治疗失败。",
+        "result": "你把报告装进包里。电梯门快关时，你才想起刚才问了很多未来的事，却没问楼下那家面馆周末开不开门。",
+        "effects": [
+          {
+            "path": "flags.asRepairStatus",
+            "value": "not_started",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "AS08"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS08",
+    "year": 2171,
+    "title": "回来以后",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asRepairStatus",
+        "op": "eq",
+        "value": "completed"
+      }
+    ],
+    "text": "首轮过程结束。你回到熟悉的站台，先去看自动售货机里有没有以前那种酸味糖。它已经换了供应商。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "flags.asRepairBenefitFixture",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "text": "走到旧潮门的那天，你停下的次数少了。你在站前多绕了一圈，回家还有力气做饭。下一次复评在 2176 年；那天下午，你第一次没有马上围着它安排余下的日子。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.asRepairBenefitFixture",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "复评没有发现达到预设目标的明显获益。余青原本说要来接你，临时又问还要不要庆祝。你回了一句“面还是要吃的”。花掉的钱没有退回来，中心也没有把失望改名为另一种成功。"
+      }
+    ],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "flags.asRepairStatus",
+        "value": "completed",
+        "op": "set"
+      },
+      {
+        "path": "flags.asFunctionGain",
+        "value": true,
+        "op": "set",
+        "when": [
+          {
+            "path": "flags.asRepairBenefitFixture",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      }
+    ],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "AS09"
+    ],
+    "automatic": "首轮过程结束，中心交回了复评记录。"
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS09",
+    "year": 2171.25,
+    "title": "到重新可以生活的海岸去",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "潮门的观测屏正转播北段施工。几百公里外，机器人把一条条沉积网沉入浅水，顺着水流留下泥沙；被隔开的旧河口正在重新连起来。画面角落，一位工人站在膝深的水里，把机器刚放好的苗盘挪了半步。你看了很久。\n\n“洄岸队”每年跟着不同的潮季移动，住三个月的作业船。有人管栽培，有人做饭，有人记录哪些试验带在风后还活着。机器人做重活，岸上的布置却得一天一天改。带薪学员的招人页写着：能接受自己做的东西暂时不好看。\n\n纪岚以为你只是看看。你问三个月应该带多少衣服，她才抬起头：“你真想去？”\n\n你想去。这个念头比出门散步更让你害怕。家里的柜子、固定班次、按时来的送菜车，好像都在说生活已经安顿好了。你却想亲眼看一段海岸怎样重新长出可供人留下的地方，最好其中有一小块，自己真的做过。\n\n余青看了合住舱的照片，马上说不去。她想旅行，不想又过值班日子。“你要等我吗？”你问。“我先去南边。”她说，“你有空再来。”",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "flags.asFunctionGain",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "text": "你原先填在复评表上的目标是走到旧潮门。走完之后，你发现自己还想去得更远。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.asFunctionGain",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "作业船有受支持的生活舱和船内远身席。你想知道的，先是自己能做哪一段，不是怎样假装身体已经没有限制。"
+      }
+    ],
+    "options": [
+      {
+        "id": "field",
+        "label": "争取上船，过一个完整潮季",
+        "hint": "0.2U 面谈、岗位适配与短训费；录用后再决定是否花 1.5U 出发。",
+        "result": "你填了最早一班的时间，随后回家量行李袋。第一次发现自己还不知道船上的铺位有多宽。",
+        "effects": [
+          {
+            "path": "flags.asCoastChoice",
+            "value": "field",
+            "op": "set"
+          }
+        ],
+        "cost": 0.2,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "remote",
+        "label": "留在潮湾，争取公共远身席",
+        "hint": "0.1U 操作评估费；有席位后接三个月固定班次。",
+        "result": "你去港口看操作间。终端不在家里，每周仍要出门两次。试用时手柄忽然传来一阵阻力，你下意识松开手，屏幕那边的机械臂也停住了。",
+        "effects": [
+          {
+            "path": "flags.asCoastChoice",
+            "value": "remote",
+            "op": "set"
+          }
+        ],
+        "cost": 0.1,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "travel",
+        "label": "不接项目，留几天给自己的旅行",
+        "hint": "不付项目费；照原来的方式用公共交通出门。",
+        "result": "余青出发后，你独自去了另一个海口。雨把步道封了，你在食堂和几位外地人坐了一下午。有人一直说这里没什么可看，你却不想立刻回去。",
+        "effects": [
+          {
+            "path": "flags.asCoastChoice",
+            "value": "outside",
+            "op": "set"
+          },
+          {
+            "path": "flags.asLocalVisit",
+            "value": true,
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [
+      "AS_F05"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS09R"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS09R",
+    "year": 2171.5,
+    "title": "名单与空位",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asCoastChoice",
+        "op": "ne",
+        "value": "outside"
+      }
+    ],
+    "text": "队里发来答复。招募负责人最后留了一段很短的语音，背景里有人在催她去吃饭。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "flags.asCoastAccess",
+            "op": "eq",
+            "value": "field_offer"
+          }
+        ],
+        "text": "你通过了这次任务的适配与短训，名单里有实际铺位。可以走受支持的现场班，也可以用船内远身席，班组已按你的情况安排。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.asCoastAccess",
+            "op": "eq",
+            "value": "remote_offer"
+          }
+        ],
+        "text": "港口给了你每周两个实际时段，北段班组也接收这期协作。你终于知道自己要照看的试验带编号。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.asCoastAccess",
+            "op": "eq",
+            "value": "unavailable"
+          }
+        ],
+        "text": "本期没有分到合适岗位或时段。负责人没有让你继续等一个模糊通知。你把已经摊开的行李袋收起来，那天不想再看北段的转播。"
+      }
+    ],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "flags.asCoastAccess",
+        "value": "unavailable",
+        "op": "set"
+      },
+      {
+        "path": "flags.asCoastAccess",
+        "value": "field_offer",
+        "op": "set",
+        "when": [
+          {
+            "path": "flags.asCoastChoice",
+            "op": "eq",
+            "value": "field"
+          },
+          {
+            "path": "flags.asCoastPlace",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      },
+      {
+        "path": "flags.asCoastAccess",
+        "value": "remote_offer",
+        "op": "set",
+        "when": [
+          {
+            "path": "flags.asCoastChoice",
+            "op": "eq",
+            "value": "remote"
+          },
+          {
+            "path": "flags.asCoastRemoteSlot",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "AS_F05"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS09S"
+    ],
+    "automatic": "本期岗位与操作席的结果已到。"
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS09S",
+    "year": 2171.5,
+    "title": "把这个潮季交出去",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asCoastAccess",
+        "op": "ne",
+        "value": "unavailable"
+      },
+      {
+        "path": "flags.asCoastChoice",
+        "op": "ne",
+        "value": "outside"
+      }
+    ],
+    "text": "决定到了真正要空出日子的这一刻。你把三个月的日历铺开，发现不是每一天都愿意给同一件事。",
+    "variants": [],
+    "options": [
+      {
+        "id": "board",
+        "label": "上船去北段",
+        "hint": "1.5U 准备费；三个月船上报酬抵食宿，基础养老金保留；原周转站短班暂停三个月，潮湾住屋仍需付费。",
+        "result": "你上了船。先学会的是在狭窄铺位上翻身。班组分给你一小片苗盘，带班人让你先把每个人接手哪一步认清楚。",
+        "effects": [
+          {
+            "path": "flags.asCoastActive",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "flags.asCoastMonths",
+            "value": 3,
+            "op": "set"
+          },
+          {
+            "path": "flags.asCoastBoardTask",
+            "value": "ship_remote",
+            "op": "set"
+          },
+          {
+            "path": "flags.asCoastBoardTask",
+            "value": "supported_field",
+            "op": "set",
+            "when": [
+              {
+                "path": "flags.asCurrentFieldFit",
+                "op": "eq",
+                "value": true
+              }
+            ]
+          },
+          {
+            "path": "flags.asCoastPlot",
+            "value": "first_plot",
+            "op": "set"
+          },
+          {
+            "path": "flags.asCoastRecord",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "player.location",
+            "value": "地球·北段作业船",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": -0.28,
+            "op": "inc",
+            "when": [
+              {
+                "path": "flags.asBridgeActive",
+                "op": "eq",
+                "value": true
+              }
+            ]
+          },
+          {
+            "path": "flags.asBridgeOnLeave",
+            "value": true,
+            "op": "set",
+            "when": [
+              {
+                "path": "flags.asBridgeActive",
+                "op": "eq",
+                "value": true
+              }
+            ]
+          }
+        ],
+        "cost": 1.5,
+        "when": [
+          {
+            "path": "flags.asCoastAccess",
+            "op": "eq",
+            "value": "field_offer"
+          }
+        ],
+        "outcomes": [
+          {
+            "when": [
+              {
+                "path": "flags.asCurrentFieldFit",
+                "op": "eq",
+                "value": true
+              }
+            ],
+            "effects": [],
+            "text": "你走受支持的短段现场班。一次固定扣磨坏，苗盘倒了一排，你在划定作业带和同事一起重做。回船后你拍了张衣服湿透的照片，纪岚回了一张考试成绩。那天谁也没问对方什么时候回家。"
+          },
+          {
+            "when": [],
+            "effects": [],
+            "text": "你留在船内远身席，通过机器身体照看划定的一段。固定扣磨坏时，你停机，把定位和图像交给现场同事，等他们重做后再接手。你拍了一张自己的窄铺位，纪岚回了一张考试成绩。那天谁也没问对方什么时候回家。"
+          }
+        ]
+      },
+      {
+        "id": "connect",
+        "label": "接下三个月的远身班",
+        "hint": "0.3U 席位费；每周两次，原收入不变。",
+        "result": "水从叶片背后穿过去。手柄没有带回一整片海，只有几种不同阻力。你逐渐学会哪一种意味着该停。一次现场临时收工，眼前只剩关上的防护罩，你很想把那一行做完，却没法让那边的人陪你加班。",
+        "effects": [
+          {
+            "path": "flags.asCoastActive",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "flags.asCoastMonths",
+            "value": 3,
+            "op": "set"
+          },
+          {
+            "path": "flags.asCoastPlot",
+            "value": "first_plot",
+            "op": "set"
+          },
+          {
+            "path": "flags.asCoastRecord",
+            "value": true,
+            "op": "set"
+          }
+        ],
+        "cost": 0.3,
+        "when": [
+          {
+            "path": "flags.asCoastAccess",
+            "op": "eq",
+            "value": "remote_offer"
+          }
+        ],
+        "outcomes": []
+      },
+      {
+        "id": "stay",
+        "label": "这期不接，回到原来的安排",
+        "hint": "没有新费用；已经花掉的短训费不退。",
+        "result": "你没有把这三个月交出去。后来经过操作间仍会朝里面看一眼，想知道那片苗盘怎样了，但没有把别人的工作认成自己的经历。",
+        "effects": [
+          {
+            "path": "flags.asCoastAccess",
+            "value": "declined",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [
+      "AS_F05"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS09E"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS09E",
+    "year": 2171.75,
+    "title": "一条根先撑住了",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asCoastActive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "一条根系撑过了风后的浑水。其他地方没有全撑住，你的班组留下一张有空缺的记录。那条还活着的细线，终于不只是转播画面里的绿线。\n\n三个月到了，下一批人来接班。你想把每一个小细节都讲完，对方却已经要赶第一次潮窗。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "flags.asCoastChoice",
+            "op": "eq",
+            "value": "field"
+          }
+        ],
+        "text": "下船时你很舍不得那张窄铺位。回到家，第一晚却睡得特别好。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.asCoastChoice",
+            "op": "eq",
+            "value": "remote"
+          }
+        ],
+        "text": "你从操作间出来，街上还和每天一样。那边换了潮，你这边赶上了菜场收摊。"
+      }
+    ],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "flags.asCoastActive",
+        "value": false,
+        "op": "set"
+      },
+      {
+        "path": "flags.asCoastMonths",
+        "value": 0,
+        "op": "set"
+      },
+      {
+        "path": "finance.income",
+        "value": 0.28,
+        "op": "inc",
+        "when": [
+          {
+            "path": "flags.asBridgeOnLeave",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      },
+      {
+        "path": "flags.asBridgeOnLeave",
+        "value": false,
+        "op": "set"
+      },
+      {
+        "path": "player.location",
+        "value": "地球·潮湾",
+        "op": "set"
+      },
+      {
+        "path": "project.participated",
+        "value": true,
+        "op": "set"
+      },
+      {
+        "path": "project.contribution",
+        "value": "三个月洄岸试验带协作",
+        "op": "set"
+      },
+      {
+        "path": "flags.asRouteRecord",
+        "value": true,
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "AS_F05"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS10"
+    ],
+    "automatic": "第一个潮季结束。船上生活安排和固定远身席均到期，唐禾回到潮湾原有生活。"
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS10",
+    "year": 2172,
+    "title": "过渡岗位到期",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asBridgeActive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "小程把旧标记全部录进了新系统。最后一班，你找了很久，才找到一只还需要人工辨认的箱子。你们一起确认了它。",
+    "variants": [],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "flags.asBridgeActive",
+        "value": false,
+        "op": "set"
+      },
+      {
+        "path": "finance.income",
+        "value": 0.78,
+        "op": "set"
+      },
+      {
+        "path": "player.role",
+        "value": "退休",
+        "op": "set"
+      },
+      {
+        "path": "contract.status",
+        "value": "周转箱过渡短班已到期",
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "AS11"
+    ],
+    "automatic": "2172 年，周转箱过渡岗位按约结束。月收入恢复为基础退休收入 0.78U，没有继续计算短班工资。"
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS11",
+    "year": 2172,
+    "title": "那间房不是接力棒",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asShareActive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "纪岚拿到了内陆水网的实际岗位，要离开潮湾。你早知道这一天，却还是问了一句：“那么以后呢？”她把手里的打包带扯断了，说以后也不可能每件事都先有安排。\n\n她的行李比来时多，草已经养死了。你想起她确实替你做过许多事，也想起有次半夜设备报警，她戴着耳塞根本没有醒。那本来就不是她的值班。\n\n她问走廊里的海报怎么办。这回轮到你说，还没想好。",
+    "variants": [],
+    "options": [
+      {
+        "id": "compact",
+        "label": "现在换到一室屋",
+        "hint": "已落实的同街换房名额；搬运免费，月支出 0.74U。",
+        "result": "你们把海报拆下来，背面露出纪岚刚搬来时偷偷画的小笑脸。你把它带去了新屋。纪岚帮完最后一趟搬运便赶火车，没有留下陪你适应。",
+        "effects": [
+          {
+            "path": "flags.asHousing",
+            "value": "compact",
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 0.74,
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "keep",
+        "label": "保留原屋，承担恢复后的账单",
+        "hint": "合住结束后月支出 1.02U；她的分担不继续入账。",
+        "result": "房里留下两枚钉子和一股清洁剂味。你晚上去关灯，发现纪岚已经全关了。你有几个月仍不喜欢这份安静，但没有立刻把房间交给下一位陌生人。",
+        "effects": [
+          {
+            "path": "flags.asHousing",
+            "value": "large",
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 1.02,
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "flags.asShareActive",
+        "value": false,
+        "op": "set"
+      },
+      {
+        "path": "people.jilan.location",
+        "value": "准备前往内陆水网",
+        "op": "set"
+      },
+      {
+        "path": "finance.expense",
+        "value": 1.02,
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "AS_F04"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS12"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS12",
+    "year": 2172.25,
+    "title": "临走前的行李袋",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "纪岚来还行李袋，却问能不能再借一次。新岗位有工资，住处的押金要先付。她说这话时一直捏着袋子的拉链，仿佛只是解释为什么借东西，不是开口要钱。\n\n你知道自己的积蓄有多少，也知道她没有别的亲属在这座城。余青听说后说年轻人总有办法，你听见这句轻巧的话有些不舒服；真正掏钱时，又不像想象中那么痛快。",
+    "variants": [],
+    "options": [
+      {
+        "id": "gift",
+        "label": "给她 1U，行李袋也送她",
+        "hint": "一次性支出，不生成未来照护债或房屋继承。",
+        "result": "纪岚先说不用，看到你把钱转出后又很快说谢谢。分别时她仍赶时间，只抱了你一下。你有点失落，几天后才收到她新屋里的照片，地上全是未拆的东西。",
+        "effects": [
+          {
+            "path": "flags.asJilanRelation",
+            "value": "supported",
+            "op": "set"
+          }
+        ],
+        "cost": 1,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "pack",
+        "label": "帮她装好东西，这次不出钱",
+        "hint": "无支出；保留积蓄。",
+        "result": "你把袋子破开的边重新压好。纪岚没有问第二遍。她走后，你发现自己一直在替那句没说出的“不”准备解释，可她已经在路上了。",
+        "effects": [
+          {
+            "path": "flags.asJilanRelation",
+            "value": "bounded",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "resent",
+        "label": "说出那句“你倒是走得轻松”",
+        "hint": "无支出；关系可能冷下来，没有立刻修复选项。",
+        "result": "纪岚反问你是不是想让她一直留在这儿。你说并不是，听起来却像仍在争辩。她把袋子留下，另买了一只。到站消息只发了四个字：已经到了。",
+        "effects": [
+          {
+            "path": "flags.asJilanRelation",
+            "value": "distant",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "people.jilan.location",
+        "value": "内陆水网",
+        "op": "set"
+      },
+      {
+        "path": "people.jilan.active",
+        "value": false,
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "AS12H"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS12H",
+    "year": 2172.5,
+    "title": "最后一张大房间账单",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asHousing",
+        "op": "eq",
+        "value": "large"
+      }
+    ],
+    "text": "保留两间屋的日子比预计更贵。每月 1.02U 的支出已经高于 0.78U 的退休收入，空房没有自动替你找到下一位愿意合住的人。住房员把几张账单并排放好，问你还想留多久。\n\n你原本想说再看看，终于没有说。已落实的两处小屋，一处在原来街坊，一处远一些，却放得下那个旧柜子的同款尺寸。前几个月已经付出去的租金留在账单上，换房不会把那笔现金退回来。",
+    "variants": [],
+    "options": [
+      {
+        "id": "near",
+        "label": "留在熟悉的街坊，换一室屋",
+        "hint": "搬运免费；月支出降至 0.74U。",
+        "result": "你把那几张账单带进新屋，和钥匙放在一起。省下的是今后的支出，不是过去所有决定都重新算一遍。",
+        "effects": [
+          {
+            "path": "flags.asHousing",
+            "value": "compact",
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 0.74,
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "far",
+        "label": "搬远一些，换更便宜的小屋",
+        "hint": "搬运免费；月支出 0.70U；去学院的单程通勤增至 80 分钟。",
+        "result": "新屋能装下更多旧东西。去见余青要换两次车，有几次你到了站口又折回去。房租确实便宜了，相见却不再顺路。",
+        "effects": [
+          {
+            "path": "flags.asHousing",
+            "value": "far",
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 0.7,
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "AS13"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS13",
+    "year": 2174,
+    "title": "比第一季更难的事",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "第一季试验带的一部分失去了，另一部分开始留住更多生命。队里准备做跨潮季栽培，提供半年实作课：不是再学怎样控制一台机器，而是学着判断什么时候该让一小块地方空下来。\n\n报名前的公开演示里，一盘长势很好的苗被主动移走，你觉得可惜。带班人指着模型里刚显出的水道，说下一季水会从这里经过。你站在围栏外多看了一会儿，记下了那段水道的编号。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "flags.asCoastRecord",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "公开演示旁放着基础班的空白观察表。带班人说，没有第一季经历也可以从基础申请；你拿起一张看了看，还没有报名。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.asHousing",
+            "op": "eq",
+            "value": "far"
+          }
+        ],
+        "text": "便宜的住处离实作点更远，两个下午几乎要花掉两个白天。"
+      }
+    ],
+    "options": [
+      {
+        "id": "train",
+        "label": "完成半年实作，争取一段自己的季节任务",
+        "hint": "0.5U 材料费；每周两次现场/公共远身实践，结果在半年后。",
+        "result": "你开始记下长得不好的地方。最初记录像一份失败名单，后来才看出，有些空白让其他东西活了下来。",
+        "effects": [
+          {
+            "path": "flags.asTraining",
+            "value": "in_progress",
+            "op": "set"
+          }
+        ],
+        "cost": 0.5,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "citizen",
+        "label": "偶尔参加，不把整季再排进去",
+        "hint": "没有新费用；仍以短次协作参加开放活动。",
+        "result": "你去了几次，也缺了几次。别人开始叫得出彼此的名字，你有时插不上话，却仍能认出一段自己熟悉的水边。",
+        "effects": [
+          {
+            "path": "flags.asTraining",
+            "value": "citizen",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "skip",
+        "label": "不继续做项目，去看它慢慢长出来",
+        "hint": "没有新费用；保留本地生活。",
+        "result": "你没有续上。岸边随后开放了新的公共短线，去的人比工作的人多得多。你也成了其中一个。",
+        "effects": [
+          {
+            "path": "flags.asTraining",
+            "value": "none",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [
+      "AS_F05"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS14"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS14",
+    "year": 2174.5,
+    "title": "苗盘之外的判断",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asTraining",
+        "op": "eq",
+        "value": "in_progress"
+      }
+    ],
+    "text": "最后一次实作，你得说明为何保留一条看似没有产出的空带。旁边的机器已经算了几种栽培排布，你必须告诉班组自己看见了什么。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "flags.asExamPass",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "text": "你把自己的判断和缺少的观察分开写，班组愿意让你接一段季节任务。任务不大，却要让下一班真正接得下去。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.asExamPass",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "观察还不足以支撑独立任务，这期没有分到岗位。你知道漏了哪里，仍不喜欢别人说出来时那样轻快。材料带回家，几天没打开。"
+      }
+    ],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "flags.asTraining",
+        "value": "failed",
+        "op": "set"
+      },
+      {
+        "path": "flags.asTraining",
+        "value": "passed",
+        "op": "set",
+        "when": [
+          {
+            "path": "flags.asExamPass",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      },
+      {
+        "path": "flags.asCoastSkill",
+        "value": true,
+        "op": "set",
+        "when": [
+          {
+            "path": "flags.asExamPass",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      },
+      {
+        "path": "player.qualification",
+        "value": 1,
+        "op": "set",
+        "when": [
+          {
+            "path": "flags.asExamPass",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "AS_F05"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS15"
+    ],
+    "automatic": "这一期实作结束，班组给出了任务分配结果。"
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS15",
+    "year": 2174.5,
+    "title": "一段会继续变化的岸",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "水边的公示栏贴出了新一年的协作班招募。工作是照看和调整一段小试验带，现场与远身交替；同事会换班，潮水不会照人的日历来。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "flags.asTraining",
+            "op": "eq",
+            "value": "passed"
+          }
+        ],
+        "text": "你的半年实作已经通过，班组给出了可接受的一年岗位与排班。要不要接下，需要你答复。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.asTraining",
+            "op": "ne",
+            "value": "passed"
+          }
+        ],
+        "text": "这期固定岗位要求通过半年实作。你尚未满足这项要求，手里的只是公开招募单；开放日的短次观察仍可参加。"
+      }
+    ],
+    "options": [
+      {
+        "id": "job",
+        "label": "接下一年季节协作",
+        "hint": "合格者可选；月收入增加 0.20U，到 2175.5 年止。",
+        "result": "你真的开始照看这一段。第一次不再急着把空处填满；到下一次潮季，有东西从空处进来。你说不清自己最满意哪一株，反而开始记得整段地方如何一起变化。",
+        "effects": [
+          {
+            "path": "flags.asRouteJob",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 0.98,
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "洄岸季节协作短班",
+            "op": "set"
+          },
+          {
+            "path": "contract.status",
+            "value": "一年洄岸季节协作",
+            "op": "set"
+          },
+          {
+            "path": "contract.start",
+            "value": 2174.5,
+            "op": "set"
+          },
+          {
+            "path": "contract.end",
+            "value": 2175.5,
+            "op": "set"
+          },
+          {
+            "path": "flags.asCoastRecord",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "flags.asCoastPlot",
+            "value": "seasonal_plot",
+            "op": "set"
+          },
+          {
+            "path": "flags.asRouteRecord",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "project.participated",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "project.contribution",
+            "value": "一年洄岸试验带协作",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [
+          {
+            "path": "flags.asTraining",
+            "op": "eq",
+            "value": "passed"
+          }
+        ],
+        "outcomes": []
+      },
+      {
+        "id": "one_day",
+        "label": "和新班组做一次短交接",
+        "hint": "没有工资和后续固定班次。",
+        "result": "你和新班组走过一段水边。今天只留一次短交接或认识现场的时间，随后各自回到原来的安排。",
+        "effects": [
+          {
+            "path": "flags.asCoastRecord",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "flags.asRouteRecord",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "project.participated",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "project.contribution",
+            "value": "一次洄岸试验带交接",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": [
+          {
+            "when": [
+              {
+                "path": "flags.asCoastRecord",
+                "op": "eq",
+                "value": true
+              }
+            ],
+            "effects": [],
+            "text": "你把自己实际知道的几处讲清楚，没替还没观察过的地方下判断。"
+          },
+          {
+            "when": [],
+            "effects": [],
+            "text": "这是你第一次跟班组近看试验带。带班人讲编号，你记下今天看见的水位，不把它说成往年经验。"
+          }
+        ]
+      },
+      {
+        "id": "leave",
+        "label": "不接，让生活先朝别处去",
+        "hint": "不产生固定工作安排。",
+        "result": "你把公示栏旁的招募单折好，放回取阅架。余青这次从北边回来，讲了一座你没去过的小城。你听着，已经有些想看地图。",
+        "effects": [
+          {
+            "path": "player.role",
+            "value": "基础养老金与日常生活",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": [
+          {
+            "when": [
+              {
+                "path": "flags.asTraining",
+                "op": "eq",
+                "value": "passed"
+              }
+            ],
+            "text": "你另给班组回了消息，谢绝这次已给出的岗位。",
+            "effects": []
+          }
+        ]
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [
+      "AS_F05"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS16"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS16",
+    "year": 2175.5,
+    "title": "交给下一班的潮水",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asRouteJob",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "接替者把一段你很在意的苗盘向旁边挪了。你问她是不是没看旧图，她说看了，但水位已经不同。你和她蹲在边上看了一会儿，谁也没急着再说。",
+    "variants": [],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "flags.asRouteJob",
+        "value": false,
+        "op": "set"
+      },
+      {
+        "path": "finance.income",
+        "value": 0.78,
+        "op": "set"
+      },
+      {
+        "path": "contract.status",
+        "value": "洄岸季节岗位已到期",
+        "op": "set"
+      },
+      {
+        "path": "player.role",
+        "value": "退休，曾参与洄岸协作",
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "AS_F05"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS17"
+    ],
+    "automatic": "一年季节岗位到期，月收入恢复基础养老金 0.78U。下一班开始照看这段岸。"
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS17",
+    "year": 2176,
+    "title": "下一轮日历",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asRepairStatus",
+        "op": "eq",
+        "value": "completed"
+      }
+    ],
+    "text": "中心的下一轮安排来了：复评与维护自付共 2U，安排持续到 2182 年的下一次复评。你熟悉流程，知道其中很多日子仍要坐车、等待，回家后什么也不想做。\n\n余青正计划一趟不赶景点的慢旅行。她看见你的日历，说：“你先排吧，我不等到所有日子都合适。”这话刺耳，却也不是故意说给你难堪。",
+    "variants": [],
+    "options": [
+      {
+        "id": "continue",
+        "label": "继续本轮维护",
+        "hint": "支付 2U；只记录维护安排，不增加保证寿命。",
+        "result": "你排好了这一轮，给余青挑出两段没有预约的日期。她选了另一段，说那时便宜。你们的日历第一次像两份不必拼在一起的东西。",
+        "effects": [
+          {
+            "path": "flags.asMaintenance",
+            "value": "to2182",
+            "op": "set"
+          }
+        ],
+        "cost": 2,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "pause",
+        "label": "这一轮先停，不再围着中心排日子",
+        "hint": "无支出；不自动写成功能突然恶化。",
+        "result": "你撤下日历上那一排空框。感觉先是轻松，随后又怕以后后悔。第二天出门，你照旧用了助行座车，没有把它当作一道输赢的证明。",
+        "effects": [
+          {
+            "path": "flags.asMaintenance",
+            "value": "paused",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "AS18"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS18",
+    "year": 2176.25,
+    "title": "两张错开的车票",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "余青订的是公共慢线，两晚住便宜旅舍，总共 1.2U。路线经过一片重新连起来的滨海湿地。她年轻时修过那里的旧公交，如今想去看看车站的位置。\n\n她把行程发给你，没有附“机会难得”之类的话。你想去，也担心一路要迁就她。她大概同样担心你。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "flags.asFriendPattern",
+            "op": "eq",
+            "value": "strained"
+          }
+        ],
+        "text": "你们仍会说话，只是不再像从前那样随意。那次迟到没有变成一场足以总结几十年友谊的大事，也没有完全消失。"
+      }
+    ],
+    "options": [
+      {
+        "id": "travel",
+        "label": "跟她去，但各自留半天",
+        "hint": "支付 1.2U；包含公共辅助交通。",
+        "result": "旅舍的窗开不了，余青抱怨了整个早晨。下午各走各的，你在一间临水茶室坐到天黑，回去发现她已经睡着。第二天她给你留了靠窗座位，没问昨天去了哪。",
+        "effects": [
+          {
+            "path": "flags.asTrip",
+            "value": "shared",
+            "op": "set"
+          }
+        ],
+        "cost": 1.2,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "local",
+        "label": "留在本地，让她回来讲",
+        "hint": "无支出；不要求朋友为你取消。",
+        "result": "余青带回一小袋难吃的海盐糖，说原来那家店早就不在了。你们把糖留给下一次来串门的人。旅行没发生在你身上，那几天的生活也不是空白。",
+        "effects": [
+          {
+            "path": "flags.asTrip",
+            "value": "local",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "AS19"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS19",
+    "year": 2182,
+    "title": "她要挪走你熟悉的那一段",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "纪岚四十一岁，带着内陆水网的经验回潮湾。旧试验岸段已经能留住更多生命，一些早期栽培带却挡住了季节水道。她参与的班组准备挪开其中一段。\n\n你们站在旧标记旁。纪岚把新的水流图打开，讲得很快。你听得懂一些，也觉得她看起来太像已经决定好了。她把图停在你们眼前这一段，问：“从这里开始看？”你还没想好是否愿意加入，先看了看她标出的水路。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "flags.asCoastRecordBefore2182",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "text": "那段地方有你真的照看过的东西。你想保留它，理由不只有技术。纪岚说她没有嫌你们以前做得不好，你却还是很想解释以前有多难。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.asCoastRecordBefore2182",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "你从未负责过试验带。这件事与你有关，是因为你也使用这片海岸，而不是因为旧成果属于你。"
+      }
+    ],
+    "options": [
+      {
+        "id": "test",
+        "label": "一起做一季小范围改布置",
+        "hint": "0.4U 自己往返与时间安排成本；实际改动由班组执行。",
+        "result": "你参加了这一季的小范围复核，班组最后保留一部分，挪走另一部分。水从新空出来的地方穿过，有另一种生命顺着水来了。",
+        "effects": [
+          {
+            "path": "flags.asCoastDispute",
+            "value": "changed_with_evidence",
+            "op": "set"
+          },
+          {
+            "path": "rights.asArchive",
+            "value": "local_use",
+            "op": "set"
+          },
+          {
+            "path": "flags.asLaterContact",
+            "value": "records",
+            "op": "set"
+          },
+          {
+            "path": "flags.asCoastRecord",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "flags.asRouteRecord",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "project.participated",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "project.contribution",
+            "value": "2182 年一季改布置观察与复核",
+            "op": "set"
+          }
+        ],
+        "cost": 0.4,
+        "when": [],
+        "outcomes": [
+          {
+            "when": [
+              {
+                "path": "flags.asCoastRecord",
+                "op": "eq",
+                "value": true
+              }
+            ],
+            "effects": [],
+            "text": "你带着自己的旧观察去核对。纪岚把新图改了两处，你仍舍不得被移走的那一排。"
+          },
+          {
+            "when": [],
+            "effects": [],
+            "text": "你没有旧试验记录，先以普通使用者的身份写下今天看见的水路、绕行和停留位置，再跟着班组做这一季的观察。纪岚不能拿你的新记录代替往年的数据，但它让今天的几处问题更清楚。"
+          }
+        ]
+      },
+      {
+        "id": "object",
+        "label": "把反对意见说清楚，不参加改造班",
+        "hint": "没有新费用；不能替班组否决整段计划。",
+        "result": "你讲了自己记得的事情，有几条被补进方案，主要改动仍然执行。后来经过那里，你不太愿意和纪岚谈项目。你们有时吃饭，菜和往常一样，话少了一点。",
+        "effects": [
+          {
+            "path": "flags.asCoastDispute",
+            "value": "objected",
+            "op": "set"
+          },
+          {
+            "path": "flags.asLaterContact",
+            "value": "brief",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [
+          {
+            "path": "flags.asCoastRecord",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "outcomes": []
+      },
+      {
+        "id": "meal",
+        "label": "不接这份工作，留她吃顿饭",
+        "hint": "没有新费用。",
+        "result": "你们不谈新图，纪岚讲了一个内陆同事的笑话，讲到一半自己先笑起来。她临走没留下需要你签名的东西，下一次改布置也不会等你来才开始。",
+        "effects": [
+          {
+            "path": "flags.asCoastDispute",
+            "value": "outside",
+            "op": "set"
+          },
+          {
+            "path": "flags.asLaterContact",
+            "value": "meal",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "world.asStepRouteRebuilt",
+        "value": true,
+        "op": "set"
+      },
+      {
+        "path": "people.jilan.location",
+        "value": "潮湾短访",
+        "op": "set"
+      },
+      {
+        "path": "people.jilan.active",
+        "value": true,
+        "op": "set"
+      },
+      {
+        "path": "flags.asCoastRecordBefore2182",
+        "value": false,
+        "op": "set"
+      },
+      {
+        "path": "flags.asCoastRecordBefore2182",
+        "value": true,
+        "op": "set",
+        "when": [
+          {
+            "path": "flags.asCoastRecord",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "AS_F05"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS20"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS20",
+    "year": 2182.25,
+    "title": "预约到下一站为止",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asMaintenance",
+        "op": "eq",
+        "value": "expired2182"
+      }
+    ],
+    "text": "下一轮复评没有替你排好答案。自付还是 2U，覆盖至 2188 年再评；更长的安排尚未给出。你记得第一次填表时写下的旧潮门，现在那条路线已经改过两次。",
+    "variants": [],
+    "options": [
+      {
+        "id": "continue",
+        "label": "做到 2188 年再看",
+        "hint": "支付 2U；不承诺后续收费或永久效果。",
+        "result": "你继续这一轮。这次留在表上的目标很普通：出门后，回来还能做一顿晚饭。护士读完点了点头，没有替你换成更宏大的词。",
+        "effects": [
+          {
+            "path": "flags.asMaintenance",
+            "value": "to2188",
+            "op": "set"
+          }
+        ],
+        "cost": 2,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "stop",
+        "label": "这次不续，把时间留给别的事",
+        "hint": "无支出；不把停下写成放弃生活。",
+        "result": "你没有续上。几天后整理材料，发现自己已经留了一整袋不知要保存多久的收据。你把它们按年份放好，然后去买菜。",
+        "effects": [
+          {
+            "path": "flags.asMaintenance",
+            "value": "paused",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "flags.asMaintenance",
+        "value": "expired2182",
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "AS21"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS21",
+    "year": 2188,
+    "title": "送来的汤有点咸",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "一次临时不适让你在家多待了几天。你本来只想安静休息两天，送来的东西却总放在不顺手的地方。公共送餐到了门口，汤有点咸。配送机记下你的口味，立刻把下一次改为低盐并显示了确认；今天的汤已经按一批做完，它不能在门口重新配一份，只能替你退回，或预约下一轮厨房送来。你这会儿却已经饿了。\n\n纪岚已经回到内陆工作，余青也有自己的安排。你不想把每个晚饭变成一次求人，也不愿把未来几十年的钱一次许出去。服务站给了按年复看的小额支持方案，和免费的现住屋调整名额。",
+    "variants": [],
+    "options": [
+      {
+        "id": "support",
+        "label": "换到一室屋，增加定期生活支持",
+        "hint": "月总支出0.80U，一年一期。明确同意：条件不变且下一年预算足够时按年自动续期；条件或可支付性变化再由你决定。",
+        "result": "新屋小一些，低盐偏好也随服务安排一起转了过去。一次厨房临时换菜单，系统先问你愿不愿等下一轮；你选了现有的清淡配餐，把调味包留在桌角。你把门口收拾出一个放东西的位置，不再需要先请人搬开箱子。\n\n你同意按这一窗口、费用和年度预算条件复核续期；如果条件变化，服务站需再问你，不会把缺口默默记成借款。",
+        "effects": [
+          {
+            "path": "flags.asHousing",
+            "value": "compact",
+            "op": "set"
+          },
+          {
+            "path": "flags.asLivingSupport",
+            "value": "regular",
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 0.8,
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "subsidized",
+        "label": "选择固定窗口的公共补差支持",
+        "hint": "月总支出0.78U：生活0.74U、本人服务费0.04U；另0.02U由试点直接付服务方。同意条件不变时年度续期。",
+        "result": "你选了每周固定的送餐与上门窗口。有时想临时改约，得等服务站回电；但饭菜放在你伸手够得到的位置，汤也另装了小包调味。你在日历上圈出了下一年复看的月份。",
+        "effects": [
+          {
+            "path": "flags.asHousing",
+            "value": "compact",
+            "op": "set"
+          },
+          {
+            "path": "flags.asLivingSupport",
+            "value": "regular",
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 0.78,
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "compact",
+        "label": "只调整住房，按需要使用临时支持",
+        "hint": "月支出 0.74U；不承诺任何朋友承担固定护理。",
+        "result": "你把常用的东西移低，留出一条不用侧身走的通道。需要时仍打服务电话，有时要等。那盆新买的草摆在窗边，长得比纪岚当年的那盆好。",
+        "effects": [
+          {
+            "path": "flags.asHousing",
+            "value": "compact",
+            "op": "set"
+          },
+          {
+            "path": "flags.asLivingSupport",
+            "value": "as_needed",
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 0.74,
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "flags.asMaintenance",
+        "value": "closed_at2188",
+        "op": "set",
+        "when": [
+          {
+            "path": "flags.asMaintenance",
+            "op": "eq",
+            "value": "to2188"
+          }
+        ]
+      },
+      {
+        "path": "people.jilan.active",
+        "value": false,
+        "op": "set"
+      },
+      {
+        "path": "people.jilan.location",
+        "value": "内陆水网",
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "AS_F03"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS19E"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS19E",
+    "year": 2189,
+    "title": "第一辆开往新岸的公共车",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "新岸的公共车开始载客。湿地仍有随潮水进出的区域，长期住屋建在后方适合居住的台地，并没有把整片水边填成陆地。几代团队做过的工程终于和普通日子连起来。\n\n车上有人去上班，有人带着东西搬家。你没有听到开幕致辞，司机正在和一位乘客讨论婴儿车怎么放。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "flags.asCoastRecord",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "text": "你认出自己工作过的小片区；边界变了，旧编号还在资料里。这不是全部海岸的署名，却是实际做过的一部分。"
+      }
+    ],
+    "options": [
+      {
+        "id": "visit",
+        "label": "去新岸住一晚",
+        "hint": "0.3U；当一个真正的访客。",
+        "result": "你住在公共短租屋，晚上走到水边。没有人问你是不是参与过项目。那片地方已经有太多人的生活，足够让你安静地待一会儿。",
+        "effects": [
+          {
+            "path": "flags.asCoastPublic",
+            "value": "visited",
+            "op": "set"
+          }
+        ],
+        "cost": 0.3,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "watch",
+        "label": "这次不去，留在潮湾",
+        "hint": "没有新费用。",
+        "result": "你看了一会儿线路图，把屏幕关掉。新岸已经在那里，以后是否去，不必今天定。",
+        "effects": [
+          {
+            "path": "flags.asCoastPublic",
+            "value": "not_visited",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [
+      "AS_F05"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS22"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS23",
+    "year": 2190,
+    "title": "旧屋子的钥匙",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "player.mode",
+        "op": "eq",
+        "value": "普通"
+      }
+    ],
+    "text": "九十岁这一年，你在外套里找到一把旧屋子的钥匙，连着一个已经不适配任何门的电子扣。你本以为那些年最重要的是某一次决定，留下来的却常是东西放在哪里、某个人什么时候会来。\n\n你把一周的安排看了一遍。还有两天空着，这次你没有急着填。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "flags.asRouteRecord",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "text": "洄岸保存着一段注明年份的旧记录。它不负责告诉后来的人你是怎样的一生，只负责说明那一年，一段试验带在当年的潮季里怎样变化。"
+      }
+    ],
+    "options": [
+      {
+        "id": "quiet",
+        "label": "收好钥匙，继续现在的日子",
+        "hint": "阶段结束；不设置死亡，不强迫公开人生。",
+        "result": "你把钥匙放进一个小盒子。窗边的草需要浇水，今天送来的汤倒正合口味。你记起得告诉他们一声。",
+        "effects": [
+          {
+            "path": "flags.asEnding",
+            "value": "ordinary_quiet",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "note",
+        "label": "写一张很短的生活清单",
+        "hint": "阶段结束；私人保存，不上传家属资料。",
+        "result": "你写下门口放东西的位置、汤不要太咸、有人没回消息时先别急。写完又划掉第三条，觉得每个人还得自己学。纸贴在冰箱上，背面是一张旧账单。",
+        "effects": [
+          {
+            "path": "flags.asEnding",
+            "value": "ordinary_note",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "AS24"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS25",
+    "year": 2196,
+    "title": "熟悉的名字少了一个",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "player.mode",
+        "op": "eq",
+        "value": "不老预览"
+      }
+    ],
+    "text": "余青去世了。\n\n整理她的东西时，朋友们找到一张沿海公交旧图。上面圈着许多小站，几处你去过，更多地方没听她提起。有人说要把路线全走完，你当时很想答应，话到嘴边又停下。\n\n你现在九十六岁，仍记得她拎着凉米糕，若无其事地走来的样子。",
+    "variants": [],
+    "options": [
+      {
+        "id": "one_stop",
+        "label": "只去其中一站",
+        "hint": "支付 0.3U；不承诺替她完成一生的路线。",
+        "result": "你去了图上最靠近的那一站。车窗外正在修路，看不见她照片里的景色。你在小卖部买了水，回程时没有刻意坐她从前喜欢的位置。",
+        "effects": [
+          {
+            "path": "flags.asFriendFarewell",
+            "value": "one_stop",
+            "op": "set"
+          }
+        ],
+        "cost": 0.3,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "keep_map",
+        "label": "把地图留在家里",
+        "hint": "无支出；保存回忆，不模拟她的新答复。",
+        "result": "你把地图放在抽屉里。过了很久才发现，自己已经不记得余青那次为什么迟到四十分钟，只记得米糕有点凉。你没有请系统替你补齐。",
+        "effects": [
+          {
+            "path": "flags.asFriendFarewell",
+            "value": "map",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "people.yuqing.alive",
+        "value": false,
+        "op": "set"
+      },
+      {
+        "path": "people.yuqing.active",
+        "value": false,
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "AS26"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS26",
+    "year": 2200,
+    "title": "轮到她说累了",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "player.mode",
+        "op": "eq",
+        "value": "不老预览"
+      }
+    ],
+    "text": "纪岚五十九岁，结束了内陆那份做了很久的工作，回潮湾休整两年。她带回的工具已经不认你当年学过的接口，那只行李袋却已经磨得很旧。\n\n你一百岁。身体能继续，生活经验却没有自动变成知道别人该怎么过。纪岚不想讲辞职的细节，第二次吃饭时被你问烦了，说自己不是回来接受辅导的。\n\n她正等公共支持的排期。你可以陪她一段，但如果答应每周固定一天，自己的安排就得让出一天。",
+    "variants": [],
+    "options": [
+      {
+        "id": "weekly",
+        "label": "留两年星期四，固定一起吃一顿",
+        "hint": "至 2202 年；月支出增加 0.04U，不承担私人护理或无限照护。",
+        "result": "头几个月纪岚常迟到，你终于知道等待别人的事不会因为活得久就学完。后来有一晚她先做了饭，难吃得很。你们仍把它吃完，没把这件事归纳成谁照顾谁。",
+        "effects": [
+          {
+            "path": "flags.asWeeklyMeal",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 0.04,
+            "op": "inc"
+          },
+          {
+            "path": "flags.asLaterBond",
+            "value": "weekly",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "sometimes",
+        "label": "不定固定日子，有空时见面",
+        "hint": "无新增持续支出；她的公共支持继续走自己的安排。",
+        "result": "纪岚说这样也好。你们有时两星期不见，偶尔一天碰见三次。她后来告诉你一件辞职前的事，只讲一半，你没有追问后半。",
+        "effects": [
+          {
+            "path": "flags.asLaterBond",
+            "value": "sometimes",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "distance",
+        "label": "这两年主要过自己的日子",
+        "hint": "无新增支出；这两年不固定见面。",
+        "result": "你没接下固定陪伴。纪岚有点不高兴，嘴上却说没事。你知道她不是真的没事，也知道自己这次不想再把所有时间排给另一个人。",
+        "effects": [
+          {
+            "path": "flags.asLaterBond",
+            "value": "distance",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "people.jilan.active",
+        "value": true,
+        "op": "set"
+      },
+      {
+        "path": "people.jilan.location",
+        "value": "潮湾休整",
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "AS27"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS27",
+    "year": 2202,
+    "title": "又一个星期四归还了",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "player.mode",
+        "op": "eq",
+        "value": "不老预览"
+      },
+      {
+        "path": "flags.asWeeklyMeal",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "纪岚的两年休整结束，她搬进另一处长期住屋，参加了自己的固定饭桌。最后一个约好的星期四，她忘了来，直到晚上才发消息。你先是生气，接着才意识到这一天已经不属于原来的安排。",
+    "variants": [],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "flags.asWeeklyMeal",
+        "value": false,
+        "op": "set"
+      },
+      {
+        "path": "finance.expense",
+        "value": -0.04,
+        "op": "inc"
+      }
+    ],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "AS28"
+    ],
+    "automatic": "两年固定饭桌约定结束。月支出减少 0.04U；没有把一次答应延伸成余生义务。"
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS28",
+    "year": 2215,
+    "title": "在月球养一条人工河",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "player.mode",
+        "op": "eq",
+        "value": "不老预览"
+      }
+    ],
+    "text": "岚脊新增的受保护居住区，正把一段生态试验廊改成公共生活空间。每天几次，泵房把循环水送进不同高度的种植带，再收回处理。过去参观者看设备，现在居民想要一处能待一下午、闻到活植物气味的地方。\n\n远身画面接进来，一个孩子沿水道跑，越过隔离线就被叫了回来。有人蹲在旁边修接头，挡住了镜头。\n\n团队招六年的栽培与生活维护岗位，也收六个月的地球远身班。方絮三十六岁，负责前期培训，自己也准备去。她的伴侣不能把工作一起带过去。她问你是不是有什么家里的人放不下，没有摆出采访长寿者的样子，只是问另一位可能同船的人。\n\n纪岚已经七十四岁。她听完说：“你现在还想搬这么远？”\n\n你没有先解释设备有多可靠。你说，想在一个从没生活过的地方，重新过一段不熟悉的日子。活得久以后，潮湾很容易让你觉得什么都见过。你知道那不是真的。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "flags.asCoastRecord",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "text": "招募消息由旧生态站转给你。那幅工作服挡住镜头的画面，让你想起自己第一次做洄岸协作时，机器和人总在彼此面前来回。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.asCoastRecord",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "你从公开招募看到消息。没有作业船的旧履历可用，半年基础课需要完整参加；第一次试种记录从空白开始。"
+      }
+    ],
+    "options": [
+      {
+        "id": "resident",
+        "label": "争取月球六年生活岗位",
+        "hint": "0.6U 半年培训、岗位及行前评估；资格与岗位结果在 2215.5 年给出。",
+        "result": "你提交了自己的经历，开始做新的实作课。某些旧经验很好用，某些得从头学。纪岚没有帮你准备行李；她说等名单下来再说。",
+        "effects": [
+          {
+            "path": "flags.asLunarRequest",
+            "value": "resident",
+            "op": "set"
+          }
+        ],
+        "cost": 0.6,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "remote",
+        "label": "留在地球，争取半年远身班",
+        "hint": "0.2U 任务培训与席位评估；同年公布实际时段。",
+        "result": "你申请了地球席。方絮问这样会不会遗憾，你说可能会。她说她过去也常这样想，后来发现去哪边都会错过另一边的事。",
+        "effects": [
+          {
+            "path": "flags.asLunarRequest",
+            "value": "remote",
+            "op": "set"
+          }
+        ],
+        "cost": 0.2,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "earth",
+        "label": "到已长起来的新岸换住一年",
+        "hint": "1U 搬迁费；已有可接续的长租小屋，月支出 0.76U，放弃潮湾原屋。",
+        "result": "你去了新岸。白天公共车把工作的人带走，傍晚又送回来，和当年的试验带很不同。你开始认识谁总把椅子摆在路边，谁喜欢最早去水边看一眼。",
+        "effects": [
+          {
+            "path": "flags.asLunarRequest",
+            "value": "earth",
+            "op": "set"
+          },
+          {
+            "path": "flags.asEarthNewCoast",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "flags.asEarthLease",
+            "value": "replaced_by_new_coast",
+            "op": "set"
+          },
+          {
+            "path": "player.location",
+            "value": "地球·新岸聚居地",
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 0.76,
+            "op": "set"
+          }
+        ],
+        "cost": 1,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "stay",
+        "label": "留在潮湾，不接新的长期安排",
+        "hint": "没有新费用。",
+        "result": "你没填申请。方絮走前来告别，说等人工河开放会给你看。你说好，又让她别因为答应过这句话就一直惦记着发消息。",
+        "effects": [
+          {
+            "path": "flags.asLunarRequest",
+            "value": "stay",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "people.fangxu.alive",
+        "value": true,
+        "op": "set"
+      },
+      {
+        "path": "people.fangxu.active",
+        "value": true,
+        "op": "set"
+      },
+      {
+        "path": "people.fangxu.location",
+        "value": "潮湾出行培训点",
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "AS_F06"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS28Q"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS28Q",
+    "year": 2215.5,
+    "title": "一份确实有终点的答复",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "player.mode",
+        "op": "eq",
+        "value": "不老预览"
+      },
+      {
+        "path": "flags.asLunarRequest",
+        "op": "ne",
+        "value": "earth"
+      },
+      {
+        "path": "flags.asLunarRequest",
+        "op": "ne",
+        "value": "stay"
+      }
+    ],
+    "text": "培训结束，团队把结果寄来。你没有立刻打开，先把泡得太久的茶倒掉了。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "flags.asLunarOffer",
+            "op": "eq",
+            "value": "resident"
+          }
+        ],
+        "text": "你完成任务培训，行前适配合格，团队给了实际六年岗位和运力名额。正式去留还由你决定。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.asLunarOffer",
+            "op": "eq",
+            "value": "remote"
+          }
+        ],
+        "text": "你完成任务培训，并拿到 2216 年上半年的实际远身时段。现场班组已经排好接班人。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.asLunarOffer",
+            "op": "eq",
+            "value": "unavailable"
+          }
+        ],
+        "text": "团队明确结束了这期申请。你仍在地球，已花掉的培训费不退。那天你没有接纪岚打来的电话，晚上才回了消息。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.asLunarRequest",
+            "op": "eq",
+            "value": "resident"
+          },
+          {
+            "path": "flags.asLunarFit",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "这次行前适配没有满足任务条件，团队没有发放出发资格。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.asLunarRequest",
+            "op": "eq",
+            "value": "resident"
+          },
+          {
+            "path": "flags.asLunarFit",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "flags.asLunarPlace",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "你已完成培训与行前适配，但本期岗位和运力没有给你留下位置。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.asLunarRequest",
+            "op": "eq",
+            "value": "remote"
+          },
+          {
+            "path": "flags.asLunarRemoteSlot",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "培训完成了，潮湾这期远身席仍不足，未分到实际班次。"
+      }
+    ],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "flags.asLunarOffer",
+        "value": "unavailable",
+        "op": "set"
+      },
+      {
+        "path": "flags.asLunarOffer",
+        "value": "resident",
+        "op": "set",
+        "when": [
+          {
+            "path": "flags.asLunarRequest",
+            "op": "eq",
+            "value": "resident"
+          },
+          {
+            "path": "flags.asLunarFit",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "flags.asLunarPlace",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      },
+      {
+        "path": "flags.asLunarOffer",
+        "value": "remote",
+        "op": "set",
+        "when": [
+          {
+            "path": "flags.asLunarRequest",
+            "op": "eq",
+            "value": "remote"
+          },
+          {
+            "path": "flags.asLunarRemoteSlot",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "AS_F06"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS28M"
+    ],
+    "automatic": "本期资格、岗位与远身席结果已到。"
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS28M",
+    "year": 2215.75,
+    "title": "两套日子留不下来",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "player.mode",
+        "op": "eq",
+        "value": "不老预览"
+      },
+      {
+        "path": "flags.asLunarOffer",
+        "op": "eq",
+        "value": "resident"
+      }
+    ],
+    "text": "六年安排已经摆到面前。你的报酬加养老金足以过当地生活，却不够同时保住潮湾整套租屋。资助方承担去程交通，完整做满六年也承担约定返地；提前自愿结束，返程需要自付 2U。\n\n纪岚帮你挑掉了半箱没必要带的东西。她没有说舍不得，只在一件外套上停了很久，问那边会不会用得上。\n\n本期2216年1月出发，交通与入驻合计预留一个月，2月抵达后才计岗位工资；六年到2222年2月止。行前除3U费用，另将你自己的2U转入专用返程储备。提前返地只使用这笔储备；按期返地由资助承担，抵达后释放未用原款。它没有收益，也不是额外赠款。",
+    "variants": [],
+    "options": [
+      {
+        "id": "accept",
+        "label": "接受六年安排，结束潮湾原租约",
+        "hint": "3U行前费用＋2U本人现金转专用储备，至少现金5U；2216年2月至2222年2月六年岗位，实际抵达后计薪。",
+        "result": "你确认了安排。租约排在出发时结束，方絮发来集合名单，上面终于有你的名字。你给纪岚留了几样她肯要的东西，她不肯收的又装回箱里。",
+        "effects": [
+          {
+            "path": "flags.asLunarAccepted",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "flags.asEarthLease",
+            "value": "termination_scheduled",
+            "op": "set"
+          },
+          {
+            "path": "flags.asLunarPhase",
+            "value": "contracted",
+            "op": "set"
+          },
+          {
+            "path": "contract.status",
+            "value": "月球六年岗位已签待出发",
+            "op": "set"
+          },
+          {
+            "path": "contract.start",
+            "value": 2216.0833333333335,
+            "op": "set"
+          },
+          {
+            "path": "contract.end",
+            "value": 2222.0833333333335,
+            "op": "set"
+          }
+        ],
+        "cost": 3,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "decline",
+        "label": "不签，把房子和现在的日子留下",
+        "hint": "没有追加费用；放弃本期岗位与运力。",
+        "result": "你回了拒绝。方絮只说知道了，过了一会儿才发来一句以后有机会去看她。你没有答应一个日期。",
+        "effects": [
+          {
+            "path": "flags.asLunarPhase",
+            "value": "declined",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [
+      "AS_F06"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS28R"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS28R",
+    "year": 2215.75,
+    "title": "地球这一端也要留出日子",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "player.mode",
+        "op": "eq",
+        "value": "不老预览"
+      },
+      {
+        "path": "flags.asLunarOffer",
+        "op": "eq",
+        "value": "remote"
+      }
+    ],
+    "text": "地月两端按可控的小任务交接，动作带有延迟，现场人可以随时停机。你有半年时段，不必等别人一句话就一直坐到夜里。",
+    "variants": [],
+    "options": [
+      {
+        "id": "start",
+        "label": "接 2216 年上半年的远身班",
+        "hint": "0.3U 准备费；半年月收入增加0.08U、月席位支出增加0.03U，到2216.5结束。",
+        "result": "你把出门去操作间的日子留出来。这一次，屏幕另一端不是自己曾去过的海岸。你有点兴奋，也清楚自己还是会在潮湾回家。",
+        "effects": [
+          {
+            "path": "flags.asLunarPhase",
+            "value": "remote_booked",
+            "op": "set"
+          }
+        ],
+        "cost": 0.3,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "decline",
+        "label": "不接这期，把时段让给别人",
+        "hint": "没有追加费用。",
+        "result": "你没有接。系统把时段收回时很安静，你反而有点希望有人再问一句。",
+        "effects": [
+          {
+            "path": "flags.asLunarPhase",
+            "value": "declined",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [
+      "AS_F06"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS28D"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS28D",
+    "year": 2216,
+    "title": "出发那一天",
+    "location": "地月交通",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asLunarPhase",
+        "op": "eq",
+        "value": "contracted"
+      }
+    ],
+    "text": "纪岚陪你到出发站。她没有走到最后一道门前，说再送下去也还是要在某处停。你们抱了一下，都比预想的用力。\n\n潮湾的原租约在这一天结束。回去时要重新找一个住处了。",
+    "variants": [],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "flags.asLunarPhase",
+        "value": "in_transit",
+        "op": "set"
+      },
+      {
+        "path": "flags.asEarthLease",
+        "value": "ended",
+        "op": "set"
+      },
+      {
+        "path": "player.location",
+        "value": "地月交通中",
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "AS_F06"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS28A"
+    ],
+    "automatic": "唐禾已实际出发，进入地月交通与接驳阶段；尚未开始计算月球岗位工资。"
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS28RS",
+    "year": 2216,
+    "title": "远身机停在水带边",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asLunarPhase",
+        "op": "eq",
+        "value": "remote_booked"
+      }
+    ],
+    "text": "你接进机器身体。低处的叶片擦过防护边缘，手柄给回一阵轻微阻力；种植廊的气味仍到不了这里。你按班组安排完成一段照看，把需要现场处理的事交回去。",
+    "variants": [],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "flags.asLunarPhase",
+        "value": "remote",
+        "op": "set"
+      },
+      {
+        "path": "flags.asLunarRemoteActive",
+        "value": true,
+        "op": "set"
+      },
+      {
+        "path": "finance.income",
+        "value": 0.08,
+        "op": "inc"
+      },
+      {
+        "path": "finance.expense",
+        "value": 0.03,
+        "op": "inc"
+      },
+      {
+        "path": "player.role",
+        "value": "地球半年远身协作",
+        "op": "set"
+      },
+      {
+        "path": "flags.asLunarContribution",
+        "value": "remote_plot",
+        "op": "set"
+      },
+      {
+        "path": "people.fangxu.location",
+        "value": "月球·岚脊",
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "AS_F06"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS28L"
+    ],
+    "automatic": "半年远身班实际开始。唐禾仍住地球，月收入加0.08U，月支出加0.03U。"
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS28L",
+    "year": 2216,
+    "title": "先把一块地方留出来",
+    "location": "地球·新岸聚居地",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asEarthNewCoast",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "新岸有一块总被机器标成低利用率的空地。居民想摆椅子，也有人想给配送车留通道。你刚搬来，还没弄懂他们从前争过什么。\n\n过去的试验地已经有自己的日子。你可以参与一点，也可以先住着看。",
+    "variants": [],
+    "options": [
+      {
+        "id": "garden",
+        "label": "参加一年公共小园的日常照看",
+        "hint": "0.6U 一次材料费；无固定工资，至2217年交接。",
+        "result": "你们把园子缩小，给配送留出一条路。第一批椅子摆得很不舒服，有人把它们全转了方向。你起初不喜欢，坐下看了一会儿潮水，觉得这样也行。",
+        "effects": [
+          {
+            "path": "flags.asNewCoastGarden",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "flags.asNewCoastGardenActive",
+            "value": true,
+            "op": "set"
+          }
+        ],
+        "cost": 0.6,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "settle",
+        "label": "先把自己的住处过好",
+        "hint": "没有新费用。",
+        "result": "你没有接班，后来还是常去那边坐。有人记住了你喜欢的位置，偶尔替你留一会儿。",
+        "effects": [
+          {
+            "path": "flags.asNewCoastGarden",
+            "value": false,
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "AS28W"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS28W",
+    "year": 2216,
+    "title": "另一边的日子已经开始",
+    "location": "地月两端",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "player.mode",
+        "op": "eq",
+        "value": "不老预览"
+      }
+    ],
+    "text": "方絮实际抵达了岚脊。她发来一张刚收拾好的住处照片，桌边只有一把椅子。她和伴侣还在分开生活，却没有因此暂停新地方的每一天。\n\n生态廊的一小段先向居民开放。有人开始在泵房换班后散步，正式公共段还要继续建设。",
+    "variants": [],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "people.fangxu.location",
+        "value": "月球·岚脊",
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "AS_F06"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS28RE"
+    ],
+    "automatic": "岚脊的建设与生活独立继续；方絮已在月球。"
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS28A",
+    "year": 2216.0833333333335,
+    "title": "先在这里住下来",
+    "location": "月球·岚脊",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asLunarPhase",
+        "op": "eq",
+        "value": "in_transit"
+      }
+    ],
+    "text": "交通、接驳和入驻安排完成后，你终于走进那条生态廊。空气和远身画面完全不同。第一次排水你算错了时间，方絮在另一端笑你，说潮湾的潮水不会等人，这里的泵房也一样。\n\n你带来的主要是自己的生活物件。种植材料来自当地允许使用的隔离供应，和你在地球照看的并不完全相同。班组分给你一段很短的种植带，足够让你忙一阵。",
+    "variants": [],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "flags.asLunarPhase",
+        "value": "resident",
+        "op": "set"
+      },
+      {
+        "path": "flags.asLunarJob",
+        "value": true,
+        "op": "set"
+      },
+      {
+        "path": "finance.income",
+        "value": 1.8,
+        "op": "set"
+      },
+      {
+        "path": "finance.expense",
+        "value": 1.74,
+        "op": "set"
+      },
+      {
+        "path": "player.location",
+        "value": "月球·岚脊",
+        "op": "set"
+      },
+      {
+        "path": "player.role",
+        "value": "生态廊种植带生活维护岗位",
+        "op": "set"
+      },
+      {
+        "path": "flags.asLunarContribution",
+        "value": "first_plot",
+        "op": "set"
+      },
+      {
+        "path": "people.fangxu.location",
+        "value": "月球·岚脊",
+        "op": "set"
+      },
+      {
+        "path": "contract.status",
+        "value": "月球六年岗位履行中",
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "AS_F06"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS28RS"
+    ],
+    "automatic": "唐禾已实际抵达并入驻岚脊，六年岗位开始。"
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS28RE",
+    "year": 2216.5,
+    "title": "聚餐那天，席位先关了",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asLunarRemoteActive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "你做成了一套本班次能用的栽培与交接记录，下一班实际接过去了。居民在人工河边办第一次小聚餐时，你看见一部分画面，操作席随后按时关闭。\n\n回家路上你很高兴，也有点失落。自己真的做过这项月球工作，却没有在那里生活过这半年。",
+    "variants": [],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "flags.asLunarRemoteActive",
+        "value": false,
+        "op": "set"
+      },
+      {
+        "path": "flags.asLunarRemoteDone",
+        "value": true,
+        "op": "set"
+      },
+      {
+        "path": "flags.asLunarPhase",
+        "value": "remote_finished",
+        "op": "set"
+      },
+      {
+        "path": "finance.income",
+        "value": -0.08,
+        "op": "inc"
+      },
+      {
+        "path": "finance.expense",
+        "value": -0.03,
+        "op": "inc"
+      },
+      {
+        "path": "player.role",
+        "value": "退休，曾做月球远身协作",
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "AS_F06"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS28LE"
+    ],
+    "automatic": "半年远身班结束。月收入减0.08U，月支出减0.03U；不延长为全年随叫随到。"
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS28LE",
+    "year": 2217,
+    "title": "小园交给另一班",
+    "location": "地球·新岸聚居地",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asNewCoastGardenActive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "新的照看人带来一批你不认识的植物，说这一年想试另一种搭配。你把工具交给她，留了一下午帮她找清楚各处水口。",
+    "variants": [],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "flags.asNewCoastGardenActive",
+        "value": false,
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [
+      "AS28F"
+    ],
+    "automatic": "一年新岸小园约定结束，没有留下终身班次。"
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS28F",
+    "year": 2218,
+    "title": "人工河也会有不想看的地方",
+    "location": "月球·岚脊",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asLunarJob",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "一组种植带出现问题，现场团队隔离了那一段。公共空间缩小，人们抱怨走到一半又要折回。关键生命保障仍由另一套系统运行，没人把一个花园交给你来保全整座城。\n\n班组给你两种已可落实的工作安排：跟着重做三个月，或转去照看开放段。纪岚来信说她换了住处，还附了一张别人帮她搬东西的照片。你看完忽然特别想回去。",
+    "variants": [],
+    "options": [
+      {
+        "id": "rebuild",
+        "label": "跟班组重做这一段",
+        "hint": "岗位与工资不变；让出原计划的三个月个人活动。",
+        "result": "你把原定的个人活动从日历上撤下，加入三个月的重做班。旧苗床拆开时并不好看，第一步是把水路一段段辨认出来。",
+        "effects": [
+          {
+            "path": "flags.asLunarSetback",
+            "value": "rebuilding",
+            "op": "set"
+          },
+          {
+            "path": "flags.asLunarContribution",
+            "value": "rework_underway",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "switch",
+        "label": "转去照看已开放的公共段",
+        "hint": "岗位与工资不变，仍履行原六年约定。",
+        "result": "你换到人来人往的那一段。工作没有重做试验带那样新鲜，却更像你曾想过的：植物和陌生人的日子真正挨在一起。你偶尔还是去看看隔离段恢复得怎样。",
+        "effects": [
+          {
+            "path": "flags.asLunarSetback",
+            "value": "changed_role",
+            "op": "set"
+          },
+          {
+            "path": "flags.asLunarContribution",
+            "value": "public_section",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "return",
+        "label": "提前结束，自费返回地球",
+        "hint": "从行前已隔离的本人2U储备支付，不再另收2U现金；岗位工资停止，三个月交通与安顿窗口后实际返地。",
+        "result": "你把这一段交给别人，付了返程费用。方絮没有劝，只问能不能请你帮她把一件东西带回去。你答应了，那一刻才真的觉得自己要走。",
+        "effects": [
+          {
+            "path": "flags.asFangxuParcel",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "flags.asLunarReturn",
+            "value": "early",
+            "op": "set"
+          },
+          {
+            "path": "flags.asLunarJob",
+            "value": false,
+            "op": "set"
+          },
+          {
+            "path": "flags.asLunarPhase",
+            "value": "returning",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 0.78,
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 0.78,
+            "op": "set"
+          },
+          {
+            "path": "contract.status",
+            "value": "月球岗位提前结束，返程已结清",
+            "op": "set"
+          }
+        ],
+        "cost": 2,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [
+      "AS_F06"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS28ER"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS28ER",
+    "year": 2218.25,
+    "title": "回来的不是原来那间屋",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asLunarReturn",
+        "op": "eq",
+        "value": "early"
+      },
+      {
+        "path": "flags.asLunarPhase",
+        "op": "eq",
+        "value": "returning"
+      }
+    ],
+    "text": "返程与接驳完成，你回到地球。住房服务给你落实了另一间长租小屋，离原来街坊不远，门朝相反的方向。纪岚现在也不住原来的地方了。\n\n你先拆日用品，其他东西留到第二天。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "flags.asFangxuParcel",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "text": "方絮在提前返程前托你带回的物品，这一天也交到了她指定的保管处。行李箱总算少了一件不属于你的东西。"
+      }
+    ],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "flags.asLunarPhase",
+        "value": "returned",
+        "op": "set"
+      },
+      {
+        "path": "player.location",
+        "value": "地球·潮湾新住处",
+        "op": "set"
+      },
+      {
+        "path": "player.role",
+        "value": "退休，曾在岚脊生活工作",
+        "op": "set"
+      },
+      {
+        "path": "finance.income",
+        "value": 0.78,
+        "op": "set"
+      },
+      {
+        "path": "finance.expense",
+        "value": 0.74,
+        "op": "set"
+      },
+      {
+        "path": "flags.asEarthLease",
+        "value": "new_tidebay_lease",
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "AS_F06"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS28X"
+    ],
+    "automatic": "实际返地并安顿在新的长租小屋。月收入为基础养老金0.78U，月支出0.74U，没有月球岗位工资。"
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS28FR",
+    "year": 2218.25,
+    "title": "重新开放的那一段",
+    "location": "月球·岚脊",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asLunarSetback",
+        "op": "eq",
+        "value": "rebuilding"
+      }
+    ],
+    "text": "旧苗床拆开时并不好看。你们重新布置，最先长出来的也不是期待的那种颜色。几个月后隔离段重新开放，你认得哪里是自己改过的，别的居民只是觉得终于不用绕路了。",
+    "variants": [],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "flags.asLunarSetback",
+        "op": "set",
+        "value": "rebuilt"
+      },
+      {
+        "path": "flags.asLunarContribution",
+        "op": "set",
+        "value": "reworked_plot"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "AS_F06"
+    ],
+    "scenario": true,
+    "automatic": "三个月的重做班结束。原六年岗位继续，工资与支出没有改变。",
+    "followup": [
+      "AS28X"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS28X",
+    "year": 2222.0833333333335,
+    "title": "六年后，水道真正属于这里的日子",
+    "location": "月球·岚脊",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asLunarPhase",
+        "op": "eq",
+        "value": "resident"
+      }
+    ],
+    "text": "人工河的公共段已经成了人们会顺手经过的地方。有人在边上读书，有人嫌孩子太吵。你第一次来时只有施工隔离线的那一段，现在被自行车停满了。\n\n六年岗位到期。团队另给你一个两年的启用期照看班，工资和住处都缩小一些；也可以按原资助安排返地。方絮还想留下，但她不说这句话应该对你也成立。",
+    "variants": [],
+    "options": [
+      {
+        "id": "return",
+        "label": "按原安排返地，另找一个日常",
+        "hint": "返程自付0U；原约定资助已覆盖，不恢复旧租约。",
+        "result": "你选了返程。最后一班结束，有人请你把种植带的老照片发给她，你回去找了很久，发现自己拍得最多的还是人挡住镜头的时候。",
+        "effects": [
+          {
+            "path": "flags.asLunarReturn",
+            "value": "standard",
+            "op": "set"
+          },
+          {
+            "path": "flags.asLunarPhase",
+            "value": "returning",
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 0.78,
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "extend",
+        "label": "再留两年，换成启用期照看班",
+        "hint": "2222年2月至2224年2月：月入1.63U、支出1.54U，届满资助返地；未用本人储备在抵达后释放。",
+        "result": "你换了更小的住处。工作不再总是试新的东西，但你已经认得每天从水道边经过的人，有几位也认得你。",
+        "effects": [
+          {
+            "path": "flags.asLunarExtension",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "flags.asLunarJob",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "flags.asLunarPhase",
+            "value": "extension",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.63,
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 1.54,
+            "op": "set"
+          },
+          {
+            "path": "contract.status",
+            "value": "月球两年启用照看班",
+            "op": "set"
+          },
+          {
+            "path": "contract.start",
+            "value": 2222.0833333333335,
+            "op": "set"
+          },
+          {
+            "path": "contract.end",
+            "value": 2224.0833333333335,
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "flags.asLunarJob",
+        "value": false,
+        "op": "set"
+      },
+      {
+        "path": "finance.income",
+        "value": 0.78,
+        "op": "set"
+      },
+      {
+        "path": "contract.status",
+        "value": "月球六年岗位已到期",
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "AS_F06"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS28SR"
+    ]
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS28SR",
+    "year": 2222.3333333333335,
+    "title": "回来的不是原来那间屋",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asLunarReturn",
+        "op": "eq",
+        "value": "standard"
+      },
+      {
+        "path": "flags.asLunarPhase",
+        "op": "eq",
+        "value": "returning"
+      }
+    ],
+    "text": "返程与接驳完成，你回到地球。住房服务给你落实了另一间长租小屋，离原来街坊不远，门朝相反的方向。纪岚现在也不住原来的地方了。\n\n你先拆日用品，其他东西留到第二天。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "flags.asFangxuParcel",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "text": "方絮在提前返程前托你带回的物品，这一天也交到了她指定的保管处。行李箱总算少了一件不属于你的东西。"
+      }
+    ],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "flags.asLunarPhase",
+        "value": "returned",
+        "op": "set"
+      },
+      {
+        "path": "player.location",
+        "value": "地球·潮湾新住处",
+        "op": "set"
+      },
+      {
+        "path": "player.role",
+        "value": "退休，曾在岚脊生活工作",
+        "op": "set"
+      },
+      {
+        "path": "finance.income",
+        "value": 0.78,
+        "op": "set"
+      },
+      {
+        "path": "finance.expense",
+        "value": 0.74,
+        "op": "set"
+      },
+      {
+        "path": "flags.asEarthLease",
+        "value": "new_tidebay_lease",
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "AS_F06"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS28XE"
+    ],
+    "automatic": "实际返地并安顿在新的长租小屋。月收入为基础养老金0.78U，月支出0.74U，没有月球岗位工资。"
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS28XE",
+    "year": 2224.0833333333335,
+    "title": "这一次把岗位交清楚",
+    "location": "月球·岚脊",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asLunarExtension",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asLunarPhase",
+        "op": "eq",
+        "value": "extension"
+      }
+    ],
+    "text": "两年启用期结束，接替者已经和你一起工作了一段时间。你不用一口气把所有经验都讲完，只补上她还没遇到的几件事。水道那边，有人正把椅子搬到不同的位置。",
+    "variants": [],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "flags.asLunarJob",
+        "value": false,
+        "op": "set"
+      },
+      {
+        "path": "flags.asLunarExtension",
+        "value": false,
+        "op": "set"
+      },
+      {
+        "path": "flags.asLunarReturn",
+        "value": "extended",
+        "op": "set"
+      },
+      {
+        "path": "flags.asLunarPhase",
+        "value": "returning",
+        "op": "set"
+      },
+      {
+        "path": "finance.income",
+        "value": 0.78,
+        "op": "set"
+      },
+      {
+        "path": "finance.expense",
+        "value": 0.78,
+        "op": "set"
+      },
+      {
+        "path": "contract.status",
+        "value": "月球启用岗位已到期",
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "AS_F06"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS28XR"
+    ],
+    "automatic": "两年启用岗位到期，工资停止，按约资助返地。"
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS28XR",
+    "year": 2224.3333333333335,
+    "title": "回来的不是原来那间屋",
+    "location": "地球·潮湾",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.asLunarReturn",
+        "op": "eq",
+        "value": "extended"
+      },
+      {
+        "path": "flags.asLunarPhase",
+        "op": "eq",
+        "value": "returning"
+      }
+    ],
+    "text": "返程与接驳完成，你回到地球。住房服务给你落实了另一间长租小屋，离原来街坊不远，门朝相反的方向。纪岚现在也不住原来的地方了。\n\n你先拆日用品，其他东西留到第二天。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "flags.asFangxuParcel",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "text": "方絮在提前返程前托你带回的物品，这一天也交到了她指定的保管处。行李箱总算少了一件不属于你的东西。"
+      }
+    ],
+    "options": [],
+    "onEnter": [
+      {
+        "path": "flags.asLunarPhase",
+        "value": "returned",
+        "op": "set"
+      },
+      {
+        "path": "player.location",
+        "value": "地球·潮湾新住处",
+        "op": "set"
+      },
+      {
+        "path": "player.role",
+        "value": "退休，曾在岚脊生活工作",
+        "op": "set"
+      },
+      {
+        "path": "finance.income",
+        "value": 0.78,
+        "op": "set"
+      },
+      {
+        "path": "finance.expense",
+        "value": 0.74,
+        "op": "set"
+      },
+      {
+        "path": "flags.asEarthLease",
+        "value": "new_tidebay_lease",
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "AS_F06"
+    ],
+    "scenario": true,
+    "followup": [
+      "AS30"
+    ],
+    "automatic": "实际返地并安顿在新的长租小屋。月收入为基础养老金0.78U，月支出0.74U，没有月球岗位工资。"
+  },
+  {
+    "origin": "care_aftershift",
+    "id": "AS30",
+    "year": 2230,
+    "title": "两种水声",
+    "location": "地球",
+    "when": [
+      {
+        "path": "birth",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "world.asStartBirthEra",
+        "op": "eq",
+        "value": 2100
+      },
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "player.mode",
+        "op": "eq",
+        "value": "不老预览"
+      }
+    ],
+    "text": "方絮五十一岁，终于也开始认真考虑不再随项目搬家。她从月球发来人工河边的近况，一位新同事把你们以前习惯的布置又改了。\n\n地球的新岸也换了样子。水还是随潮汐进出，住在后方台地的人渐渐不再把这里叫作新地方。\n\n你一百三十岁，已经在几种不同的日子里做过选择。它们没有全做成，也没有全部失去。有些地方真的留下了劳动，有些关系不再像从前。你还想去看一点没见过的东西，也想保留不出门的日子。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "flags.asLunarPhase",
+            "op": "eq",
+            "value": "returned"
+          }
+        ],
+        "text": "你确实在岚脊生活过。回到地球后，偶尔仍会按那边的工作节奏醒来；现在的房间没有等你回来才开始变老。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.asLunarRemoteDone",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "text": "你做过一段地球端的月球协作，知道自己留下的记录在哪，却没有把半年的屏幕经验说成曾在那边有一个家。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.asEarthNewCoast",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "text": "你已经换住到新岸。最初总想说明这里从前是什么样，后来渐渐更关心今天谁还没把桌子搬出来。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.asLunarOffer",
+            "op": "eq",
+            "value": "unavailable"
+          }
+        ],
+        "text": "那次没有去成，仍是一次没有去成。你后来过的日子不需要替它编造一个圆满的原因。"
+      }
+    ],
+    "options": [
+      {
+        "id": "new",
+        "label": "挑一个没去过的小站，明天出发",
+        "hint": "这段内容到这里；保留尚未作出的新计划。",
+        "result": "你没有把那一站写成必须完成的目标，只先查好第一班公共车。明天早晨醒来，再决定带什么。",
+        "effects": [
+          {
+            "path": "flags.asEnding",
+            "value": "ageless_second_life",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      },
+      {
+        "id": "home",
+        "label": "这阵子待在家里，等一个想去的理由",
+        "hint": "这段内容到这里；没有新长期义务。",
+        "result": "你回了方絮一段自己的近况，没问她什么时候再出发。窗外有人搬进来，走廊里传来纸箱拖过地面的声音。",
+        "effects": [
+          {
+            "path": "flags.asEnding",
+            "value": "ageless_at_home",
+            "op": "set"
+          }
+        ],
+        "cost": 0,
+        "when": [],
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": []
+  }
+]

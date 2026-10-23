@@ -1,0 +1,131 @@
+{
+  "player": {
+    "name": "唐禾",
+    "location": "地球·潮湾",
+    "role": "基础养老金加周转站短班",
+    "qualification": 0,
+    "knowledge": 0,
+    "alive": true,
+    "mode": "普通"
+  },
+  "world": {
+    "asStartBirthEra": 2100,
+    "asAssistiveNetwork": true,
+    "asLongevityService": false,
+    "asStepRouteRebuilt": false,
+    "asSecondRouteSystem": false
+  },
+  "people": {
+    "yuqing": {
+      "name": "余青",
+      "birth": 2101,
+      "alive": true,
+      "active": true,
+      "location": "潮湾",
+      "stance": "不围绕中心反复排日历，想先出去旅行"
+    },
+    "jilan": {
+      "name": "纪岚",
+      "birth": 2141,
+      "alive": true,
+      "active": true,
+      "location": "潮湾邻居",
+      "stance": "要去自己的岗位，不接无限家务或护理"
+    },
+    "fangxu": {
+      "name": "方絮",
+      "birth": 2179,
+      "alive": null,
+      "active": false,
+      "location": "尚未登场",
+      "stance": "想去月球，但伴侣的工作不能一起带去"
+    }
+  },
+  "project": {
+    "name": "换班以后",
+    "stage": "晚年生活切片",
+    "participated": false,
+    "contribution": "无"
+  },
+  "finance": {
+    "cash": 8,
+    "income": 1.06,
+    "expense": 1.02,
+    "assets": 0,
+    "debt": 0
+  },
+  "contract": {
+    "status": "现有周转站短班至2170",
+    "start": 2168,
+    "end": 2170,
+    "obligation": 0
+  },
+  "rights": {
+    "asArchive": "private"
+  },
+  "flags": {
+    "asHandover": "unset",
+    "asHousing": "large",
+    "asShareActive": false,
+    "asFriendPattern": "unset",
+    "asBridgeActive": false,
+    "asRepairRequest": "unset",
+    "asRepairEligible": true,
+    "asRepairBenefitFixture": true,
+    "asRepairStatus": "none",
+    "asFunctionGain": false,
+    "asMaintenance": "none",
+    "asRouteContact": false,
+    "asOuting": "none",
+    "asJilanRelation": "unset",
+    "asTraining": "none",
+    "asExamPass": true,
+    "asRouteJob": false,
+    "asRouteRecord": false,
+    "asTrip": "none",
+    "asLaterContact": "none",
+    "asLivingSupport": "none",
+    "asAliveAt2190": true,
+    "asEnding": "unset",
+    "asFriendFarewell": "none",
+    "asWeeklyMeal": false,
+    "asLaterBond": "none",
+    "asLateStudy": "none",
+    "asBridgeOnLeave": false,
+    "asCoastChoice": "none",
+    "asCoastPlace": true,
+    "asCoastRemoteSlot": true,
+    "asCoastAccess": "none",
+    "asCoastActive": false,
+    "asCoastMonths": 0,
+    "asCoastSkill": false,
+    "asCoastPlot": "none",
+    "asCoastFollow": "none",
+    "asCoastRecord": false,
+    "asCoastPublic": "none",
+    "asCoastDispute": "none",
+    "asCoastBoardTask": "none",
+    "asCoastRecordBefore2182": false,
+    "asFangxuParcel": false,
+    "asLunarRequest": "none",
+    "asLunarFit": true,
+    "asLunarPlace": true,
+    "asLunarRemoteSlot": true,
+    "asLunarOffer": "none",
+    "asLunarAccepted": false,
+    "asEarthLease": "active",
+    "asLunarPhase": "none",
+    "asLunarJob": false,
+    "asLunarReturn": "none",
+    "asLunarContribution": "none",
+    "asLunarRemoteActive": false,
+    "asLunarRemoteDone": false,
+    "asLunarExtension": false,
+    "asEarthNewCoast": false,
+    "asNewCoastGarden": false,
+    "asNewCoastGardenActive": false,
+    "asLunarSetback": "none",
+    "asLocalVisit": false,
+    "asCurrentFieldFit": true
+  }
+}
