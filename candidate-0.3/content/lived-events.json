@@ -1,0 +1,2721 @@
+[
+  {
+    "origin": "creative-slice",
+    "id": "L01",
+    "year": 2118,
+    "title": "闭馆铃后面",
+    "text": "闭馆铃响过第二遍，你还蹲在还书箱旁。分拣机不肯收一本泡皱的书，每次都客气地请你重试。你用借阅台的录音笔记下那句话。\n\n楼上传来不属于人的脚步。简澜正让一副四足远身侧着穿过书架：“缺一个控制席的人。先别跳，走到我这里。”\n\n排练与周六班撞了。郑箐已在新房放下箱子，给你留了靠窗的半间；四月要交2U押金。你手里有3.25U。再申请机器要1U，若获批使用还要0.5U。图书馆门口贴着生产联盟试点公示，明年可能不用再排这么多搬运班，但这个周六仍得有人值守。",
+    "options": [
+      {
+        "id": "remote",
+        "label": "问能否换班，申请控制席",
+        "hint": "评估1U；换班需对方答应，成功后欠七月一班。",
+        "result": "你把班表发给同事，又提交机器申请。今晚仍按原班次收工。",
+        "effects": [
+          {
+            "path": "life.entry",
+            "value": "申请远身",
+            "op": "set"
+          },
+          {
+            "path": "life.access",
+            "value": "待答复",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 1,
+        "outcomes": [
+          {
+            "when": [
+              {
+                "path": "life.swapAllowed",
+                "op": "eq",
+                "value": false
+              }
+            ],
+            "text": "同事七月也有事，不能替你接周六。评估已完成，但本期排练时间不合；费用不退。你还可以用晚间录音台。",
+            "effects": [
+              {
+                "path": "life.access",
+                "value": "换班未成",
+                "op": "set"
+              }
+            ]
+          },
+          {
+            "when": [
+              {
+                "path": "life.slot",
+                "op": "eq",
+                "value": true
+              }
+            ],
+            "text": "同事答应替这一班，条件是你七月还一班。服务方也留出了四月的受监督时段；要不要真正使用，届时由你决定。",
+            "effects": [
+              {
+                "path": "life.access",
+                "value": "时段获准",
+                "op": "set"
+              },
+              {
+                "path": "schedule.promise",
+                "value": "七月待还班",
+                "op": "set"
+              }
+            ]
+          },
+          {
+            "when": [],
+            "text": "换班询问尚未落实前，服务方先告知本期机器时段已满。你撤回换班请求，没有欠班；那张空白分轨表仍在口袋里。",
+            "effects": [
+              {
+                "path": "life.access",
+                "value": "名额不足",
+                "op": "set"
+              }
+            ]
+          }
+        ],
+        "deferred": true
+      },
+      {
+        "id": "voice",
+        "label": "先把夜班声音留下来",
+        "hint": "不花评估费；四月可用录音台完成小品。",
+        "result": "你录下分拣机的“请重试”，暂存为草稿，赶上了原班表的末班车。",
+        "effects": [
+          {
+            "path": "life.entry",
+            "value": "声音草稿",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0
+      },
+      {
+        "id": "audience",
+        "label": "下班后看一会儿，不接新事",
+        "hint": "不占机器时段，不改变班表。",
+        "result": "你看简澜把四只脚重新校准，收工时递给她一卷没缠住的线。她问你名字，记住的是楼下值班的沈弦。",
+        "effects": [
+          {
+            "path": "life.entry",
+            "value": "观众",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0
+      }
+    ],
+    "onEnter": [],
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "variants": [],
+    "location": "地球·织城",
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": []
+  },
+  {
+    "origin": "creative-slice",
+    "id": "L02",
+    "year": 2118.25,
+    "title": "窗边的箱子，楼上的脚步",
+    "text": "你和郑箐把最后一个箱子抬到窗下。2U押金已经交给房东，钥匙放在两人都够得着的钩子上。她的物流训练材料占了半张桌子，录音时得先问她哪天复习。\n\n今晚楼上有试演，也有一间小录音室。简澜先去检查安全绳，没人替你把控制席坐满。",
+    "options": [
+      {
+        "id": "perform",
+        "label": "使用获准时段，完成《借来的重心》",
+        "hint": "当次0.5U；只在已获准且已换班时可用。",
+        "result": "机器腕部连续回旋，四个支点轮流接地，把一册书的落地声变成迟到的问候。人的关节做不到那串回环，你却仍坐在控制席上。简澜听完说：“最后一次，让大家听见你吸气。”\n\n你留出一口呼吸，完成第一次《借来的重心》。她收好线缆赶夜班，你把机器归还，走回和郑箐合租的窗边。",
+        "effects": [
+          {
+            "path": "experiences.works",
+            "value": 1,
+            "op": "inc"
+          },
+          {
+            "path": "project.participated",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "project.workTitle",
+            "value": "借来的重心",
+            "op": "set"
+          },
+          {
+            "path": "project.stage",
+            "value": "本地作品完成",
+            "op": "set"
+          },
+          {
+            "path": "project.result",
+            "value": "实际完成",
+            "op": "set"
+          },
+          {
+            "path": "project.contribution",
+            "value": "远身表演与编排",
+            "op": "set"
+          },
+          {
+            "path": "rights.version",
+            "value": "本人作品",
+            "op": "set"
+          },
+          {
+            "path": "experiences.firstTitle",
+            "value": "借来的重心",
+            "op": "set",
+            "when": [
+              {
+                "path": "experiences.firstTitle",
+                "op": "eq",
+                "value": "无"
+              }
+            ]
+          },
+          {
+            "path": "experiences.firstRemote",
+            "value": true,
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "life.access",
+            "op": "eq",
+            "value": "时段获准"
+          }
+        ],
+        "cost": 0.5
+      },
+      {
+        "id": "record",
+        "label": "在录音台完成自己的小品",
+        "hint": "0.25U；不必用远身机器，已有获准时段会放弃。",
+        "result": "《闭馆后的一分钟》只有钥匙、分拣机和自己的气声。你把“请重试”剪了三遍，第四遍故意留下。郑箐听见最后一声钥匙，问是不是终于可以睡了。",
+        "effects": [
+          {
+            "path": "experiences.works",
+            "value": 1,
+            "op": "inc"
+          },
+          {
+            "path": "project.participated",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "project.workTitle",
+            "value": "闭馆后的一分钟",
+            "op": "set"
+          },
+          {
+            "path": "project.stage",
+            "value": "本地作品完成",
+            "op": "set"
+          },
+          {
+            "path": "project.result",
+            "value": "实际完成",
+            "op": "set"
+          },
+          {
+            "path": "project.contribution",
+            "value": "本人录音与编排",
+            "op": "set"
+          },
+          {
+            "path": "rights.version",
+            "value": "本人作品",
+            "op": "set"
+          },
+          {
+            "path": "experiences.firstTitle",
+            "value": "闭馆后的一分钟",
+            "op": "set",
+            "when": [
+              {
+                "path": "experiences.firstTitle",
+                "op": "eq",
+                "value": "无"
+              }
+            ]
+          },
+          {
+            "path": "experiences.recording",
+            "value": true,
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0.25
+      },
+      {
+        "id": "earlyJoint",
+        "label": "参加今晚的一次声音共同排练",
+        "hint": "0.3U；简澜确认她的现场段，折光确认本次节点段；不占远身机器。",
+        "cost": 0.3,
+        "when": [],
+        "effects": [
+          {
+            "path": "experiences.works",
+            "op": "inc",
+            "value": 1
+          },
+          {
+            "path": "experiences.joint",
+            "value": true
+          },
+          {
+            "path": "project.participated",
+            "value": true
+          },
+          {
+            "path": "project.workTitle",
+            "value": "还书箱里的回声"
+          },
+          {
+            "path": "project.stage",
+            "value": "一次共同排练完成"
+          },
+          {
+            "path": "project.result",
+            "value": "实际完成"
+          },
+          {
+            "path": "project.contribution",
+            "value": "本人声音段与共同排练"
+          },
+          {
+            "path": "experiences.firstTitle",
+            "value": "还书箱里的回声"
+          },
+          {
+            "path": "rights.human",
+            "value": "仅本次声音共同排练"
+          },
+          {
+            "path": "rights.ai",
+            "value": "仅本次节拍排练"
+          },
+          {
+            "path": "rights.version",
+            "value": "共同排练，仅本人片段可另用"
+          }
+        ],
+        "result": "简澜说她今晚愿意留出一段现场回应，折光节点也确认本次节拍排练。你把“请重试”放进还书箱的空腔，简澜从另一边回答。完成的《还书箱里的回声》只属于这一次排练的安排；散场后各人收走自己的记录。"
+      },
+      {
+        "id": "help",
+        "label": "帮忙收线，留下看完",
+        "hint": "零成本，不形成作品署名。",
+        "result": "你把卷错的一条线重新展开。简澜说这比今晚一半的灯光都要紧；散场后你们坐在台阶上分了一包饼干。回家时，郑箐给你留着门灯。",
+        "effects": [
+          {
+            "path": "experiences.keepsake",
+            "value": "一张写着收线顺序的小纸条",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0
+      },
+      {
+        "id": "home",
+        "label": "回去和郑箐把房间收好",
+        "hint": "零成本，不使用机器。",
+        "result": "两人终于给桌子划出各自的一半。窗帘短了一截，你们把旧节目单夹在下面。今晚没有你的演出，但有了一个能回来的房间。",
+        "effects": [
+          {
+            "path": "experiences.keepsake",
+            "value": "夹在窗帘下的旧节目单",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "finance.cash",
+        "value": -2,
+        "op": "inc"
+      },
+      {
+        "path": "finance.assets",
+        "value": 2,
+        "op": "set"
+      },
+      {
+        "path": "housing.address",
+        "value": "旧馆旁·窗边合租间",
+        "op": "set"
+      },
+      {
+        "path": "housing.roommate",
+        "value": "与郑箐同住",
+        "op": "set"
+      },
+      {
+        "path": "housing.deposit",
+        "value": 2,
+        "op": "set"
+      },
+      {
+        "path": "housing.leaseEnd",
+        "value": 2120,
+        "op": "set"
+      },
+      {
+        "path": "housing.recording",
+        "value": true,
+        "op": "set"
+      }
+    ],
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "life.access",
+            "op": "eq",
+            "value": "名额不足"
+          }
+        ],
+        "text": "服务方的满额通知还在终端里。今天没有你的远身时段，录音台和观众席仍开着。"
+      },
+      {
+        "when": [
+          {
+            "path": "life.access",
+            "op": "eq",
+            "value": "换班未成"
+          }
+        ],
+        "text": "周六没有换成；你只能在当班结束后留下。控制席的整段排练赶不上，晚间录音室还能用。"
+      }
+    ],
+    "location": "地球·织城",
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": []
+  },
+  {
+    "origin": "creative-slice",
+    "id": "L02_SHIFT",
+    "year": 2118.5,
+    "title": "七月的那一班",
+    "text": "七月的交换班到了。同事把还班确认单送到合租间，郑箐替你开门，把单子放在桌上。她明天要去培训演练，今晚已把录音角让给你；你记起这一晚原本答应要还班。",
+    "options": [
+      {
+        "id": "honor",
+        "label": "按约还班",
+        "hint": "本就是交换，不另加收入。",
+        "result": "你按约接完那班，回来时郑箐已经睡了，确认单上留着同事签的交接记录。下次问起共同房间的轮用安排，她愿意拿这次准时交班作个参考。",
+        "effects": [
+          {
+            "path": "schedule.promise",
+            "value": "七月已还班",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0
+      },
+      {
+        "id": "break",
+        "label": "取消这班，把今晚留给自己",
+        "hint": "扣0.4U；郑箐这次不愿为合作住房首月交接作推荐，另两种住处仍可选。",
+        "result": "你在郑箐面前打电话取消了已确认的班，班组找人补上，扣去0.4U。她说自己正忙着迁往站区，不愿再向合作住房承诺你会准时接首月轮用交接。这一次她不作推荐；你的独租和其他生活安排仍由自己决定。",
+        "effects": [
+          {
+            "path": "schedule.promise",
+            "value": "七月失约已扣款",
+            "op": "set"
+          },
+          {
+            "path": "life.currentHousingReferral",
+            "value": false,
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0.4
+      }
+    ],
+    "onEnter": [],
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "schedule.promise",
+        "op": "eq",
+        "value": "七月待还班"
+      }
+    ],
+    "variants": [],
+    "location": "地球·织城",
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": []
+  },
+  {
+    "origin": "creative-slice",
+    "id": "L03",
+    "year": 2119,
+    "title": "第一次空出来的两天",
+    "text": "分拣机终于能自己把泡皱的书送到人工修复台，不再请你重复试。更远处，自动食物加工、搬运和修理诊断的公共生产试点开始稳定供给。班组代表把这部分产出写进了预算。\n\n这里一班块是一个有薪或可自行安排的整日，每周另有一个共同休息日。新固定班每周只需三个必要班块，原来是五个；基本月收入仍是1.15U。基本服务开支下降0.2U，公共控制席每周四也有了连续预留时段。公示没有要求你把多出来的时间继续做志愿劳动。\n\n临时代班的月均情境收入是1.45U，仍需五块且晚班不固定。郑箐问：“你第一次有完整两天，想拿它做什么？”",
+    "options": [
+      {
+        "id": "train",
+        "label": "进固定班，用一段时间训练远身",
+        "hint": "月入1.15U不减；每周3必要班，半年课程用2个释放块，免费公共时段。",
+        "result": "你签了短工时班表，把周四连续留给半年训练。最初只是让四个支点交替停住；这次不用先辞职，才能认真学一样东西。",
+        "effects": [
+          {
+            "path": "schedule.kind",
+            "value": "公共短工时固定班",
+            "op": "set"
+          },
+          {
+            "path": "schedule.blocks",
+            "value": 3,
+            "op": "set"
+          },
+          {
+            "path": "schedule.free",
+            "value": 3,
+            "op": "set"
+          },
+          {
+            "path": "schedule.thursday",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "schedule.publicSlot",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "schedule.guaranteed",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.15,
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "公共图书馆固定班员",
+            "op": "set"
+          },
+          {
+            "path": "schedule.free",
+            "value": 1,
+            "op": "set"
+          },
+          {
+            "path": "schedule.rehearsal",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "life.training",
+            "value": "半年训练中",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0
+      },
+      {
+        "id": "rest",
+        "label": "进固定班，先把两天留给生活",
+        "hint": "月入1.15U不减；三个自由日由你安排。",
+        "result": "你把空下来的两天留白。第一周睡到自然醒，和郑箐沿旧河线走了一段；她一直讲新站区，你没有一边听一边算迟到。",
+        "effects": [
+          {
+            "path": "schedule.kind",
+            "value": "公共短工时固定班",
+            "op": "set"
+          },
+          {
+            "path": "schedule.blocks",
+            "value": 3,
+            "op": "set"
+          },
+          {
+            "path": "schedule.free",
+            "value": 3,
+            "op": "set"
+          },
+          {
+            "path": "schedule.thursday",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "schedule.publicSlot",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "schedule.guaranteed",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.15,
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "公共图书馆固定班员",
+            "op": "set"
+          },
+          {
+            "path": "life.training",
+            "value": "没有报名，休息",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0
+      },
+      {
+        "id": "flex",
+        "label": "继续代班，先增加手里的余钱",
+        "hint": "月均1.45U、5班块，只有1个不固定空块；不保证周四排练。",
+        "result": "你选了代班池，多出的订单换成更高收入。别人周四训练时，你有时正在接晚班。公共服务降价仍对你有效，固定班入口也没有永久关闭。",
+        "effects": [
+          {
+            "path": "schedule.kind",
+            "value": "灵活代班池",
+            "op": "set"
+          },
+          {
+            "path": "schedule.blocks",
+            "value": 5,
+            "op": "set"
+          },
+          {
+            "path": "schedule.free",
+            "value": 1,
+            "op": "set"
+          },
+          {
+            "path": "schedule.thursday",
+            "value": false,
+            "op": "set"
+          },
+          {
+            "path": "schedule.publicSlot",
+            "value": false,
+            "op": "set"
+          },
+          {
+            "path": "schedule.guaranteed",
+            "value": false,
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.45,
+            "op": "set"
+          },
+          {
+            "path": "life.training",
+            "value": "未报名",
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "图书馆灵活代班员",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "world.automation",
+        "value": true,
+        "op": "set"
+      },
+      {
+        "path": "life.servicesImproved",
+        "value": true,
+        "op": "set"
+      },
+      {
+        "path": "finance.expense",
+        "value": 0.8,
+        "op": "set"
+      }
+    ],
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "variants": [],
+    "location": "地球·织城",
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": []
+  },
+  {
+    "origin": "creative-slice",
+    "id": "L03_SEASON",
+    "year": 2119.5,
+    "title": "半年的新日常",
+    "text": "",
+    "options": [],
+    "onEnter": [
+      {
+        "path": "experiences.training",
+        "value": true,
+        "op": "set",
+        "when": [
+          {
+            "path": "life.training",
+            "op": "eq",
+            "value": "半年训练中"
+          }
+        ]
+      },
+      {
+        "path": "experiences.works",
+        "value": 1,
+        "op": "inc",
+        "when": [
+          {
+            "path": "life.training",
+            "op": "eq",
+            "value": "半年训练中"
+          }
+        ]
+      },
+      {
+        "path": "project.participated",
+        "value": true,
+        "op": "set",
+        "when": [
+          {
+            "path": "life.training",
+            "op": "eq",
+            "value": "半年训练中"
+          }
+        ]
+      },
+      {
+        "path": "project.workTitle",
+        "value": "请重试·四足习作",
+        "op": "set",
+        "when": [
+          {
+            "path": "life.training",
+            "op": "eq",
+            "value": "半年训练中"
+          }
+        ]
+      },
+      {
+        "path": "project.stage",
+        "value": "半年训练习作完成",
+        "op": "set",
+        "when": [
+          {
+            "path": "life.training",
+            "op": "eq",
+            "value": "半年训练中"
+          }
+        ]
+      },
+      {
+        "path": "project.contribution",
+        "value": "公共时段训练与本人编排",
+        "op": "set",
+        "when": [
+          {
+            "path": "life.training",
+            "op": "eq",
+            "value": "半年训练中"
+          }
+        ]
+      },
+      {
+        "path": "project.result",
+        "value": "实际完成",
+        "op": "set",
+        "when": [
+          {
+            "path": "life.training",
+            "op": "eq",
+            "value": "半年训练中"
+          }
+        ]
+      },
+      {
+        "path": "schedule.free",
+        "value": 3,
+        "op": "set",
+        "when": [
+          {
+            "path": "life.training",
+            "op": "eq",
+            "value": "半年训练中"
+          }
+        ]
+      },
+      {
+        "path": "experiences.firstTitle",
+        "value": "请重试·四足习作",
+        "op": "set",
+        "when": [
+          {
+            "path": "life.training",
+            "op": "eq",
+            "value": "半年训练中"
+          },
+          {
+            "path": "experiences.firstTitle",
+            "op": "eq",
+            "value": "无"
+          }
+        ]
+      },
+      {
+        "path": "rights.version",
+        "value": "本人作品",
+        "when": [
+          {
+            "path": "life.training",
+            "op": "eq",
+            "value": "半年训练中"
+          }
+        ]
+      },
+      {
+        "path": "schedule.rehearsal",
+        "value": false,
+        "when": [
+          {
+            "path": "life.training",
+            "op": "eq",
+            "value": "半年训练中"
+          }
+        ]
+      },
+      {
+        "path": "life.training",
+        "value": "半年课程已完成",
+        "when": [
+          {
+            "path": "life.training",
+            "op": "eq",
+            "value": "半年训练中"
+          }
+        ]
+      }
+    ],
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "life.training",
+            "op": "eq",
+            "value": "半年课程已完成"
+          }
+        ],
+        "text": "你完成了《请重试·四足习作》。这回机器能绕过那本泡皱的书，把它送回灯下。控制席旁夹满练习时写的纸条，半年课程结束，两个训练块重新交还给你。"
+      },
+      {
+        "when": [
+          {
+            "path": "life.training",
+            "op": "eq",
+            "value": "没有报名，休息"
+          }
+        ],
+        "text": "第一次没有闹钟的周四，你睡过了早点摊最热闹的时候。河线车票后来夹在书里，郑箐把旅行中拍到的新站区给教员看。到了半年末，空白的日历已经不再让你不习惯。"
+      },
+      {
+        "when": [
+          {
+            "path": "life.training",
+            "op": "eq",
+            "value": "未报名"
+          }
+        ],
+        "text": "代班消息时常在晚饭时响起，现金比固定班攒得快，周四却总不固定。简澜给你发过两次排练照片，你都在散场后才读到。"
+      }
+    ],
+    "location": "地球·织城",
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [],
+    "automatic": "公共试点过了第一个半年。工资照新班表入账，周四的控制席旁多了几张用旧的练习纸。"
+  },
+  {
+    "origin": "creative-slice",
+    "id": "L04",
+    "year": 2120,
+    "title": "房间少了一个人",
+    "text": "郑箐通过了物流训练，搬去新站区附近。她没有问你是否同意她离开，只提前两个月告诉你新地址。简澜也拿到外地巡演的聘期，告别演出那晚，楼上比平时更吵。\n\n房东来换租约。留下整个房间需要把押金从2U补到4U；小房间只收1U，但通勤多占一个自由块，也放不下录音架。郑箐认识的合作住房有共用录音角，住户需要介绍人确认首月轮用交接能按时接上。若郑箐愿作这次推荐，你可以付0.5U搬迁费加入。她不替任何方案付租金。",
+    "options": [
+      {
+        "id": "stable",
+        "label": "独自留下，保住录音空间",
+        "hint": "补2U押金（资产）；月总支出0.95U，通勤不增，租约至2124。",
+        "result": "窗边终于全归你了，房间却安静得让人不习惯。你保住录音角和储存架，每月要自己承担0.95U生活支出。郑箐带走自己的桌灯，给你留下新站地址。",
+        "effects": [
+          {
+            "path": "finance.assets",
+            "value": 4,
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 0.95,
+            "op": "set"
+          },
+          {
+            "path": "housing.deposit",
+            "value": 4,
+            "op": "set"
+          },
+          {
+            "path": "housing.address",
+            "value": "旧馆旁·独租窗间",
+            "op": "set"
+          },
+          {
+            "path": "housing.roommate",
+            "value": "独居",
+            "op": "set"
+          },
+          {
+            "path": "housing.recording",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "housing.storage",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "housing.leaseEnd",
+            "value": 2124,
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 2
+      },
+      {
+        "id": "compact",
+        "label": "搬到河线末站的小房间",
+        "hint": "退回1U旧押金，搬迁0.5U：净回0.5U；月支出0.60U，多1块通勤，无录音/储存空间。",
+        "result": "你把录音架折好寄回公共库，搬到河线末站。房租更轻，末班车却把一个自由块吃掉了。手机还能记声音；要完成作品，得另找有时段的公共录音室。",
+        "effects": [
+          {
+            "path": "finance.cash",
+            "value": 0.5,
+            "op": "inc"
+          },
+          {
+            "path": "finance.assets",
+            "value": 1,
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 0.6,
+            "op": "set"
+          },
+          {
+            "path": "housing.deposit",
+            "value": 1,
+            "op": "set"
+          },
+          {
+            "path": "housing.address",
+            "value": "河线末站·单人小间",
+            "op": "set"
+          },
+          {
+            "path": "housing.roommate",
+            "value": "独居",
+            "op": "set"
+          },
+          {
+            "path": "housing.recording",
+            "value": false,
+            "op": "set"
+          },
+          {
+            "path": "housing.storage",
+            "value": false,
+            "op": "set"
+          },
+          {
+            "path": "housing.commute",
+            "value": 1,
+            "op": "set"
+          },
+          {
+            "path": "housing.leaseEnd",
+            "value": 2124,
+            "op": "set"
+          },
+          {
+            "path": "schedule.free",
+            "value": -1,
+            "op": "inc"
+          }
+        ],
+        "when": [],
+        "cost": 0
+      },
+      {
+        "id": "shared",
+        "label": "请郑箐介绍合作住房",
+        "hint": "0.5U搬迁费，押金仍2U；月支出0.75U，有共用录音角，无设备储存位。",
+        "result": "郑箐介绍你认识已有的住户，大家确认了轮用录音角的时段。她去站区开始新工作，你搬进另一间有人的屋子。新室友做晚饭的香味，和旧屋不一样。",
+        "effects": [
+          {
+            "path": "finance.expense",
+            "value": 0.75,
+            "op": "set"
+          },
+          {
+            "path": "housing.address",
+            "value": "织城·合作住房",
+            "op": "set"
+          },
+          {
+            "path": "housing.roommate",
+            "value": "与已见面的公共班组住户合住",
+            "op": "set"
+          },
+          {
+            "path": "housing.recording",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "housing.storage",
+            "value": false,
+            "op": "set"
+          },
+          {
+            "path": "housing.leaseEnd",
+            "value": 2124,
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "life.currentHousingReferral",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0.5
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "people.zheng.location",
+        "value": "织城·新物流站区",
+        "op": "set"
+      },
+      {
+        "path": "people.zheng.stance",
+        "value": "训练结业，开始站区工作",
+        "op": "set"
+      },
+      {
+        "path": "people.jianlan.location",
+        "value": "外地巡演途中",
+        "op": "set"
+      },
+      {
+        "path": "people.jianlan.stance",
+        "value": "2120—2122巡演聘期，本地无排练窗口",
+        "op": "set"
+      }
+    ],
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "life.currentHousingReferral",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "郑箐提到那张七月还班确认单。这次她不肯替首月共同房间交接作推荐；她的新工作已经够忙，不能再接一个临时空缺。你可以独租或搬小房间。之后怎样重新建立合作，需要另一次实际经历。"
+      }
+    ],
+    "location": "地球·织城",
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": []
+  },
+  {
+    "origin": "creative-slice",
+    "id": "L05",
+    "year": 2121,
+    "title": "夜馆节，最后一盏灯",
+    "text": "夜馆节把还书车排成了舞台。读者带来自己的工作声音：一只清洁刷、一段温室风声，还有从外地传回的谢幕掌声。简澜人在巡演团，发来的不是新邀约，而是一张鞋底磨破的照片。\n\n折光的服务节点这一年改为“离线草案＋周四现场”，不再随时接入。今晚它用获准的公共声库串起节目，不调用你的私人录音。你可以带自己的片段，也可以只留下吃一碗面。",
+    "options": [
+      {
+        "id": "homepiece",
+        "label": "在家排好自己的片段，带来演一段",
+        "hint": "已有作品且住处可录音；场务成本0.3U，只演本人部分。",
+        "result": "你在家把声音排好，夜馆节上演了属于自己的片段。最后一盏灯熄灭前，坐在还书车旁的人又敲了两下车沿，你临时多留了一拍。散场时领到一枚用旧借阅卡压的书签。",
+        "effects": [
+          {
+            "path": "experiences.festival",
+            "value": "演出本人片段",
+            "op": "set"
+          },
+          {
+            "path": "experiences.keepsake",
+            "value": "旧借阅卡书签",
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "housing.recording",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0.3
+      },
+      {
+        "id": "publicpiece",
+        "label": "用固定班的公共时段排好片段",
+        "hint": "已有作品、家中无录音位且有公共时段；成本0.3U。",
+        "result": "家里放不下的录音架在公共室里支了起来。你把片段排好带到夜馆节，坐在还书车旁的人敲了两下车沿，你留出一拍回应。那枚旧借阅卡书签，后来夹在你的班表里。",
+        "effects": [
+          {
+            "path": "experiences.festival",
+            "value": "公共时段完成演出",
+            "op": "set"
+          },
+          {
+            "path": "experiences.keepsake",
+            "value": "旧借阅卡书签",
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "housing.recording",
+            "op": "eq",
+            "value": false
+          },
+          {
+            "path": "schedule.publicSlot",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0.3
+      },
+      {
+        "id": "help",
+        "label": "帮读者把声音接上去",
+        "hint": "零费用；先帮忙接线，散场后一起吃面。",
+        "result": "你帮一位读者找到静音开关。刷子的声音终于响起来，大家笑的不是技术坏了，而是那声音太像闭馆后的风。读者把多做的一枚借阅卡书签送你，面快凉了，你们坐下来吃。",
+        "effects": [
+          {
+            "path": "experiences.festival",
+            "value": "帮忙后吃面",
+            "op": "set"
+          },
+          {
+            "path": "experiences.keepsake",
+            "value": "读者送的借阅卡书签",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0
+      },
+      {
+        "id": "listen",
+        "label": "坐到最后，把面吃完",
+        "hint": "零费用；今晚的座位和面都已备好。",
+        "result": "你听温室的风声把馆里变成另一种天气。面吃完很久，郑箐才发来下班消息，说她那边正在下雨。你回了一张还书车的照片，没有接下一份任务。",
+        "effects": [
+          {
+            "path": "experiences.festival",
+            "value": "听到最后",
+            "op": "set"
+          },
+          {
+            "path": "experiences.keepsake",
+            "value": "与郑箐互发的一张夜馆照片",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0
+      },
+      {
+        "id": "leave",
+        "label": "早点回去，留一个完整晚上",
+        "hint": "零费用；赶上较早的一班河线车。",
+        "result": "你在开场前回去了。门外的声音慢慢远掉，晚上第一次没有新的安排。简澜的照片第二天才回，你告诉她鞋底该换了。",
+        "effects": [
+          {
+            "path": "experiences.festival",
+            "value": "提前回家",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "people.zheguang.stance",
+        "value": "离线草案＋周四现场节点",
+        "op": "set"
+      }
+    ],
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "你没有带一件作品。今天的节目单没有你的作者名字，桌边仍给你留了一只碗。"
+      },
+      {
+        "when": [
+          {
+            "path": "housing.recording",
+            "op": "eq",
+            "value": false
+          },
+          {
+            "path": "schedule.publicSlot",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "小房间放不下录音架，代班也没给你稳定公共时段。今晚现排一个完整片段来不及，听、帮忙或早点回家都可以。"
+      }
+    ],
+    "location": "地球·织城",
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": []
+  },
+  {
+    "origin": "creative-slice",
+    "id": "L06",
+    "year": 2122,
+    "title": "简澜带回来的窄舞台",
+    "text": "简澜回来了，箱子比走时小。她不想再跟团赶连场，把巡演攒的钱换成当地一份舞台技术岗，只在周四晚间排自己的作品。她拿来一块窄得必须侧身通过的布景：“这次别让我等机器转完。我要试试先走。”\n\n折光的新节点也只有周四能现场联调。以前一起做过什么，并不替这一场排出时间。她可以独自做下去，你也有自己这几年的生活。",
+    "options": [
+      {
+        "id": "joint",
+        "label": "用周四做一次新的共同排练",
+        "hint": "须已有作品且周四稳定可用；0.3U场务费，双方分别答复本次合作。",
+        "result": "你把自己的片段和周四窗口发给简澜，再向折光节点预约这一场。",
+        "effects": [],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "schedule.thursday",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "schedule.free",
+            "op": "gte",
+            "value": 2
+          }
+        ],
+        "cost": 0.3,
+        "outcomes": [
+          {
+            "when": [],
+            "text": "简澜答应只做她先走的那一段；折光节点确认本次联调时段。排练时，简澜先侧身过门，你的声音留在门后，机器没有追上去。你们完成《先走的人》的一次本地排练，不是承诺今后所有周四。",
+            "effects": [
+              {
+                "path": "experiences.works",
+                "value": 1,
+                "op": "inc"
+              },
+              {
+                "path": "project.participated",
+                "value": true,
+                "op": "set"
+              },
+              {
+                "path": "project.workTitle",
+                "value": "先走的人·本地排练",
+                "op": "set"
+              },
+              {
+                "path": "project.stage",
+                "value": "本地作品完成",
+                "op": "set"
+              },
+              {
+                "path": "project.result",
+                "value": "实际完成",
+                "op": "set"
+              },
+              {
+                "path": "project.contribution",
+                "value": "本人声音段与共同排练",
+                "op": "set"
+              },
+              {
+                "path": "rights.version",
+                "value": "共同排练，仅本人片段可另用",
+                "op": "set"
+              },
+              {
+                "path": "experiences.firstTitle",
+                "value": "先走的人·本地排练",
+                "op": "set",
+                "when": [
+                  {
+                    "path": "experiences.firstTitle",
+                    "op": "eq",
+                    "value": "无"
+                  }
+                ]
+              },
+              {
+                "path": "experiences.joint",
+                "value": true,
+                "op": "set"
+              },
+              {
+                "path": "experiences.returnMeeting",
+                "value": "重新合作一次",
+                "op": "set"
+              },
+              {
+                "path": "rights.human",
+                "value": "仅本次本地排练",
+                "op": "set"
+              },
+              {
+                "path": "rights.ai",
+                "value": "仅本次节点联调",
+                "op": "set"
+              }
+            ]
+          }
+        ],
+        "deferred": true
+      },
+      {
+        "id": "watch",
+        "label": "去看看她的新工作，聊一会儿",
+        "hint": "零费用；看看窄舞台，听她讲巡演。",
+        "result": "你坐在那扇窄门旁，看简澜试了三种穿过它的办法。她说巡演里最累的是每天重新找出口，回来以后却想做一扇更窄的门。你讲起自己的住处。简澜问新房的窗朝哪边，话题就这样离开了舞台。",
+        "effects": [
+          {
+            "path": "experiences.returnMeeting",
+            "value": "看新工作并聊天",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0
+      },
+      {
+        "id": "pause",
+        "label": "这次不排，把晚上留给自己的事",
+        "hint": "零费用；先前真实合作保留，但不记为持续合作。",
+        "result": "你告诉简澜这次不排。她按原计划和场馆继续试自己的窄门，你把手头的安排收好。她发来下一次开放排练的日期，你先把消息存着。",
+        "effects": [
+          {
+            "path": "experiences.returnMeeting",
+            "value": "重逢后不合作",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "people.jianlan.location",
+        "value": "织城·本地舞台技术岗",
+        "op": "set"
+      },
+      {
+        "path": "people.jianlan.stance",
+        "value": "巡演结束，改做本地舞台技术；仅周四排练",
+        "op": "set"
+      }
+    ],
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "variants": [],
+    "location": "地球·织城",
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": []
+  },
+  {
+    "origin": "creative-slice",
+    "id": "L07",
+    "year": 2123,
+    "title": "五年以后，同一张桌子",
+    "text": "镜场寄来一年试驻演的征集。现在你知道试一次机器和过一年生活有多不同。平台会看实际作品，简澜也说清楚：她保留自己的工作，只接各自商定的场次。\n\n预算单列着月入1.45U、含生活与制作的月支出1.65U。签前现金8U由三部分组成：开场2U、全年预计净支出2.4U、应急余量3.6U。离开原工作没有自动返岗保证。\n\n已有房间和窗口的人可以直接安排；没有的人可先花1.2U，用一个月的有偿替班和场馆筹备室把准备做完，再决定是否辞职。签后制作空间计入平台总支出，不要求你必须先成为固定班员。",
+    "options": [
+      {
+        "id": "apply",
+        "label": "把实际经历交给平台，看看答复",
+        "hint": "无申请费；还没辞职，录取也不自动签约。",
+        "result": "你把材料发出去，等答复的时候照常把还书车推回库房。",
+        "effects": [
+          {
+            "path": "life.application",
+            "value": "待审核",
+            "op": "set"
+          },
+          {
+            "path": "life.decision",
+            "value": true,
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": [
+          {
+            "when": [
+              {
+                "path": "experiences.works",
+                "op": "gte",
+                "value": 1
+              }
+            ],
+            "text": "平台看过你确实做过的作品，给出有条件试驻演名额。下一步仍要核对这一年的生活安排。",
+            "effects": [
+              {
+                "path": "life.application",
+                "value": "作品获录取，尚未签",
+                "op": "set"
+              },
+              {
+                "path": "life.offer",
+                "value": true,
+                "op": "set"
+              }
+            ]
+          },
+          {
+            "when": [],
+            "text": "平台以没有已完成作品为由拒绝驻演。你已有的图书馆经验仍在，固定夜馆班与普通生活不需要这张录取。",
+            "effects": [
+              {
+                "path": "life.application",
+                "value": "无作品未录取",
+                "op": "set"
+              },
+              {
+                "path": "life.offer",
+                "value": false,
+                "op": "set"
+              }
+            ]
+          }
+        ],
+        "deferred": true
+      },
+      {
+        "id": "limited",
+        "label": "留住本职，只接一个限定演出",
+        "hint": "已有作品＋稳定周四；预付0.5U，一季后履行，基本工资不变。",
+        "result": "你只接下一场，用的是本人有权使用的片段。你保留工作，把那一场演出写在班表旁。散场后还得赶河线车，第二天是熟悉的借阅台。",
+        "effects": [
+          {
+            "path": "life.career",
+            "value": "保留本职的限定演出",
+            "op": "set"
+          },
+          {
+            "path": "contract.status",
+            "value": "本人片段一场待演",
+            "op": "set"
+          },
+          {
+            "path": "contract.end",
+            "value": 2123.25,
+            "op": "set"
+          },
+          {
+            "path": "schedule.free",
+            "value": -1,
+            "op": "inc"
+          },
+          {
+            "path": "life.application",
+            "value": "录取后选择不签职业合同",
+            "when": [
+              {
+                "path": "life.offer",
+                "op": "eq",
+                "value": true
+              }
+            ]
+          }
+        ],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "schedule.thursday",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "schedule.free",
+            "op": "gte",
+            "value": 1
+          }
+        ],
+        "cost": 0.5
+      },
+      {
+        "id": "ordinary",
+        "label": "照现在的安排继续，暂不接演出",
+        "hint": "当前工作、住处与收入保持；没有新合同。",
+        "result": "你把邀请放回桌边，照现在的班表过下一季。窗外的路已和十八岁时不同。你记起冰箱里还有半碗汤，打算今晚热了吃。",
+        "effects": [
+          {
+            "path": "life.career",
+            "value": "按现有工作与生活继续",
+            "op": "set"
+          },
+          {
+            "path": "life.application",
+            "value": "录取后选择不签职业合同",
+            "when": [
+              {
+                "path": "life.offer",
+                "op": "eq",
+                "value": true
+              }
+            ]
+          }
+        ],
+        "when": [],
+        "cost": 0
+      },
+      {
+        "id": "service",
+        "label": "接固定夜馆班，负责开放排期",
+        "hint": "月入1.15U、每周3必要班；空闲3块，末站住户扣1块通勤。",
+        "result": "班组把固定夜馆的开放排期交给你。整理读者预约排在有薪班内，交班后由下一位同事接手。下班后的周四完整留下，下一期要不要训练还没有作决定。",
+        "effects": [
+          {
+            "path": "schedule.kind",
+            "value": "公共短工时固定班",
+            "op": "set"
+          },
+          {
+            "path": "schedule.blocks",
+            "value": 3,
+            "op": "set"
+          },
+          {
+            "path": "schedule.free",
+            "value": 3,
+            "op": "set"
+          },
+          {
+            "path": "schedule.thursday",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "schedule.publicSlot",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "schedule.guaranteed",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.15,
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "夜馆排期班员",
+            "op": "set"
+          },
+          {
+            "path": "schedule.free",
+            "value": 3,
+            "op": "set"
+          },
+          {
+            "path": "life.career",
+            "value": "固定夜馆工作与独立生活",
+            "op": "set"
+          },
+          {
+            "path": "life.application",
+            "value": "录取后选择不签职业合同",
+            "when": [
+              {
+                "path": "life.offer",
+                "op": "eq",
+                "value": true
+              }
+            ]
+          },
+          {
+            "path": "schedule.free",
+            "op": "inc",
+            "value": -1,
+            "when": [
+              {
+                "path": "housing.commute",
+                "op": "eq",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "when": [],
+        "cost": 0
+      }
+    ],
+    "onEnter": [],
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "text": "材料里最近的实际作品可在右侧查看。评审不会把作品完成等同于可以维持职业生活。"
+      },
+      {
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "这五年你没有作品署名。夜馆班组更在意你熟悉读者与排期的经历，那里需要你把新班表和读者的时间接起来。"
+      }
+    ],
+    "location": "地球·织城",
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": []
+  },
+  {
+    "origin": "creative-slice",
+    "id": "L07_DECIDE",
+    "year": 2123,
+    "title": "答复之后，生活还在",
+    "text": "答复在桌上。你把预算单与自己的班表摊在一起：已有的录音角和周四窗口可以用来直接筹备；也可以花1.2U安排一个月的替班与筹备室。筹备不等于接受一年合同，原工作要到真正签约时才辞去。",
+    "options": [
+      {
+        "id": "sign",
+        "label": "按已有条件筹备，签一年试驻演",
+        "hint": "获录取＋现金8U＋现有录音住处、稳定周四和2空块；开场2U，辞原工作。",
+        "result": "你辞去原班组或代班安排，签下一年试驻演。简澜保留自己的工作，你负责自己的演出。月总支出改为1.65U、收入1.45U，全年净支出2.4U，另已付开场费2U。",
+        "effects": [
+          {
+            "path": "life.career",
+            "value": "一年试驻演",
+            "op": "set"
+          },
+          {
+            "path": "life.application",
+            "value": "录取后已签",
+            "op": "set"
+          },
+          {
+            "path": "contract.status",
+            "value": "一年试驻演履行中",
+            "op": "set"
+          },
+          {
+            "path": "contract.start",
+            "value": 2123,
+            "op": "set"
+          },
+          {
+            "path": "contract.end",
+            "value": 2124,
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.45,
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 1.65,
+            "op": "set"
+          },
+          {
+            "path": "schedule.kind",
+            "value": "平台试驻演",
+            "op": "set"
+          },
+          {
+            "path": "schedule.blocks",
+            "value": 5,
+            "op": "set"
+          },
+          {
+            "path": "schedule.free",
+            "value": 1,
+            "op": "set"
+          },
+          {
+            "path": "schedule.guaranteed",
+            "value": false,
+            "op": "set"
+          },
+          {
+            "path": "schedule.thursday",
+            "value": false,
+            "op": "set"
+          },
+          {
+            "path": "schedule.publicSlot",
+            "value": false,
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "试驻演创作者",
+            "op": "set"
+          },
+          {
+            "path": "schedule.employer",
+            "value": "镜场平台",
+            "op": "set"
+          },
+          {
+            "path": "schedule.prepBlocks",
+            "value": 0,
+            "op": "set"
+          },
+          {
+            "path": "rights.platform",
+            "value": "一年试驻演，仅本人有权使用的片段",
+            "op": "set"
+          },
+          {
+            "path": "schedule.free",
+            "value": -1,
+            "op": "inc",
+            "when": [
+              {
+                "path": "housing.commute",
+                "op": "eq",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "when": [
+          {
+            "path": "life.offer",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "finance.cash",
+            "op": "gte",
+            "value": 8
+          },
+          {
+            "path": "housing.recording",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "schedule.thursday",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "schedule.free",
+            "op": "gte",
+            "value": 2
+          }
+        ],
+        "cost": 2
+      },
+      {
+        "id": "prepare",
+        "label": "先安排一个月替班和筹备室",
+        "hint": "获录取后可选；1.2U换取两班有偿替班与每周1日场馆筹备。一个月仍按原收入生活费结算，之后另决签不签。",
+        "cost": 1.2,
+        "when": [
+          {
+            "path": "life.offer",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "effects": [
+          {
+            "path": "life.prepWasFlexible",
+            "value": true,
+            "op": "set",
+            "when": [
+              {
+                "path": "schedule.guaranteed",
+                "op": "eq",
+                "value": false
+              }
+            ]
+          },
+          {
+            "path": "life.prepared",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "life.prepRoom",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "schedule.kind",
+            "value": "原岗位有偿替班筹备月",
+            "op": "set"
+          },
+          {
+            "path": "schedule.prepBlocks",
+            "value": 1,
+            "op": "set"
+          },
+          {
+            "path": "schedule.thursday",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "schedule.blocks",
+            "value": 1
+          },
+          {
+            "path": "schedule.blocks",
+            "value": 3,
+            "when": [
+              {
+                "path": "life.prepWasFlexible",
+                "op": "eq",
+                "value": true
+              }
+            ]
+          },
+          {
+            "path": "schedule.free",
+            "value": 4
+          },
+          {
+            "path": "schedule.free",
+            "value": 2,
+            "when": [
+              {
+                "path": "life.prepWasFlexible",
+                "op": "eq",
+                "value": true
+              }
+            ]
+          },
+          {
+            "path": "schedule.free",
+            "op": "inc",
+            "value": -1,
+            "when": [
+              {
+                "path": "housing.commute",
+                "op": "eq",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "result": "你付清1.2U，班组确认两班由有偿替班接手，场馆确认每周一个完整筹备日和录音室。这个月仍领原岗位收入、付原住处生活费，另用已付费用覆盖替班与场地。你还没有递交辞职。"
+      },
+      {
+        "id": "limited",
+        "label": "留住本职，只接一个限定演出",
+        "hint": "已有作品＋稳定周四；预付0.5U，一季后履行，基本工资不变。",
+        "result": "你只接下一场，用的是本人有权使用的片段。你保留工作，把那一场演出写在班表旁。散场后还得赶河线车，第二天是熟悉的借阅台。",
+        "effects": [
+          {
+            "path": "life.career",
+            "value": "保留本职的限定演出",
+            "op": "set"
+          },
+          {
+            "path": "contract.status",
+            "value": "本人片段一场待演",
+            "op": "set"
+          },
+          {
+            "path": "contract.end",
+            "value": 2123.25,
+            "op": "set"
+          },
+          {
+            "path": "schedule.free",
+            "value": -1,
+            "op": "inc"
+          },
+          {
+            "path": "life.application",
+            "value": "录取后选择不签职业合同",
+            "when": [
+              {
+                "path": "life.offer",
+                "op": "eq",
+                "value": true
+              }
+            ]
+          }
+        ],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "schedule.thursday",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "schedule.free",
+            "op": "gte",
+            "value": 1
+          }
+        ],
+        "cost": 0.5
+      },
+      {
+        "id": "ordinary",
+        "label": "照现在的安排继续，暂不接演出",
+        "hint": "当前工作、住处与收入保持；没有新合同。",
+        "result": "你把邀请放回桌边，照现在的班表过下一季。窗外的路已和十八岁时不同。你记起冰箱里还有半碗汤，打算今晚热了吃。",
+        "effects": [
+          {
+            "path": "life.career",
+            "value": "按现有工作与生活继续",
+            "op": "set"
+          },
+          {
+            "path": "life.application",
+            "value": "录取后选择不签职业合同",
+            "when": [
+              {
+                "path": "life.offer",
+                "op": "eq",
+                "value": true
+              }
+            ]
+          }
+        ],
+        "when": [],
+        "cost": 0
+      },
+      {
+        "id": "service",
+        "label": "接固定夜馆班，负责开放排期",
+        "hint": "月入1.15U、每周3必要班；空闲3块，末站住户扣1块通勤。",
+        "result": "班组把固定夜馆的开放排期交给你。整理读者预约排在有薪班内，交班后由下一位同事接手。下班后的周四完整留下，下一期要不要训练还没有作决定。",
+        "effects": [
+          {
+            "path": "schedule.kind",
+            "value": "公共短工时固定班",
+            "op": "set"
+          },
+          {
+            "path": "schedule.blocks",
+            "value": 3,
+            "op": "set"
+          },
+          {
+            "path": "schedule.free",
+            "value": 3,
+            "op": "set"
+          },
+          {
+            "path": "schedule.thursday",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "schedule.publicSlot",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "schedule.guaranteed",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.15,
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "夜馆排期班员",
+            "op": "set"
+          },
+          {
+            "path": "schedule.free",
+            "value": 3,
+            "op": "set"
+          },
+          {
+            "path": "life.career",
+            "value": "固定夜馆工作与独立生活",
+            "op": "set"
+          },
+          {
+            "path": "life.application",
+            "value": "录取后选择不签职业合同",
+            "when": [
+              {
+                "path": "life.offer",
+                "op": "eq",
+                "value": true
+              }
+            ]
+          },
+          {
+            "path": "schedule.free",
+            "op": "inc",
+            "value": -1,
+            "when": [
+              {
+                "path": "housing.commute",
+                "op": "eq",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "when": [],
+        "cost": 0
+      }
+    ],
+    "onEnter": [],
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "life.decision",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "life.offer",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "答复里明确写着没有录取，签约栏是空的。"
+      },
+      {
+        "when": [
+          {
+            "path": "life.offer",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "housing.recording",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "作品已被认可，但当前小房间不具备所需录音空间；本期职业签约不能只凭作品成立。"
+      },
+      {
+        "when": [
+          {
+            "path": "life.offer",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "schedule.thursday",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "作品已被认可，代班表却没留下连续筹备日。镜场提供一个月有偿替班与筹备室方案，安排好后再决定是否辞职。"
+      }
+    ],
+    "location": "地球·织城",
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": []
+  },
+  {
+    "origin": "creative-slice",
+    "id": "L07_READY",
+    "year": 2123.0833333333335,
+    "title": "筹备月结束，钥匙仍在手里",
+    "text": "一个月的有偿替班与筹备已经完成。你的片段在场馆试过一遍，录音室按约退回。现在如果签约，制作空间与班表改由试驻演安排；如果不签，就回原来的工作节奏。家里的钥匙一直留在你手上。",
+    "options": [
+      {
+        "id": "signPrepared",
+        "label": "筹备完成，现在签一年试驻演",
+        "hint": "获录取、筹备已完成、现金仍至少8U；开场2U，辞原工作。",
+        "result": "你辞去原班组或代班安排，签下一年试驻演。简澜保留自己的工作，你负责自己的演出。月总支出改为1.65U、收入1.45U，全年净支出2.4U，另已付开场费2U。",
+        "effects": [
+          {
+            "path": "life.career",
+            "value": "一年试驻演",
+            "op": "set"
+          },
+          {
+            "path": "life.application",
+            "value": "录取后已签",
+            "op": "set"
+          },
+          {
+            "path": "contract.status",
+            "value": "一年试驻演履行中",
+            "op": "set"
+          },
+          {
+            "path": "contract.start",
+            "value": 2123.0833333333335,
+            "op": "set"
+          },
+          {
+            "path": "contract.end",
+            "value": 2124.0833333333335,
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.45,
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 1.65,
+            "op": "set"
+          },
+          {
+            "path": "schedule.kind",
+            "value": "平台试驻演",
+            "op": "set"
+          },
+          {
+            "path": "schedule.blocks",
+            "value": 5,
+            "op": "set"
+          },
+          {
+            "path": "schedule.free",
+            "value": 1,
+            "op": "set"
+          },
+          {
+            "path": "schedule.guaranteed",
+            "value": false,
+            "op": "set"
+          },
+          {
+            "path": "schedule.thursday",
+            "value": false,
+            "op": "set"
+          },
+          {
+            "path": "schedule.publicSlot",
+            "value": false,
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "试驻演创作者",
+            "op": "set"
+          },
+          {
+            "path": "schedule.employer",
+            "value": "镜场平台",
+            "op": "set"
+          },
+          {
+            "path": "schedule.prepBlocks",
+            "value": 0,
+            "op": "set"
+          },
+          {
+            "path": "rights.platform",
+            "value": "一年试驻演，仅本人有权使用的片段",
+            "op": "set"
+          },
+          {
+            "path": "schedule.free",
+            "value": -1,
+            "op": "inc",
+            "when": [
+              {
+                "path": "housing.commute",
+                "op": "eq",
+                "value": 1
+              }
+            ]
+          },
+          {
+            "path": "life.prepRoom",
+            "value": false,
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "life.offer",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "life.prepared",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "finance.cash",
+            "op": "gte",
+            "value": 8
+          }
+        ],
+        "cost": 2
+      },
+      {
+        "id": "return",
+        "label": "试过以后，回原来的生活",
+        "hint": "筹备费不退；不付开场费、不辞职，恢复原班表。",
+        "cost": 0,
+        "when": [],
+        "effects": [
+          {
+            "path": "schedule.blocks",
+            "value": 3,
+            "op": "set"
+          },
+          {
+            "path": "schedule.blocks",
+            "value": 5,
+            "op": "set",
+            "when": [
+              {
+                "path": "life.prepWasFlexible",
+                "op": "eq",
+                "value": true
+              }
+            ]
+          },
+          {
+            "path": "schedule.free",
+            "value": 3,
+            "op": "set"
+          },
+          {
+            "path": "schedule.free",
+            "value": -2,
+            "op": "inc",
+            "when": [
+              {
+                "path": "life.prepWasFlexible",
+                "op": "eq",
+                "value": true
+              }
+            ]
+          },
+          {
+            "path": "schedule.free",
+            "value": -1,
+            "op": "inc",
+            "when": [
+              {
+                "path": "housing.commute",
+                "op": "eq",
+                "value": 1
+              }
+            ]
+          },
+          {
+            "path": "schedule.kind",
+            "value": "公共短工时固定班",
+            "op": "set"
+          },
+          {
+            "path": "schedule.kind",
+            "value": "灵活代班池",
+            "op": "set",
+            "when": [
+              {
+                "path": "life.prepWasFlexible",
+                "op": "eq",
+                "value": true
+              }
+            ]
+          },
+          {
+            "path": "schedule.thursday",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "schedule.thursday",
+            "value": false,
+            "op": "set",
+            "when": [
+              {
+                "path": "life.prepWasFlexible",
+                "op": "eq",
+                "value": true
+              }
+            ]
+          },
+          {
+            "path": "schedule.prepBlocks",
+            "value": 0,
+            "op": "set"
+          },
+          {
+            "path": "life.prepRoom",
+            "value": false,
+            "op": "set"
+          },
+          {
+            "path": "life.career",
+            "value": "筹备后回到原生活",
+            "op": "set"
+          },
+          {
+            "path": "life.application",
+            "value": "筹备后选择不签职业合同",
+            "op": "set"
+          }
+        ],
+        "result": "你把筹备室的钥匙还回去，告诉原班组不再延长替班。1.2U已用于这个月的实际筹备，不退回；你没有签一年合同。试过的片段留在本人记录里，下一周又回到原来的班表。"
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "schedule.blocks",
+        "value": 3,
+        "op": "set"
+      },
+      {
+        "path": "schedule.blocks",
+        "value": 5,
+        "op": "set",
+        "when": [
+          {
+            "path": "life.prepWasFlexible",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      },
+      {
+        "path": "schedule.free",
+        "value": 3,
+        "op": "set"
+      },
+      {
+        "path": "schedule.free",
+        "value": -2,
+        "op": "inc",
+        "when": [
+          {
+            "path": "life.prepWasFlexible",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      },
+      {
+        "path": "schedule.free",
+        "value": -1,
+        "op": "inc",
+        "when": [
+          {
+            "path": "housing.commute",
+            "op": "eq",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "path": "schedule.kind",
+        "value": "公共短工时固定班",
+        "op": "set"
+      },
+      {
+        "path": "schedule.kind",
+        "value": "灵活代班池",
+        "op": "set",
+        "when": [
+          {
+            "path": "life.prepWasFlexible",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      },
+      {
+        "path": "schedule.thursday",
+        "value": true,
+        "op": "set"
+      },
+      {
+        "path": "schedule.thursday",
+        "value": false,
+        "op": "set",
+        "when": [
+          {
+            "path": "life.prepWasFlexible",
+            "op": "eq",
+            "value": true
+          }
+        ]
+      },
+      {
+        "path": "schedule.prepBlocks",
+        "value": 0,
+        "op": "set"
+      },
+      {
+        "path": "life.prepRoom",
+        "value": false,
+        "op": "set"
+      }
+    ],
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "life.prepared",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "variants": [],
+    "location": "地球·织城",
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": []
+  },
+  {
+    "origin": "creative-slice",
+    "id": "L08",
+    "year": 2123.25,
+    "title": "下一季的门口",
+    "text": "",
+    "options": [],
+    "onEnter": [
+      {
+        "path": "life.quarter",
+        "value": "这一季已过",
+        "op": "set"
+      },
+      {
+        "path": "contract.status",
+        "value": "本人片段一场已履行",
+        "op": "set",
+        "when": [
+          {
+            "path": "life.career",
+            "op": "eq",
+            "value": "保留本职的限定演出"
+          }
+        ]
+      },
+      {
+        "path": "contract.end",
+        "value": 0,
+        "op": "set",
+        "when": [
+          {
+            "path": "life.career",
+            "op": "eq",
+            "value": "保留本职的限定演出"
+          }
+        ]
+      },
+      {
+        "path": "schedule.free",
+        "op": "inc",
+        "value": 1,
+        "when": [
+          {
+            "path": "life.career",
+            "op": "eq",
+            "value": "保留本职的限定演出"
+          }
+        ]
+      },
+      {
+        "path": "life.prepRoom",
+        "value": false,
+        "op": "set"
+      }
+    ],
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "life.career",
+            "op": "eq",
+            "value": "一年试驻演"
+          },
+          {
+            "path": "life.prepared",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "试驻演的头一季已经开始，净生活与制作支出0.6U已经入账。一年合同仍在履行，至2124年才到期；这里没有提前替你完成它。"
+      },
+      {
+        "when": [
+          {
+            "path": "life.career",
+            "op": "eq",
+            "value": "保留本职的限定演出"
+          }
+        ],
+        "text": "你履行了那一场本人片段演出，之后照常回图书馆上班。你的演出排期从班表上划去，下一周的休息仍留着。"
+      },
+      {
+        "when": [
+          {
+            "path": "life.career",
+            "op": "eq",
+            "value": "按现有工作与生活继续"
+          }
+        ],
+        "text": "你照自己的住处和班表过了一季。郑箐寄来新站的换班照片，简澜仍在排她的窄门；没有一张合同要求你追上她们。"
+      },
+      {
+        "when": [
+          {
+            "path": "life.career",
+            "op": "eq",
+            "value": "固定夜馆工作与独立生活"
+          }
+        ],
+        "text": "新的固定班表留下完整周四。你把下周的排期表折好放进包里，走出夜馆时，街边那家早点铺刚亮灯。"
+      },
+      {
+        "when": [
+          {
+            "path": "experiences.keepsake",
+            "op": "eq",
+            "value": "旧借阅卡书签"
+          }
+        ],
+        "text": "你把夜馆节那枚旧借阅卡书签夹回节目单。"
+      },
+      {
+        "when": [
+          {
+            "path": "experiences.keepsake",
+            "op": "eq",
+            "value": "读者送的借阅卡书签"
+          }
+        ],
+        "text": "那位读者送的书签还在，边角已经被你摸得发白。"
+      },
+      {
+        "when": [
+          {
+            "path": "experiences.keepsake",
+            "op": "eq",
+            "value": "与郑箐互发的一张夜馆照片"
+          }
+        ],
+        "text": "翻到那张夜馆照片，你又看见郑箐当晚发来的雨。"
+      },
+      {
+        "when": [
+          {
+            "path": "life.career",
+            "op": "eq",
+            "value": "一年试驻演"
+          },
+          {
+            "path": "life.prepared",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "text": "筹备后的两个月试驻演已开始，净生活与制作支出0.4U已经入账。合同到2124年2月才满一年。你按新班表出门，河线车还是从原来的站开走。"
+      },
+      {
+        "when": [
+          {
+            "path": "life.career",
+            "op": "eq",
+            "value": "筹备后回到原生活"
+          }
+        ],
+        "text": "回到原班表以后，你又过了两个月。录音室里试过的那一段没有被卖出去，郑箐问起时，你知道自己为什么没有留下。"
+      }
+    ],
+    "location": "地球·织城",
+    "repeat": "once",
+    "sources": [],
+    "scenario": true,
+    "followup": [],
+    "automatic": "从年初到现在，一季过去了。你把这一页班表翻过去，故事暂时停在下一季的门口。"
+  }
+]
