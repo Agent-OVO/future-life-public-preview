@@ -1,0 +1,2953 @@
+[
+  {
+    "id": "entry",
+    "year": 2118,
+    "title": "先有一张自己的工作台",
+    "location": "按人物实际所在地",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "你出生在 2100 年的地球滨海制造城。母亲林芷在循环水站排班，父亲早年离世；公共学校教会你读懂设备日志，但家里没有供你长期脱产的积蓄。十八岁这天，你能支配的现金相当于八个月基本生活费。\n\n公共学院把一套触觉夹具送到家：AI 导师能逐步回放你的错误，机器人实验室能代做危险试验。它们不能替你参加现场认证。你想知道，自己能否不只修别人设计的东西，也参与设计人将来住进去的地方。学院和企业同时给来入口，家庭的本月账单则已到期。",
+    "variants": [],
+    "options": [
+      {
+        "id": "college",
+        "label": "进入公共学院",
+        "hint": "花费 4；三年学习，生活补助月入 1、支出 1；获得研发基础。",
+        "result": "你交了公共培养的材料费，登记三年课程。AI 导师会帮助练习，课程和认证尚未完成；林芷开始调整排班。",
+        "effects": [
+          {
+            "path": "flags.study",
+            "value": "college",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1,
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 4,
+        "outcomes": []
+      },
+      {
+        "id": "apprentice",
+        "label": "接受带薪技术学徒",
+        "hint": "月入 1.35、支出 1；三年服务，取得维护认证，不自动获得研发签字权。",
+        "result": "你签下三年学徒安排，第一天从检查密封件开始。收入会增加，现场资格必须等训练与考核完成。",
+        "effects": [
+          {
+            "path": "flags.study",
+            "value": "apprentice",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.35,
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": []
+      },
+      {
+        "id": "work",
+        "label": "先支撑家庭，再兼读",
+        "hint": "月入 1.2；有知识基础，但现场认证尚未完成。",
+        "result": "你先留在社区维修站，同时登记兼读课程。AI 导师可以夜间陪练，但你还没有任何专业认证。",
+        "effects": [
+          {
+            "path": "flags.study",
+            "value": "work",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.2,
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [
+      "S1",
+      "S6"
+    ],
+    "scenario": true,
+    "followup": [
+      "opportunity"
+    ]
+  },
+  {
+    "id": "opportunity",
+    "year": 2121,
+    "title": "收到邀请，不等于被录取",
+    "location": "按人物实际所在地",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "共享实验平台“栖灯工坊”招募灯塔壳层项目成员。项目要让月面的水循环设备更容易拆换、修补；外壳与维护接口由工坊设计，过滤系统由另一支团队提供。\n\nAI 能联动优化材料、结构与机器人路径，也能检查厚手套的可达空间。岑遥让你试着换一个维修任务：模型随即重排接口，制造台排出新样件。“我们得先说清想改善哪一种生活，再让实物回答。”\n\n你可以申请研发协作，也可以凭维护资格进入现场组。两条路都能参与方案和试验，承担的工作不同；申请未成仍有社区岗位与补考机会。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "flags.study",
+            "op": "eq",
+            "value": "college"
+          }
+        ],
+        "text": "过去三年，你完成公共培养的理论与现场考核，取得研发基础。林芷多值过的班也进入了这段共同记忆。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.study",
+            "op": "eq",
+            "value": "apprentice"
+          }
+        ],
+        "text": "三年学徒服务现已完成，你取得维护认证。第一次独立排除泄漏时，你在维修记录上签了自己的名字。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.study",
+            "op": "eq",
+            "value": "work"
+          }
+        ],
+        "text": "过去三年你完成了基础兼读，但水站故障占去了现场考核周。知识不等于资格，当前仍未认证。"
+      }
+    ],
+    "options": [
+      {
+        "id": "research",
+        "label": "申请研发协作",
+        "hint": "需要知识 ≥ 2 且有现场资格；其余申请会被拒，保留补学路径。",
+        "result": "你提交了课程记录和一份验证方案。评审尚未作答，当前没有被录取或拒绝；你仍保留原先的岗位。",
+        "effects": [
+          {
+            "path": "flags.career",
+            "op": "set",
+            "value": "研发申请待审核"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": [
+          {
+            "when": [
+              {
+                "path": "player.knowledge",
+                "op": "gte",
+                "value": 2
+              },
+              {
+                "path": "player.qualification",
+                "op": "gte",
+                "value": 1
+              }
+            ],
+            "text": "评审录取你为研究协作者，岑遥负责复核。你可以提出方案，但不能单独批准载人用途。",
+            "effects": [
+              {
+                "path": "project.participated",
+                "value": true,
+                "op": "set"
+              },
+              {
+                "path": "project.stage",
+                "value": "候选验证",
+                "op": "set"
+              },
+              {
+                "path": "project.contribution",
+                "value": "材料验证",
+                "op": "set"
+              },
+              {
+                "path": "player.role",
+                "value": "研究协作者",
+                "op": "set"
+              },
+              {
+                "path": "finance.income",
+                "value": 1.6,
+                "op": "set"
+              },
+              {
+                "path": "flags.career",
+                "op": "set",
+                "value": "研发已录取"
+              }
+            ]
+          },
+          {
+            "when": [],
+            "text": "评审认为实践证据不足，没有录取你。社区维修站保留岗位；下一节点可以参加付费现场补考，而不是结束人生。",
+            "effects": [
+              {
+                "path": "flags.career",
+                "value": "研发申请未录取",
+                "op": "set"
+              },
+              {
+                "path": "player.role",
+                "value": "社区维修助理",
+                "op": "set"
+              }
+            ]
+          }
+        ],
+        "deferred": true
+      },
+      {
+        "id": "technical",
+        "label": "进入现场维护组",
+        "hint": "需要维护资格 ≥ 1；月入 1.55。",
+        "result": "你带着工具包加入现场组。岑遥问你哪条检查步骤最容易被省略，你给她看了一页沾着油的真实记录。",
+        "effects": [
+          {
+            "path": "project.participated",
+            "value": true,
+            "op": "set"
+          },
+          {
+            "path": "project.stage",
+            "value": "候选验证",
+            "op": "set"
+          },
+          {
+            "path": "project.contribution",
+            "value": "维护与数据采集",
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "项目维护技术员",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.55,
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "player.qualification",
+            "op": "gte",
+            "value": 1
+          }
+        ],
+        "cost": 0,
+        "outcomes": []
+      },
+      {
+        "id": "decline",
+        "label": "不加入，留在社区",
+        "hint": "保留在地工作和照护；技术世界仍会前进。",
+        "result": "你谢绝了工坊。林芷的水站和街区维修更需要你；岑遥留下联络方式，并不把你的拒绝当作背叛。灯塔壳层由别的团队继续。",
+        "effects": [
+          {
+            "path": "player.role",
+            "value": "社区维修员",
+            "op": "set"
+          },
+          {
+            "path": "flags.career",
+            "value": "主动留在社区",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.4,
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": []
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "player.knowledge",
+        "value": 2,
+        "op": "set",
+        "when": [
+          {
+            "path": "flags.study",
+            "op": "eq",
+            "value": "college"
+          }
+        ]
+      },
+      {
+        "path": "player.qualification",
+        "value": 1,
+        "op": "set",
+        "when": [
+          {
+            "path": "flags.study",
+            "op": "eq",
+            "value": "college"
+          }
+        ]
+      },
+      {
+        "path": "player.role",
+        "value": "学院毕业生",
+        "op": "set",
+        "when": [
+          {
+            "path": "flags.study",
+            "op": "eq",
+            "value": "college"
+          }
+        ]
+      },
+      {
+        "path": "player.knowledge",
+        "value": 1,
+        "op": "set",
+        "when": [
+          {
+            "path": "flags.study",
+            "op": "eq",
+            "value": "apprentice"
+          }
+        ]
+      },
+      {
+        "path": "player.qualification",
+        "value": 2,
+        "op": "set",
+        "when": [
+          {
+            "path": "flags.study",
+            "op": "eq",
+            "value": "apprentice"
+          }
+        ]
+      },
+      {
+        "path": "player.role",
+        "value": "认证维护技术员",
+        "op": "set",
+        "when": [
+          {
+            "path": "flags.study",
+            "op": "eq",
+            "value": "apprentice"
+          }
+        ]
+      },
+      {
+        "path": "player.knowledge",
+        "value": 1,
+        "op": "set",
+        "when": [
+          {
+            "path": "flags.study",
+            "op": "eq",
+            "value": "work"
+          }
+        ]
+      },
+      {
+        "path": "player.role",
+        "value": "社区维修助理",
+        "op": "set",
+        "when": [
+          {
+            "path": "flags.study",
+            "op": "eq",
+            "value": "work"
+          }
+        ]
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "S1"
+    ],
+    "scenario": true,
+    "followup": [
+      "sponsor"
+    ]
+  },
+  {
+    "id": "sponsor",
+    "year": 2124,
+    "title": "谁拥有你修好的答案",
+    "location": "按人物实际所在地",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "自动实验室开始开放夜间时段。过去一间小工坊做不起的批量材料试验，现在可以按次排队，但验证、设备和成果权仍有主人。许禾是与你相识多年的设备培训师，愿意和你合住分担照护，却明确说自己的职业不能成为谁的随迁附件。\n\n你收到两种安排：企业包设备和时段，换三年定向服务；公共团队保持成果可共享，但主要使用夜间排队时段，收入也更低。不愿参与的人可以在社区利用新设备补认证，或者继续现场修理。",
+    "variants": [],
+    "options": [
+      {
+        "id": "corporate",
+        "label": "签三年企业合作",
+        "hint": "仅项目成员；月入 1.9，成果限雇主使用，2127 年解除服务期。",
+        "result": "你签了设备合作协议。试验终于不用排深夜，代价是三年内不能把图纸带到社区：许禾提醒你，共享演示课要换一套材料。",
+        "effects": [
+          {
+            "path": "project.sponsor",
+            "value": "企业限用",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.9,
+            "op": "set"
+          },
+          {
+            "path": "contract.status",
+            "value": "企业服务期",
+            "op": "set"
+          },
+          {
+            "path": "contract.end",
+            "value": 2127,
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0,
+        "outcomes": []
+      },
+      {
+        "id": "public",
+        "label": "等待公共试验时段",
+        "hint": "仅项目成员；月入 1.45，保留共享权，使用夜间排队时段。",
+        "result": "你选择公共协作。岑遥和你轮流守夜，许禾带学员来学习公开的故障记录。你有了成果分享权，却也开始精打细算每月余款。",
+        "effects": [
+          {
+            "path": "project.sponsor",
+            "value": "公共共享",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.45,
+            "op": "set"
+          },
+          {
+            "path": "people.colleague.trust",
+            "value": 1,
+            "op": "inc"
+          }
+        ],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0,
+        "outcomes": []
+      },
+      {
+        "id": "certify",
+        "label": "在社区补齐现场认证",
+        "hint": "仅未参与者；花费 3，资格提升，日后可申请维护合同。",
+        "result": "你支付现场考核费，利用公共机器人完成危险工序练习，亲自完成最后的拆装。证书没有让你成为研究者，却让往后维护岗位的门重新打开。",
+        "effects": [
+          {
+            "path": "player.qualification",
+            "value": 2,
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "社区认证技术员",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.55,
+            "op": "set"
+          },
+          {
+            "path": "flags.career",
+            "value": "补考通过",
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "cost": 3,
+        "outcomes": []
+      },
+      {
+        "id": "stay",
+        "label": "只保留现职和现场记录",
+        "hint": "不签新服务期；收入不变。",
+        "result": "你保留了现职，把可以公开的维修记录整理成册。许禾拿它教新学员辨认声音：有些故障，不在仿真最漂亮的曲线里。",
+        "effects": [],
+        "when": [],
+        "cost": 0,
+        "outcomes": []
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "world.robotLab",
+        "value": true,
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "S1",
+      "S2"
+    ],
+    "scenario": true,
+    "followup": [
+      "design"
+    ]
+  },
+  {
+    "id": "design",
+    "year": 2127,
+    "title": "把一种生活做进设备里",
+    "location": "按人物实际所在地",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "text": "栖灯工坊的试制间里，三个水循环机组并排运行。机器臂把同一份旧水样送进试验管路。你们负责外壳、拆换接口和维护布局，过滤系统由另一支团队提供。\n\n过去一周，AI 已把材料、结构和机器人动作一起优化过。今晚的制造台还能做一轮样件：改一个目标，就能看见新方案变成实物。\n\n晨湾给这一整包设备留了三份运输质量额度，设备、保护件和约定周期的备件都算在里面。少占一份，可以装别的设备；用足它，可以换更长的维护间隔；也可以带去工具，让某些零件能在月面重做。\n\n岑遥将本轮试制控制交给你：“选我们先把哪件事做成。另一面的代价也要一起试。”"
+      },
+      {
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "project.contribution",
+            "op": "eq",
+            "value": "材料验证"
+          }
+        ],
+        "text": "你负责修改候选结构的目标约束；团队共同复核最终的用途。"
+      },
+      {
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "project.contribution",
+            "op": "eq",
+            "value": "维护与数据采集"
+          }
+        ],
+        "text": "你负责机器人工作站、拆换顺序和实际任务谱；岑遥将这些要求写进结构方案。"
+      },
+      {
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "社区维修站也接上了机器人工作台。你没有加入灯塔壳层，眼前要决定的是怎样照料仍在使用的设备：和许禾组织共享备件，或者继续熟悉的维修与家庭安排。"
+      },
+      {
+        "when": [
+          {
+            "path": "project.sponsor",
+            "op": "eq",
+            "value": "企业限用"
+          }
+        ],
+        "text": "三年定向服务已结束；当年的图纸仍留在企业授权范围内。"
+      }
+    ],
+    "options": [
+      {
+        "id": "durable",
+        "label": "让维护机器人也能离开一阵",
+        "hint": "用足三份运力，争取更长维护间隔；试种组件另等一批。",
+        "result": "你保留三份质量额度，把长间隔后的拆开、检查与重装设为目标。AI 增加磨损余量，重排可分开拆换的连接结构；机器人按计划抽出一组部件，再装回去。\n\n装箱图被用满。泵、控制和隔离已有各自的自主运行能力，剩下的瓶颈是壳层检修。如果样件通过，远一些的设备间就不必每处配常驻维修台。这轮不会同时带齐试种舱那包组件。",
+        "effects": [
+          {
+            "path": "project.design",
+            "value": "耐用",
+            "op": "set"
+          },
+          {
+            "path": "project.stage",
+            "value": "实物试验",
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0,
+        "outcomes": []
+      },
+      {
+        "id": "light",
+        "label": "让同一批运力带去更多东西",
+        "hint": "整包目标三份占二；靠近常驻维修与备件。通过后才有余量。",
+        "result": "你把整包上限压到两份，保留维护机器人随时抽换部件的作业区。AI 重新生成模块化结构，机器臂重排接口，试制台接住第一片薄壳。\n\n装箱图空出一格。岑遥把试种舱尚缺的独立循环组件放在旁边——若验证成立，它可以随这批设备走。更密集的维护与备件也计入了方案；外缘没有常驻维修的设备间不适用。现在保存的是目标与样件。",
+        "effects": [
+          {
+            "path": "project.design",
+            "value": "轻量",
+            "op": "set"
+          },
+          {
+            "path": "project.stage",
+            "value": "实物试验",
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0,
+        "outcomes": []
+      },
+      {
+        "id": "local",
+        "label": "让当地工作台能重做它",
+        "hint": "首批仍占三份，包含工具与检验件；限定壳板、支架、连接件。",
+        "result": "你保留较笨重的通用接口，把目标限定在壳板、支架和连接件。AI 按当地设备重新生成形状，机器人在两套工作台制作样件，岑遥配好检验夹具。\n\n第一批没有变轻，工具、检验件也要运输；以后还要花电力和机时。换来的是改工作舱布局时，可以在当地重做清单内的部件。泵、传感器与净化部件仍走原供应链。",
+        "effects": [
+          {
+            "path": "project.design",
+            "value": "本地制造",
+            "op": "set"
+          },
+          {
+            "path": "project.stage",
+            "value": "实物试验",
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0,
+        "outcomes": []
+      },
+      {
+        "id": "records",
+        "label": "在社区建立备件合作组",
+        "hint": "未参与者；花费 2，社区制造为自己的职业打开机会。",
+        "result": "你没有参加工坊的设计表决。你和许禾成立社区备件合作组，把机器人工作台按时段共享，保留每次改动的检验记录。",
+        "effects": [
+          {
+            "path": "flags.career",
+            "value": "社区备件合作",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.65,
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "cost": 2,
+        "outcomes": []
+      },
+      {
+        "id": "steady",
+        "label": "专注日常维修，不扩大",
+        "hint": "未参与者；保留收入和时间。",
+        "result": "你没有接受合作组的组织工作。你继续修理在用设备，固定每周陪林芷吃饭；新设备上市不意味着旧设备会立刻消失。",
+        "effects": [],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "cost": 0,
+        "outcomes": []
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "contract.status",
+        "value": "无",
+        "op": "set"
+      },
+      {
+        "path": "contract.end",
+        "value": 0,
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "S2",
+      "S3"
+    ],
+    "scenario": true,
+    "followup": [
+      "trial"
+    ]
+  },
+  {
+    "id": "trial",
+    "year": 2130,
+    "title": "让样件回答你真正问的问题",
+    "location": "按人物实际所在地",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "text": "机器人试验舱里，不同批次样件依次经历带尘拆装、运行和检查。AI 把变化与样件、工况和装配记录对齐，异常件已自动归档。\n\n今天由你决定是否继续月面用途。完成目标验证要用本轮实物时段，并按原安排付 2 单位；转向地面水站，则把这轮工作改作可拆换的隔离试验支路。"
+      },
+      {
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "project.design",
+            "op": "eq",
+            "value": "轻量"
+          }
+        ],
+        "text": "薄壳仍然很轻，但一批样件的磨损分布比预测更宽。AI 提出了几种解释与对应测试；如果把修补都加回去，整包的运力优势可能消失。"
+      },
+      {
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "project.design",
+            "op": "eq",
+            "value": "耐用"
+          }
+        ],
+        "text": "厚壳完成了短程试验。你还需要知道，间隔拉长以后，拆开、检查和重新装回会怎样。"
+      },
+      {
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "project.design",
+            "op": "eq",
+            "value": "本地制造"
+          }
+        ],
+        "text": "不同工作台已重做过同一设计，个别样件偏差较大。AI 找到了工艺条件与偏差的关系；每种纳入清单的设备和原料都需要重复留下合格件。"
+      },
+      {
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "工坊公开了一组含尘试验的失效记录。你没有参与壳层验证，许禾却看见了它对社区的用处：把真实样件带进训练，或者接住新设备上线前的旧系统维护。"
+      }
+    ],
+    "options": [
+      {
+        "id": "retest",
+        "label": "完成这条路线的月面整包验证",
+        "hint": "支付 2；验证当年目标。结果保留真实批次，不能靠重读换一批。",
+        "result": "你确认本轮验证目标。AI 将目标转换成任务序列，与岑遥复核；机器人执行危险工序、隔离异常样件，继续其余试验。",
+        "effects": [
+          {
+            "path": "project.testPurpose",
+            "op": "set",
+            "value": "月面整包验证"
+          }
+        ],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 2,
+        "outcomes": [
+          {
+            "when": [
+              {
+                "path": "project.design",
+                "op": "eq",
+                "value": "轻量"
+              },
+              {
+                "path": "flags.validation",
+                "op": "eq",
+                "value": 0
+              }
+            ],
+            "text": "含尘批次仍未达到月面要求。整包不能按原目标交付，已花的 2 单位不退，也没有可记在你们名下的运输余量。晨湾会采用另一团队的方案。\n\nAI 保留了已证实的拆换经验。你们开始制作地面水站的转接候选，让不同模块可在隔离支路轮换；地面用途仍须独立检查，原月面失败记录完整留下。",
+            "effects": [
+              {
+                "path": "project.result",
+                "value": "失败后转向",
+                "op": "set"
+              },
+              {
+                "path": "project.stage",
+                "value": "地面部件",
+                "op": "set"
+              },
+              {
+                "path": "player.role",
+                "value": "地面验证技术员",
+                "op": "set"
+              }
+            ]
+          },
+          {
+            "when": [
+              {
+                "path": "project.design",
+                "op": "eq",
+                "value": "轻量"
+              }
+            ],
+            "text": "你把外壳、实际备件和维护条件放在一起检验。整包仍只占两份运输额度，团队通过了常驻维护条件下的限定用途。\n\n外缘无常驻维修点的设备间不在范围内。装箱图上的空白有了实测依据；等新一轮运输包落实时，才决定余量装什么。",
+            "effects": [
+              {
+                "path": "project.result",
+                "value": "限定用途通过",
+                "op": "set"
+              },
+              {
+                "path": "project.stage",
+                "value": "试点应用",
+                "op": "set"
+              },
+              {
+                "path": "finance.income",
+                "value": 2,
+                "op": "set"
+              }
+            ]
+          },
+          {
+            "when": [
+              {
+                "path": "project.design",
+                "op": "eq",
+                "value": "耐用"
+              }
+            ],
+            "text": "长间隔运行后的检查、拆换与重装达到要求，团队通过限定用途。三份运输额度全部用完。\n\n这套壳层可以用于没有常驻维修台的限定设备间；泵、控制与隔离仍由各自系统承担。试种组件要等另一批运输，壳层也仍要按计划巡检。",
+            "effects": [
+              {
+                "path": "project.result",
+                "value": "限定用途通过",
+                "op": "set"
+              },
+              {
+                "path": "project.stage",
+                "value": "试点应用",
+                "op": "set"
+              },
+              {
+                "path": "finance.income",
+                "value": 2,
+                "op": "set"
+              }
+            ]
+          },
+          {
+            "when": [
+              {
+                "path": "project.design",
+                "op": "eq",
+                "value": "本地制造"
+              }
+            ],
+            "text": "你让不同工作台的成品混排，先检验再揭示来源。检验圈出了能稳定重做的壳板、支架和连接件，不合格件退回。\n\n限定工况通过。初期整包仍占三份，复用工具的收益要等当地制造站具备条件；泵、传感器和净化部件继续外购。",
+            "effects": [
+              {
+                "path": "project.result",
+                "value": "限定用途通过",
+                "op": "set"
+              },
+              {
+                "path": "project.stage",
+                "value": "试点应用",
+                "op": "set"
+              },
+              {
+                "path": "finance.income",
+                "value": 2,
+                "op": "set"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "redirect",
+        "label": "现在改做地面水站的隔离支路",
+        "hint": "不付这次月面补测费，放弃原月面主合同；改制用途另行检查。",
+        "result": "你停止月面用途补测，把目标改成让处理模块在地面水站的隔离试验支路轮换。岑遥失望了一阵，仍与你重新列出该保留、该验证的部分。\n\nAI 生成转接方案，机器人开始制作候选。这里容易就地检修，但材料和用途仍须另查。你没有得到月面运输余量；你选择保留的是一座水站不断尝试新方法的可能。",
+        "effects": [
+          {
+            "path": "project.result",
+            "value": "主动转向",
+            "op": "set"
+          },
+          {
+            "path": "project.stage",
+            "value": "地面部件",
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "地面水站技术员",
+            "op": "set"
+          },
+          {
+            "path": "project.testPurpose",
+            "op": "set",
+            "value": "地面改制"
+          }
+        ],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0,
+        "outcomes": []
+      },
+      {
+        "id": "teach",
+        "label": "把失效案例变成现场训练",
+        "hint": "未参与者；花费 1，许禾与合作组发展培训。",
+        "result": "你没有参与壳层验证。许禾获得公开失效案例后，请你一起做拆装课程。学员第一次看见，先进机器也需要有人承认它哪里做不到。",
+        "effects": [
+          {
+            "path": "player.role",
+            "value": "社区设备培训员",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.75,
+            "op": "set"
+          },
+          {
+            "path": "people.partner.trust",
+            "value": 1,
+            "op": "inc"
+          }
+        ],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "cost": 1,
+        "outcomes": []
+      },
+      {
+        "id": "maintain",
+        "label": "承接旧设备的过渡维护",
+        "hint": "未参与者；月入 1.7，技术更新不抹去维修需求。",
+        "result": "新水站上线前，旧系统仍要运转。你承接过渡维护，把工作分给社区年轻人；变化并不只属于实验室。",
+        "effects": [
+          {
+            "path": "player.role",
+            "value": "社区维护领班",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.7,
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "cost": 0,
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [
+      "S1",
+      "S2",
+      "S3"
+    ],
+    "scenario": true,
+    "followup": [
+      "invitation"
+    ]
+  },
+  {
+    "id": "invitation",
+    "year": 2132,
+    "title": "从一份图纸到一个远方",
+    "location": "按人物实际所在地",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "月面“晨湾”居住区扩建。远处窗格里已经亮起灯，医院和水循环站还在安装。现场单位需要具备认证的维护人员；研究履历有用，失败后积累的检查经验也有用。赴月不是成为英雄，而是换一处需要值夜班的地方。\n\n合同草案列明：本人运输与岗前训练由单位承担；六年服务期从 2132 年开始，到 2138 年到期；月入 3.2、支出 1.8，返程预留金 3；提前解约最多承担 6 单位培训余额，按履约时间递减。所有金额都是情境生活单位。\n\n许禾说：“可以讨论共同生活，但我要先有自己的岗位。我不会因为你签了合同，就自动搬走。”林芷支持你选择，却希望你明确如何联系和回家。",
+    "variants": [],
+    "options": [
+      {
+        "id": "solo",
+        "label": "申请本人派驻",
+        "hint": "先申请；尚未获批、签约或搬家。资格不足会拒绝；需自备返程预留金 3。",
+        "result": "你递交本人申请，仍在地球。许禾暂留原岗位，家人没有被写进运输名单。接下来要等待单位审核，并另行决定是否签字。",
+        "effects": [
+          {
+            "path": "flags.application",
+            "value": "本人申请",
+            "op": "set"
+          },
+          {
+            "path": "flags.family",
+            "value": "本人先行意向；许禾未同意迁居",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": []
+      },
+      {
+        "id": "family",
+        "label": "先商谈家庭方案",
+        "hint": "许禾独立决定；本期岗位不匹配可能延期。",
+        "result": "你提出共同申请。许禾愿意谈，但要求岗位匹配而不只是家属名额。你的愿望已记录，下一步由双方和单位分别答复。",
+        "effects": [
+          {
+            "path": "flags.application",
+            "value": "家庭申请",
+            "op": "set"
+          },
+          {
+            "path": "flags.family",
+            "value": "共同申请待答复",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": []
+      },
+      {
+        "id": "earth",
+        "label": "留地球做供应或维修",
+        "hint": "不申请迁居；保留当地照护和后续职业分支。",
+        "result": "你选择留在地球。月面并没有从生活中消失：订单、维修资料和别人回传的照片仍会来到你的工作台，但你不必为一份邀请迁居。",
+        "effects": [
+          {
+            "path": "flags.application",
+            "value": "拒绝迁居",
+            "op": "set"
+          },
+          {
+            "path": "flags.family",
+            "value": "留地球共同生活",
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "地球供应与维修",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.9,
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": []
+      },
+      {
+        "id": "exit",
+        "label": "离开太空项目方向",
+        "hint": "转社区服务；不强迫回到主工程。",
+        "result": "你停止追逐赴月岗位，转入社区循环水和设备服务。世界继续建设晨湾，你的下一件大事，是让一座老水站不再频繁停机。",
+        "effects": [
+          {
+            "path": "flags.application",
+            "value": "退出",
+            "op": "set"
+          },
+          {
+            "path": "flags.family",
+            "value": "留地球共同生活",
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "社区循环水服务",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.65,
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [
+      "S4",
+      "S5",
+      "S6"
+    ],
+    "scenario": true,
+    "followup": [
+      "review",
+      "relations"
+    ]
+  },
+  {
+    "id": "review",
+    "year": 2132,
+    "title": "申请的回信",
+    "location": "按人物实际所在地",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "flags.application",
+        "op": "ne",
+        "value": "拒绝迁居"
+      },
+      {
+        "path": "flags.application",
+        "op": "ne",
+        "value": "退出"
+      }
+    ],
+    "text": "你还在地球。合同审核和家庭协商终于有了书面答复。每一项答复都应该改变接下来真正能做的事，而不是把“申请”悄悄写成“已迁居”。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "flags.application",
+            "op": "eq",
+            "value": "家庭申请"
+          }
+        ],
+        "text": "许禾的答复：本期晨湾没有培训岗位，她不同意本期迁居。家庭方案不能成立。你仍可另行签本人合同，但不能把她的讨论意愿当成随迁同意。"
+      },
+      {
+        "when": [
+          {
+            "path": "player.qualification",
+            "op": "gte",
+            "value": 1
+          }
+        ],
+        "text": "单位确认你的维护资格可用于现场岗位。完成培训与适应观察后才会安排运输，载人系统的最终签字仍由负责人承担。"
+      },
+      {
+        "when": [
+          {
+            "path": "player.qualification",
+            "op": "eq",
+            "value": 0
+          }
+        ],
+        "text": "单位没有批准你的申请：现场认证要求没有满足。AI 学习记录不能代替持证操作。你只能保留原地工作或承认未录取结果。"
+      }
+    ],
+    "options": [
+      {
+        "id": "sign",
+        "label": "接受本人录用并签约",
+        "hint": "维护资格 ≥ 1；花费 3 留作返程预留（计入资产）；签约后仍须完成培训和出发。",
+        "result": "你接受本人录用，签下到 2138 年的六年合同，预留返程费用。状态现在是“签约待出发”，不是已经到月球。许禾没有签署随迁。",
+        "effects": [
+          {
+            "path": "contract.status",
+            "value": "签约待出发",
+            "op": "set"
+          },
+          {
+            "path": "contract.start",
+            "value": 2132,
+            "op": "set"
+          },
+          {
+            "path": "contract.end",
+            "value": 2138,
+            "op": "set"
+          },
+          {
+            "path": "contract.obligation",
+            "value": 6,
+            "op": "set"
+          },
+          {
+            "path": "finance.assets",
+            "value": 3,
+            "op": "inc"
+          },
+          {
+            "path": "flags.application",
+            "value": "录用并签约",
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "player.qualification",
+            "op": "gte",
+            "value": 1
+          }
+        ],
+        "cost": 3,
+        "outcomes": []
+      },
+      {
+        "id": "defer",
+        "label": "不接受本期合同，留下",
+        "hint": "保留地球工作；不会自动把家人或自己送走。",
+        "result": "你没有签这份合同，回信确认本期名额释放。许禾继续自己的培训岗位，你留在地球工作；这不是系统替你判定的人生失败。",
+        "effects": [
+          {
+            "path": "flags.application",
+            "value": "审核后不签",
+            "op": "set"
+          },
+          {
+            "path": "flags.family",
+            "value": "留地球共同生活",
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "地球供应与维修",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.9,
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "player.qualification",
+            "op": "gte",
+            "value": 1
+          }
+        ],
+        "cost": 0,
+        "outcomes": []
+      },
+      {
+        "id": "rejected",
+        "label": "接受未录取结果，转在地岗位",
+        "hint": "仅无认证者；岗位要求未满足，不是玩家主动撤回。",
+        "result": "单位以现场认证不足拒绝了申请。你没有签约，也没有被扣运输费用。社区合作组接受你的经验，接下来的培训岗位仍然开放。",
+        "effects": [
+          {
+            "path": "flags.application",
+            "value": "资格不足未录取",
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "社区设备服务",
+            "op": "set"
+          },
+          {
+            "path": "flags.family",
+            "value": "留地球共同生活",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.65,
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "player.qualification",
+            "op": "eq",
+            "value": 0
+          }
+        ],
+        "cost": 0,
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [
+      "S1"
+    ],
+    "scenario": true,
+    "followup": [
+      "arrival",
+      "relations"
+    ]
+  },
+  {
+    "id": "arrival",
+    "year": 2132.25,
+    "title": "出发之前，还有一次确认",
+    "location": "按人物实际所在地",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "contract.status",
+        "op": "eq",
+        "value": "签约待出发"
+      }
+    ],
+    "text": "十二周岗前培训已经完成。货运计划改变过两次，你仍没有离开地球。现在运输席位确认，适应观察也已通过。返程预留金留在独立账目里，抵达后才开始月面收入与生活支出。\n\n你最后一次检查行李：工具不归你所有，记录里写过的错误却属于你。许禾送来一小本学员拆装笔记，没有登上这班运输船。你还可以取消，但必须结清已实际发生的培训余额。",
+    "variants": [],
+    "options": [
+      {
+        "id": "depart",
+        "label": "启程，并完成抵达登记",
+        "hint": "本人赴月；许禾不随迁；收入 3.2、支出 1.8。",
+        "result": "旅程没有被写成瞬间传送。运输、对接和现场适应完成后，你抵达晨湾；第一晚值班，地球的语音在通信链里晚了一拍。许禾和林芷仍在地球。",
+        "effects": [
+          {
+            "path": "player.location",
+            "value": "月球",
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "晨湾现场技术员",
+            "op": "set"
+          },
+          {
+            "path": "contract.status",
+            "value": "履约中",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 3.2,
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 1.8,
+            "op": "set"
+          },
+          {
+            "path": "flags.family",
+            "value": "地月分居；许禾未同意迁居",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": []
+      },
+      {
+        "id": "cancel",
+        "label": "结清培训后取消出发",
+        "hint": "扣除情境培训余额 6；返程预留金 3 转回现金。",
+        "result": "你选择不出发，支付已经发生的培训成本，取回返程预留金。合同已结清；你留在地球，未发生迁居。许禾没有因此欠你一个搬家的承诺。",
+        "effects": [
+          {
+            "path": "finance.cash",
+            "value": 3,
+            "op": "inc"
+          },
+          {
+            "path": "finance.assets",
+            "value": -3,
+            "op": "inc"
+          },
+          {
+            "path": "contract.status",
+            "value": "取消并结清",
+            "op": "set"
+          },
+          {
+            "path": "contract.obligation",
+            "value": 0,
+            "op": "set"
+          },
+          {
+            "path": "flags.family",
+            "value": "留地球共同生活",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.9,
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "地球供应与维修",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 6,
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [
+      "S4",
+      "S5"
+    ],
+    "scenario": true,
+    "followup": [
+      "relations"
+    ]
+  },
+  {
+    "id": "relations",
+    "year": 2135,
+    "title": "不能只靠一段好消息维持的关系",
+    "location": "按人物实际所在地",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "许禾发来这一届学员的合照。有人已经进入维护网络，也有人仍在等岗位。你们以前谈未来，常说“等这件事忙完”；如今发现，大工程不会替普通人的生活自动留出空档。林芷仍住在地球，照护机器人能提醒她吃饭，不能替你回答她的问题。",
+    "variants": [],
+    "options": [
+      {
+        "id": "separate",
+        "label": "尊重许禾的岗位，安排固定联系与探亲",
+        "hint": "仅月球；花费 2，保留分居，不自动团聚。",
+        "result": "你和许禾约定固定联系与探亲窗口。她继续在地球教课，你继续履约。距离没有被一句好感度奖励消除，但双方知道下一次具体的相见安排。",
+        "effects": [
+          {
+            "path": "people.partner.trust",
+            "value": 1,
+            "op": "inc"
+          },
+          {
+            "path": "flags.family",
+            "value": "约定联系与探亲，仍分居",
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "player.location",
+            "op": "eq",
+            "value": "月球"
+          }
+        ],
+        "cost": 2,
+        "outcomes": []
+      },
+      {
+        "id": "return",
+        "label": "提前解约，回到地球",
+        "hint": "仅月球；2135 培训余额 3，由预留金支付；收入改为 1.8。",
+        "result": "你按已履行三年的条款结清培训余额，以原返程预留承担费用，完成回程。许禾没有放弃岗位，你改变了自己的安排。晨湾的同事接手轮值，记录保留你的贡献与离任日期。",
+        "effects": [
+          {
+            "path": "player.location",
+            "value": "地球",
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "地球设备培训员",
+            "op": "set"
+          },
+          {
+            "path": "finance.assets",
+            "value": -3,
+            "op": "inc"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.8,
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 1,
+            "op": "set"
+          },
+          {
+            "path": "contract.status",
+            "value": "提前结清",
+            "op": "set"
+          },
+          {
+            "path": "contract.obligation",
+            "value": 0,
+            "op": "set"
+          },
+          {
+            "path": "flags.family",
+            "value": "返回地球共同生活",
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "player.location",
+            "op": "eq",
+            "value": "月球"
+          }
+        ],
+        "cost": 0,
+        "outcomes": []
+      },
+      {
+        "id": "cooperate",
+        "label": "和许禾共同开设公共训练班",
+        "hint": "仅地球；花费 3，少赚一点，但共享课程带来后续教学路径。",
+        "result": "你和许禾共同承担训练班，而不是替她作职业决定。她负责课程，你负责故障实物；林芷偶尔来听学员讲水站为什么不再停机。",
+        "effects": [
+          {
+            "path": "flags.career",
+            "value": "公共训练班",
+            "op": "set"
+          },
+          {
+            "path": "people.partner.trust",
+            "value": 1,
+            "op": "inc"
+          },
+          {
+            "path": "player.role",
+            "value": "设备培训合作者",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.8,
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "player.location",
+            "op": "eq",
+            "value": "地球"
+          }
+        ],
+        "cost": 3,
+        "outcomes": []
+      },
+      {
+        "id": "care",
+        "label": "保留工作，划出照护与相处的时间",
+        "hint": "仅地球；月入减少 0.15，不新增合同。",
+        "result": "你没有再接训练班的工作。排班少了一些，林芷和许禾终于不用每次都等你修完最后一台机器。你仍然有职业，只是不把全部时间交出去。",
+        "effects": [
+          {
+            "path": "finance.income",
+            "value": -0.15,
+            "op": "inc"
+          },
+          {
+            "path": "people.mother.trust",
+            "value": 1,
+            "op": "inc"
+          },
+          {
+            "path": "flags.family",
+            "value": "地球固定照护安排",
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "player.location",
+            "op": "eq",
+            "value": "地球"
+          }
+        ],
+        "cost": 0,
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [
+      "S4",
+      "S6"
+    ],
+    "scenario": true,
+    "followup": [
+      "infrastructure"
+    ]
+  },
+  {
+    "id": "infrastructure",
+    "year": 2138,
+    "title": "终于轮到别人住进去",
+    "location": "按人物实际所在地",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "晨湾新居住单元启用，当地制造站也开始承接标准备件。临时通道正在拆除，居民准备第一周的生活。世界照常向前，你的工作和去留也到了这一站。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "player.location",
+            "op": "eq",
+            "value": "月球"
+          }
+        ],
+        "text": "你从已经开放的通道看见现场。先处理已经到期的岗位与返程，下一步再看工坊这次带来的试验。"
+      },
+      {
+        "when": [
+          {
+            "path": "player.location",
+            "op": "eq",
+            "value": "地球"
+          }
+        ],
+        "text": "你在地球打开已回传的现场影像。先安排接下来的工作，再看工坊这次带来的试验。"
+      },
+      {
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "project.result",
+            "op": "eq",
+            "value": "限定用途通过"
+          }
+        ],
+        "text": "岑遥从地球发来当年的目标、实测结果和首轮维护记录。灯塔壳层在限定范围内服役。"
+      },
+      {
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "project.result",
+            "op": "eq",
+            "value": "主动转向"
+          }
+        ],
+        "text": "晨湾用了另一团队的方案。你当年主动停止月面补测，保留的是地面改制工作；这段经历没有被记成一次月面失败。"
+      },
+      {
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": true
+          },
+          {
+            "path": "project.result",
+            "op": "eq",
+            "value": "失败后转向"
+          }
+        ],
+        "text": "晨湾用了另一团队的方案。你的不合格批次与补测支出仍在记录里，地面改制没有改写那个结果。"
+      },
+      {
+        "when": [
+          {
+            "path": "project.participated",
+            "op": "eq",
+            "value": false
+          }
+        ],
+        "text": "你没有加入壳层项目。新制造站仍带来教学和服务机会，也让旧订单减少。"
+      }
+    ],
+    "options": [
+      {
+        "id": "moonstay",
+        "label": "合同到期，签当地维护岗位",
+        "hint": "仅月球；旧六年义务归零，新岗位无预付培训债，月入 2.7。",
+        "result": "你履行完六年约定，接受无预付培训债的当地维护岗位。晨湾对你不再只是一张派驻表，但许禾仍在地球；留居没有替你解决关系。",
+        "effects": [
+          {
+            "path": "contract.status",
+            "value": "当地就业，无培训债",
+            "op": "set"
+          },
+          {
+            "path": "contract.obligation",
+            "value": 0,
+            "op": "set"
+          },
+          {
+            "path": "contract.end",
+            "value": 0,
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 2.7,
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "晨湾维护员",
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "player.location",
+            "op": "eq",
+            "value": "月球"
+          }
+        ],
+        "cost": 0,
+        "outcomes": []
+      },
+      {
+        "id": "home",
+        "label": "履约结束，使用预留金返回地球",
+        "hint": "仅月球；消耗返程资产 3，月入 1.9、支出 1。",
+        "result": "你在合同到期后回到地球，用预留金支付返程。你教新同事怎样在低重力中固定工具，也重新学习地球设备已经改变的部分。",
+        "effects": [
+          {
+            "path": "finance.assets",
+            "value": -3,
+            "op": "inc"
+          },
+          {
+            "path": "contract.status",
+            "value": "到期结清",
+            "op": "set"
+          },
+          {
+            "path": "contract.obligation",
+            "value": 0,
+            "op": "set"
+          },
+          {
+            "path": "contract.end",
+            "value": 0,
+            "op": "set"
+          },
+          {
+            "path": "player.location",
+            "value": "地球",
+            "op": "set"
+          },
+          {
+            "path": "player.role",
+            "value": "地球培训技术员",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.9,
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 1,
+            "op": "set"
+          },
+          {
+            "path": "flags.family",
+            "value": "返地共同生活",
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "player.location",
+            "op": "eq",
+            "value": "月球"
+          }
+        ],
+        "cost": 0,
+        "outcomes": []
+      },
+      {
+        "id": "teach",
+        "label": "转入机器人设备教学",
+        "hint": "仅地球；开放的新职业，月入 1.9。",
+        "result": "你转入设备教学。学生不是来听一个万能发明家的故事，而是来学如何复现、检查、拒绝不可靠的结果。许禾和你各自保留课程署名。",
+        "effects": [
+          {
+            "path": "player.role",
+            "value": "机器人设备教师",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 1.9,
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "player.location",
+            "op": "eq",
+            "value": "地球"
+          }
+        ],
+        "cost": 0,
+        "outcomes": []
+      },
+      {
+        "id": "supply",
+        "label": "调整为本地制造服务",
+        "hint": "仅地球；先支付 4，公共共享且本地制造路线返还 2；月入 2.1。",
+        "result": "你把老工作台改成小型制造服务点。机器人接手重复工序，你负责验收与客户；技术让你能做更复杂的事，也让你承担更多解释错误的责任。",
+        "effects": [
+          {
+            "path": "player.role",
+            "value": "制造服务经营者",
+            "op": "set"
+          },
+          {
+            "path": "finance.income",
+            "value": 2.1,
+            "op": "set"
+          }
+        ],
+        "when": [
+          {
+            "path": "player.location",
+            "op": "eq",
+            "value": "地球"
+          }
+        ],
+        "cost": 4,
+        "outcomes": [
+          {
+            "when": [
+              {
+                "path": "project.design",
+                "op": "eq",
+                "value": "本地制造"
+              },
+              {
+                "path": "project.sponsor",
+                "op": "eq",
+                "value": "公共共享"
+              }
+            ],
+            "text": "你沿用当年的公共本地制造工具与检验夹具，返还 2 单位改造费用。那次没有追求最轻的决定，现在给了你更低的转业成本。",
+            "effects": [
+              {
+                "path": "finance.cash",
+                "op": "inc",
+                "value": 2
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "world.localFab",
+        "value": true,
+        "op": "set"
+      },
+      {
+        "path": "world.habitat",
+        "value": true,
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "S1",
+      "S2",
+      "S6"
+    ],
+    "scenario": true,
+    "followup": [
+      "infrastructure_use",
+      "public"
+    ]
+  },
+  {
+    "id": "infrastructure_use",
+    "year": 2138,
+    "title": "把当年的优点交到别人手里",
+    "location": "按人物实际所在地",
+    "when": [
+      {
+        "path": "project.participated",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "岑遥发来一份本轮试验邀请。工坊与原资料持有方已经开放这次目标所需的材料，并备好一轮机时、试验件与操作支持。你可以选一件事做，也可以把这次机会交回去。",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "player.location",
+            "op": "eq",
+            "value": "地球"
+          }
+        ],
+        "text": "你面前是地面的同型试验台。月面作业包由当地团队按自己的时序执行，完成后回传记录。岑遥仍在地球。"
+      },
+      {
+        "when": [
+          {
+            "path": "player.location",
+            "op": "eq",
+            "value": "月球"
+          }
+        ],
+        "text": "你面前是晨湾的现场台。岑遥从地球发来复核资料；若这次做地面合作，你在当地同型台设计任务，等地面团队执行后回传。"
+      },
+      {
+        "when": [
+          {
+            "path": "project.useScope",
+            "op": "eq",
+            "value": "月面整包"
+          },
+          {
+            "path": "project.design",
+            "op": "eq",
+            "value": "轻量"
+          }
+        ],
+        "text": "新一轮扩建沿用已验证的轻量整包设计，三份运输额度中实际剩下一份。设备在常驻维修站附近服役。\n\n试种舱主体和照明已经完成，当前缺的是一包独立循环组件；另一种用途是多带一包同型备件。两者只能选一个。"
+      },
+      {
+        "when": [
+          {
+            "path": "project.useScope",
+            "op": "eq",
+            "value": "月面整包"
+          },
+          {
+            "path": "project.design",
+            "op": "eq",
+            "value": "耐用"
+          }
+        ],
+        "text": "这套壳层补齐了外沿设备间的维护条件，泵、控制和隔离本来就能按限定工况自主运行。三份运输额度全部用完；本轮可用的是外沿隔离工作舱，或一套可拆检的服役件。"
+      },
+      {
+        "when": [
+          {
+            "path": "project.useScope",
+            "op": "eq",
+            "value": "月面整包"
+          },
+          {
+            "path": "project.design",
+            "op": "eq",
+            "value": "本地制造"
+          }
+        ],
+        "text": "当地制造站已能按原清单重做壳板、支架与连接件，通过检验后进入备件柜。泵、传感器和净化部件仍外购。电力、机器与检验时段只够本轮改版或补备件中的一项。"
+      },
+      {
+        "when": [
+          {
+            "path": "project.useScope",
+            "op": "eq",
+            "value": "地面改制"
+          }
+        ],
+        "text": "工坊带来 2137 年的独立地面用途检查记录：改制部件已通过隔离支路的限定用途检查。处理模块由水处理团队提供，居民主供水与试验支路分开。"
+      },
+      {
+        "when": [
+          {
+            "path": "flags.application",
+            "op": "eq",
+            "value": "退出"
+          }
+        ],
+        "text": "你在 2132 年离开了太空项目方向。邀请只涉及地面循环水合作，不恢复你的月面项目职责；已验证的月面成果仍由原团队使用。"
+      },
+      {
+        "when": [
+          {
+            "path": "project.sponsor",
+            "op": "eq",
+            "value": "企业限用"
+          }
+        ],
+        "text": "本轮只使用已明确开放的限定材料；旧企业图纸没有因此成为公开教材。"
+      },
+      {
+        "when": [
+          {
+            "path": "project.sponsor",
+            "op": "eq",
+            "value": "无"
+          }
+        ],
+        "text": "这次席位有独立的材料开放范围，你当年没有签赞助安排，不妨碍接受这一轮合作。"
+      }
+    ],
+    "options": [
+      {
+        "id": "plant",
+        "label": "把余量用于试种循环组件",
+        "hint": "用完唯一余量；下一步由你决定双独立还是共用回路。",
+        "when": [
+          {
+            "path": "project.useAccess",
+            "op": "eq",
+            "value": "本次限定试验"
+          },
+          {
+            "path": "project.useScope",
+            "op": "eq",
+            "value": "月面整包"
+          },
+          {
+            "path": "project.result",
+            "op": "eq",
+            "value": "限定用途通过"
+          },
+          {
+            "path": "project.design",
+            "op": "eq",
+            "value": "轻量"
+          },
+          {
+            "path": "project.freightRemaining",
+            "op": "eq",
+            "value": 1
+          },
+          {
+            "path": "project.plantBayReady",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0,
+        "effects": [
+          {
+            "path": "project.freightRemaining",
+            "op": "set",
+            "value": 0
+          },
+          {
+            "path": "project.freightDisposition",
+            "op": "set",
+            "value": "试种组件"
+          },
+          {
+            "path": "project.application",
+            "op": "set",
+            "value": "试种循环支路"
+          },
+          {
+            "path": "project.applicationStatus",
+            "op": "set",
+            "value": "待布局"
+          }
+        ],
+        "result": "你把循环组件装进这批设备包，唯一余量已经用完。机器人将组件装上试验台，停在尚未连接的两组接口前。现在由你决定架位和水路怎样分。",
+        "outcomes": []
+      },
+      {
+        "id": "spares",
+        "label": "把余量装成同型备用件",
+        "hint": "增加替换余量；试种组件另等后续运输。",
+        "when": [
+          {
+            "path": "project.useAccess",
+            "op": "eq",
+            "value": "本次限定试验"
+          },
+          {
+            "path": "project.useScope",
+            "op": "eq",
+            "value": "月面整包"
+          },
+          {
+            "path": "project.result",
+            "op": "eq",
+            "value": "限定用途通过"
+          },
+          {
+            "path": "project.design",
+            "op": "eq",
+            "value": "轻量"
+          },
+          {
+            "path": "project.freightRemaining",
+            "op": "eq",
+            "value": 1
+          },
+          {
+            "path": "project.plantBayReady",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0,
+        "effects": [
+          {
+            "path": "project.freightRemaining",
+            "op": "set",
+            "value": 0
+          },
+          {
+            "path": "project.freightDisposition",
+            "op": "set",
+            "value": "同型备件"
+          },
+          {
+            "path": "project.application",
+            "op": "set",
+            "value": "追加同型备件"
+          },
+          {
+            "path": "project.applicationStatus",
+            "op": "set",
+            "value": "已按本轮范围检查并运行"
+          },
+          {
+            "path": "project.useAccess",
+            "op": "set",
+            "value": "结束"
+          }
+        ],
+        "result": "同型备件进入本地仓储，机器人在试验台完成更换演练。居民供水可以照原维护计划运行，替换余量更充足了。这一批没有带来试种组件，唯一运输余量已经用完。",
+        "outcomes": []
+      },
+      {
+        "id": "autonomy",
+        "label": "比较连续与集中用水两种任务",
+        "hint": "本轮外沿位置用于实验，不拆服役件做下一代。",
+        "when": [
+          {
+            "path": "project.useAccess",
+            "op": "eq",
+            "value": "本次限定试验"
+          },
+          {
+            "path": "project.useScope",
+            "op": "eq",
+            "value": "月面整包"
+          },
+          {
+            "path": "project.result",
+            "op": "eq",
+            "value": "限定用途通过"
+          },
+          {
+            "path": "project.design",
+            "op": "eq",
+            "value": "耐用"
+          }
+        ],
+        "cost": 0,
+        "effects": [
+          {
+            "path": "project.application",
+            "op": "set",
+            "value": "自主运行实验"
+          },
+          {
+            "path": "project.applicationStatus",
+            "op": "set",
+            "value": "已按本轮范围检查并运行"
+          },
+          {
+            "path": "project.useAccess",
+            "op": "set",
+            "value": "结束"
+          }
+        ],
+        "result": "你选择在限定负载内比较连续与集中用水对维护需求的影响。AI 排好任务，现场系统自主运行并记录磨损。完成用途检查后，外沿隔离工作舱开始试验。\n\n回传影像里，巡检机器人沿通道离开，设备继续运行。轻量线也能自动运行；你们换来的是此处不用再配常驻维修台。",
+        "outcomes": []
+      },
+      {
+        "id": "next_generation",
+        "label": "拆检服役件，重做下一代维护布局",
+        "hint": "本轮不开外沿实验；得到新候选，仍待验证。",
+        "when": [
+          {
+            "path": "project.useAccess",
+            "op": "eq",
+            "value": "本次限定试验"
+          },
+          {
+            "path": "project.useScope",
+            "op": "eq",
+            "value": "月面整包"
+          },
+          {
+            "path": "project.result",
+            "op": "eq",
+            "value": "限定用途通过"
+          },
+          {
+            "path": "project.design",
+            "op": "eq",
+            "value": "耐用"
+          }
+        ],
+        "cost": 0,
+        "effects": [
+          {
+            "path": "project.application",
+            "op": "set",
+            "value": "下一代维护样件"
+          },
+          {
+            "path": "project.applicationStatus",
+            "op": "set",
+            "value": "新样件待后续验证"
+          },
+          {
+            "path": "project.useAccess",
+            "op": "set",
+            "value": "结束"
+          }
+        ],
+        "result": "机器人将服役件拆到试验台。你把磨损记录与实际占用空间并排，借 AI 重新生成维护接口，制作下一代样件。\n\n本轮没有同时开展外沿实验。新候选还要接受自己的验证，不能沿用旧版本的认证。",
+        "outcomes": []
+      },
+      {
+        "id": "reconfigure",
+        "label": "比较侧面与上方抽换的两组接口",
+        "hint": "用本轮制造与检验时段改版，不同时补足通用备件。",
+        "when": [
+          {
+            "path": "project.useAccess",
+            "op": "eq",
+            "value": "本次限定试验"
+          },
+          {
+            "path": "project.useScope",
+            "op": "eq",
+            "value": "月面整包"
+          },
+          {
+            "path": "project.result",
+            "op": "eq",
+            "value": "限定用途通过"
+          },
+          {
+            "path": "project.design",
+            "op": "eq",
+            "value": "本地制造"
+          },
+          {
+            "path": "world.localFab",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0,
+        "effects": [
+          {
+            "path": "project.application",
+            "op": "set",
+            "value": "可换布局水路台"
+          },
+          {
+            "path": "project.applicationStatus",
+            "op": "set",
+            "value": "已按本轮范围检查并运行"
+          },
+          {
+            "path": "project.useAccess",
+            "op": "set",
+            "value": "结束"
+          }
+        ],
+        "result": "你选择比较侧面与上方抽换。AI 生成清单内的兼容接口，机器人轮换制造、检验与装配，两次拆换轨迹并排留下。月面工作站按已检查作业包完成对应部件，记录回到你面前。\n\n本轮机时已经用于改版；泵、传感器和净化部件没有改为当地制造。",
+        "outcomes": []
+      },
+      {
+        "id": "local_spares",
+        "label": "先把清单内的通用替换件做足",
+        "hint": "用本轮机时增加备件，推迟新实验布局。",
+        "when": [
+          {
+            "path": "project.useAccess",
+            "op": "eq",
+            "value": "本次限定试验"
+          },
+          {
+            "path": "project.useScope",
+            "op": "eq",
+            "value": "月面整包"
+          },
+          {
+            "path": "project.result",
+            "op": "eq",
+            "value": "限定用途通过"
+          },
+          {
+            "path": "project.design",
+            "op": "eq",
+            "value": "本地制造"
+          },
+          {
+            "path": "world.localFab",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0,
+        "effects": [
+          {
+            "path": "project.application",
+            "op": "set",
+            "value": "本地替换件"
+          },
+          {
+            "path": "project.applicationStatus",
+            "op": "set",
+            "value": "已按本轮范围检查并运行"
+          },
+          {
+            "path": "project.useAccess",
+            "op": "set",
+            "value": "结束"
+          }
+        ],
+        "result": "制造站把本轮时段用于壳板、支架与连接件。机器人逐件检验，不合格件退回；在用设备多了一批本地产替换件。新布局的试验推迟，精密功能件仍需外购。",
+        "outcomes": []
+      },
+      {
+        "id": "ground_compare",
+        "label": "让相同水样走过两种模块的试验支路",
+        "hint": "本轮用于比较与轮换记录，不交成固定服务。",
+        "when": [
+          {
+            "path": "project.useAccess",
+            "op": "eq",
+            "value": "本次限定试验"
+          },
+          {
+            "path": "project.useScope",
+            "op": "eq",
+            "value": "地面改制"
+          },
+          {
+            "path": "project.groundUseChecked",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0,
+        "effects": [
+          {
+            "path": "project.application",
+            "op": "set",
+            "value": "地面模块比较"
+          },
+          {
+            "path": "project.applicationStatus",
+            "op": "set",
+            "value": "已按本轮范围检查并运行"
+          },
+          {
+            "path": "project.useAccess",
+            "op": "set",
+            "value": "结束"
+          }
+        ],
+        "result": "你选择比较两种模块的运行与更换方式。AI 对齐同一测试水源的输入和记录，机器人执行轮换；两条隔离支路的曲线留在屏上，居民主供水没有切换成试验模式。\n\n这是一轮已检查的地面用途实验，不是月面验证通过，也没有生成额外运输收益。",
+        "outcomes": []
+      },
+      {
+        "id": "ground_handover",
+        "label": "把改制系统交成稳定服务",
+        "hint": "本轮完善重复运行与交接，放弃新比较。",
+        "when": [
+          {
+            "path": "project.useAccess",
+            "op": "eq",
+            "value": "本次限定试验"
+          },
+          {
+            "path": "project.useScope",
+            "op": "eq",
+            "value": "地面改制"
+          },
+          {
+            "path": "project.groundUseChecked",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0,
+        "effects": [
+          {
+            "path": "project.application",
+            "op": "set",
+            "value": "地面稳定交接"
+          },
+          {
+            "path": "project.applicationStatus",
+            "op": "set",
+            "value": "已完成交接"
+          },
+          {
+            "path": "project.useAccess",
+            "op": "set",
+            "value": "结束"
+          }
+        ],
+        "result": "你把本轮时段用于重复运行、交接演练与操作记录。水站团队接过已完成独立检查的改制系统，照既定范围使用。你没有继续这轮新比较，也不再替他们长期主持。",
+        "outcomes": []
+      },
+      {
+        "id": "decline",
+        "label": "这次不承担新操作",
+        "hint": "旧贡献保留；本轮工作与资源交回团队。",
+        "when": [],
+        "cost": 0,
+        "effects": [
+          {
+            "path": "project.application",
+            "op": "set",
+            "value": "本次不参与"
+          },
+          {
+            "path": "project.applicationStatus",
+            "op": "set",
+            "value": "未参与"
+          },
+          {
+            "path": "project.useAccess",
+            "op": "set",
+            "value": "结束"
+          },
+          {
+            "path": "project.freightRemaining",
+            "op": "set",
+            "value": 0,
+            "when": [
+              {
+                "path": "project.freightRemaining",
+                "op": "eq",
+                "value": 1
+              }
+            ]
+          },
+          {
+            "path": "project.freightDisposition",
+            "op": "set",
+            "value": "交回团队",
+            "when": [
+              {
+                "path": "project.freightDisposition",
+                "op": "eq",
+                "value": "待调配"
+              }
+            ]
+          }
+        ],
+        "result": "你回信说这次不接。团队继续使用已验证的成果，并自行安排本轮资源。你仍能说清当年做过什么；新试验没有被写成你的工作。",
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [
+      "S1",
+      "S2",
+      "S3"
+    ],
+    "scenario": true,
+    "followup": [
+      "infrastructure_layout",
+      "public"
+    ]
+  },
+  {
+    "id": "infrastructure_layout",
+    "year": 2138,
+    "title": "两条水路，还是多一组架位",
+    "location": "按人物实际所在地",
+    "when": [
+      {
+        "path": "project.participated",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "path": "project.application",
+        "op": "eq",
+        "value": "试种循环支路"
+      },
+      {
+        "path": "project.trialLayout",
+        "op": "eq",
+        "value": "未选择"
+      }
+    ],
+    "text": "组件已经占用那一份运输余量，不能再改装成备件。AI 摊开两种布局：两条独立回路要占去一组架位；共用回路能多放一组架，但两个区必须一起换液。两种都在本轮试验范围内，与居民供水隔离。\n\n你想先试哪一种？",
+    "variants": [
+      {
+        "when": [
+          {
+            "path": "player.location",
+            "op": "eq",
+            "value": "地球"
+          }
+        ],
+        "text": "机器人将在你面前的地面同型台演示切换；月面安装由当地团队完成后回传。"
+      },
+      {
+        "when": [
+          {
+            "path": "player.location",
+            "op": "eq",
+            "value": "月球"
+          }
+        ],
+        "text": "你在晨湾的现场台检查接口，机器人等待本轮布局任务。"
+      }
+    ],
+    "options": [
+      {
+        "id": "independent",
+        "label": "留两个独立回路，各自停换与试配方",
+        "hint": "保留两组架位，少一组；可以独立换液。",
+        "when": [
+          {
+            "path": "project.useAccess",
+            "op": "eq",
+            "value": "本次限定试验"
+          },
+          {
+            "path": "project.freightRemaining",
+            "op": "eq",
+            "value": 0
+          },
+          {
+            "path": "project.plantBayReady",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0,
+        "effects": [
+          {
+            "path": "project.trialLayout",
+            "op": "set",
+            "value": "双独立回路"
+          },
+          {
+            "path": "project.rackGroups",
+            "op": "set",
+            "value": 2
+          },
+          {
+            "path": "project.switchMode",
+            "op": "set",
+            "value": "单区停换，另一侧继续"
+          },
+          {
+            "path": "project.trialTasks",
+            "op": "set",
+            "value": "双配方比较与单区停换"
+          },
+          {
+            "path": "project.applicationStatus",
+            "op": "set",
+            "value": "已按本轮范围检查并运行"
+          },
+          {
+            "path": "project.useAccess",
+            "op": "set",
+            "value": "结束"
+          }
+        ],
+        "result": "你选择了双独立回路。机器人取走一组尚未种苗的架，接好两条水路。按你选定的单侧停换任务，左侧停止并换液，右侧流量线保持平稳。\n\n现场按这份布局完成安装，运行记录显示两组架位、两条独立回路。你能比较不同配方、分别停换；少掉的那组架没有回来。眼前验证的是布局与切换，收获还没有发生。",
+        "outcomes": []
+      },
+      {
+        "id": "shared",
+        "label": "共用一条回路，把空间留给更多架位",
+        "hint": "三组架位；同一配方、整组停换。",
+        "when": [
+          {
+            "path": "project.useAccess",
+            "op": "eq",
+            "value": "本次限定试验"
+          },
+          {
+            "path": "project.freightRemaining",
+            "op": "eq",
+            "value": 0
+          },
+          {
+            "path": "project.plantBayReady",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "cost": 0,
+        "effects": [
+          {
+            "path": "project.trialLayout",
+            "op": "set",
+            "value": "共用回路"
+          },
+          {
+            "path": "project.rackGroups",
+            "op": "set",
+            "value": 3
+          },
+          {
+            "path": "project.switchMode",
+            "op": "set",
+            "value": "整组暂停，再一同恢复"
+          },
+          {
+            "path": "project.trialTasks",
+            "op": "set",
+            "value": "同配方种植比较与整组停换"
+          },
+          {
+            "path": "project.applicationStatus",
+            "op": "set",
+            "value": "已按本轮范围检查并运行"
+          },
+          {
+            "path": "project.useAccess",
+            "op": "set",
+            "value": "结束"
+          }
+        ],
+        "result": "你选择了共用回路。机器人合并接口，把空出的地方装成第三组架。按你选定的整组换液任务，两个区一起暂停，再一同恢复。\n\n现场按这份布局完成安装，记录显示三组架位。可用种植位更多，这轮要用同一配方比较，不能独立停换某一区。眼前验证的是布局与切换，收获还没有发生。",
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [
+      "S1",
+      "S3"
+    ],
+    "scenario": true,
+    "followup": [
+      "public"
+    ]
+  },
+  {
+    "id": "public",
+    "year": 2140,
+    "title": "一笔没有人可以假装没看见的费用",
+    "location": "按人物实际所在地",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "新维护机器人减少了重复检查，但没有消除备件、能源和备用系统的费用。地方维护网络邀请居民审阅一笔固定的小额储备预算：是继续压低当期服务费，还是先换掉最容易拖累停机时间的部件？\n\n你不是城市领导者。你可以参加短期技术审阅，权限只限于核对设备清单并提出建议；真正的收费和预算决定仍由公共程序作出。不参与的人也会收到新的账单。",
+    "variants": [],
+    "options": [
+      {
+        "id": "review",
+        "label": "接受限期技术审阅委托",
+        "hint": "资格 ≥ 1；花费时间折算 1，提交建议，不取得无限公共权力。",
+        "result": "你接受限期委托，核对备件和故障记录，建议先补足备用件。公共程序采纳了部分建议，服务费仍每月增加 0.05。你的权限在审阅期结束后终止。",
+        "effects": [
+          {
+            "path": "flags.public",
+            "value": "完成限期技术审阅",
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 0.05,
+            "op": "inc"
+          }
+        ],
+        "when": [
+          {
+            "path": "player.qualification",
+            "op": "gte",
+            "value": 1
+          }
+        ],
+        "cost": 1,
+        "outcomes": []
+      },
+      {
+        "id": "observe",
+        "label": "作为居民表达意见，不任职",
+        "hint": "生活费每月增加 0.05；不影响继续工作。",
+        "result": "你参加听证而没有接受职务。最终预算补足了一部分备用件，服务费每月增加 0.05。你对结果不全满意，但仍可以核对公开的维修记录。",
+        "effects": [
+          {
+            "path": "flags.public",
+            "value": "居民听证",
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 0.05,
+            "op": "inc"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": []
+      },
+      {
+        "id": "skip",
+        "label": "不参与，把时间留给现有生活",
+        "hint": "同样承担公共费用变化；没有被自动授予职权。",
+        "result": "你没有参加。公共程序照常完成，服务费每月增加 0.05。你不是每一场变化的推动者，却同样生活在它的后果里。",
+        "effects": [
+          {
+            "path": "flags.public",
+            "value": "未参与",
+            "op": "set"
+          },
+          {
+            "path": "finance.expense",
+            "value": 0.05,
+            "op": "inc"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": []
+      }
+    ],
+    "onEnter": [
+      {
+        "path": "world.automation",
+        "value": true,
+        "op": "set"
+      }
+    ],
+    "repeat": "once",
+    "sources": [
+      "S5",
+      "S6"
+    ],
+    "scenario": true,
+    "followup": [
+      "recap"
+    ]
+  },
+  {
+    "id": "recap",
+    "year": 2143,
+    "title": "不是结局，是下一张工作台",
+    "location": "按人物实际所在地",
+    "when": [
+      {
+        "path": "player.alive",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "text": "你四十三岁。某些旧工具已经停产，第一批学员也开始教别人。十八岁时那只触觉夹具让你第一次靠近复杂工作；后来选择的目标，终于有了自己的使用方式。\n\n这一段到这里暂告一段落，你仍然活着。下一阶段可以继续工作、准备第二专业，或先休整。",
+    "variants": [],
+    "options": [
+      {
+        "id": "continue",
+        "label": "继续现有工作",
+        "hint": "记录下一阶段意向。",
+        "result": "你准备继续现有工作，把未完成的维护、课程和关系带进下一阶段。",
+        "effects": [
+          {
+            "path": "flags.future",
+            "value": "继续现有职业",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": []
+      },
+      {
+        "id": "relearn",
+        "label": "准备学习第二专业",
+        "hint": "只记录意向，不凭空获得资格或延寿。",
+        "result": "你准备学习第二专业，先列出时间和费用，再决定何时开始。AI 可以帮助练习，不能替你经历那些尚未发生的年月。",
+        "effects": [
+          {
+            "path": "flags.future",
+            "value": "准备第二专业",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": []
+      },
+      {
+        "id": "rest",
+        "label": "安排一段休整",
+        "hint": "不抹去贡献、离任和仍存在的关系。",
+        "result": "你准备休整，把下一段时间从项目里取回来。这不是失败，也不是一生的最后一页。",
+        "effects": [
+          {
+            "path": "flags.future",
+            "value": "计划休整",
+            "op": "set"
+          }
+        ],
+        "when": [],
+        "cost": 0,
+        "outcomes": []
+      }
+    ],
+    "onEnter": [],
+    "repeat": "once",
+    "sources": [
+      "S7"
+    ],
+    "scenario": true,
+    "followup": []
+  }
+]

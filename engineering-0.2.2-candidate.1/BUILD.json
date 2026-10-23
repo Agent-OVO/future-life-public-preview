@@ -1,0 +1,10 @@
+{
+  "version": {
+    "schema": 4,
+    "content": "engineering-scenes-1",
+    "build": "0.2.2-engineering-candidate.1"
+  },
+  "source": "source/",
+  "builtAt": "2026-10-23T16:55:37.031Z",
+  "runtime": "v24.12.0"
+}
